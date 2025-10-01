@@ -262,29 +262,28 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Sports hub events planner who has to operate and liaise with various stakeholders to host sports events
+* Has to juggle multiple events
+* Has tight deadlines
+* Value time and efficiency
+* Can type fast
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
-
+**Value proposition**:
+Provides event planners with a single, organized hub for managing all contacts related to their events, reducing the chaos of scattered information. It ensures quick access to the right people at the right time, helping planners stay in control and deliver seamless, stress-free experiences.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                   | I want to …​                                        | So that I can…​                                             |
+|-------|-------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------|
+| `* * *` | user                                      | search contacts by name                             | easily obtain their contact details                         |
+| `* * *` | user                                      | modify my contact list                              | add and delete relevant contacts accordingly                |
+| `* * *` | user                                      | view all information regarding a particular contact | easily contact the person                                   |
+| `* * *` | user                                      | access the contacts saved from my previous event    | quickly and efficiently add these contacts to my next event |
+| `* * *` | user                                      | add upcoming appointment                            | deconflict clashes while scheduling other appointments      |
+| `* *` | user                                      | filter my contacts by event                         | find all the people involved in that specific event         |
 
-*{More to be added}*
 
 ### Use cases
 
