@@ -288,32 +288,164 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `Overbooked` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a contact with the required details
+2. Overbooked adds the contact
+3. Overbooked updates the list
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User uses the invalid format or parameters
+    * 1a1. Overbooked informs the user of the error and displays the correct format
 
-  Use case ends.
+Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. User tries to add a contact with the same name
+    * 1b1. Overbooked informs the user that the contact already exists
 
-    * 3a1. AddressBook shows an error message.
+Use case ends.
 
-      Use case resumes at step 2.
+* 2a. Overbooked is unable to save the new contact list
+    * 2a1. Overbooked informs the user of the error
 
-*{More to be added}*
+Use case resumes from step 3.
+
+**Use case: UC2 - Delete a contact**
+
+**MSS**
+
+1. User deletes a contact
+2. Overbooked removes the contact from the database
+3. Overbooked updates the list
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User tries to delete a contact that does not exist in the database
+    * 1a1. Overbooked shows an error message to the user
+
+Use case ends.
+
+* 2a. Overbooked faced some errors in saving the contact list
+    * 2a1. Overbooked informs the user of the error
+
+Use case ends.
+
+**Use case: UC3 - Add an event**
+
+**MSS**
+
+1. User requests to add an event with the required details
+2. OverBooked adds the event
+3. OverBooked updates the list
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User provides an unacceptable value for the argument
+    * 1a1. OverBooked informs the user of the acceptable values
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the new event
+    * 2a1. OverBooked informs the user of the error
+
+Use case resumes from step 3.
+
+**Use case: UC4 - Delete an event**
+
+**MSS**
+
+1. User requests to delete an event by specifying its index in the event list.
+2. Event Planner verifies that the index is valid.
+3. Event Planner deletes the specified event.
+4. Event Planner removes all references to the event from the associated contacts.
+5. Event Planner updates and displays the new event list.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The given index is not a valid positive integer
+    * 2a1. Event Planner shows an error message: “Invalid command format. Delete event: Deletes the event identified by the index number used in the event list. Parameters: INDEX(must be a positive integer).”
+
+Use case ends.
+
+* 2b. The given index is greater than the number of displayed events.
+    * 2b1. Event Planner shows an error message: “The event index [INDEX] provided is invalid.”
+
+Use case ends.
+
+* 3a. Database update fails.
+    * 3a1. Event Planner shows error message: “Failed to save deletion changes. Please restart the app and try again.”
+
+Use case ends.
+
+**Use case: UC5 - Search contact**
+
+**MSS**
+
+1. User types in keywords to search for contacts
+2. Overbooked shows a list of contacts with matching keywords
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Overbooked did not find any contacts with matching keywords
+    * 1a1. Overbooked shows user a message saying no matching keywords
+
+Use case ends.
+
+**Use case: UC6 - List event**
+
+**MSS**
+
+1. User requests to view the list of events
+2. Overbooked shows the list of events
+
+Use case ends.
+
+**Extensions**
+* 1a. Overbooked is unable to get the list of events
+    * 1a1. Overbooked shows an error message
+
+Use case ends.
+
+* 1b. Overbooked has no events saved
+    * 1b1. Overbooked informs the user that there are no events
+
+Use case ends.
+
+**Use case: UC7 - List contacts**
+
+**MSS**
+
+1. User requests to view the list of contacts
+2. Overbooked shows the list of contacts
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Overbooked is unable to get the list of contacts
+    * 1a1. Overbooked shows an error message
+
+Use case ends.
+
+* 1b. Overbooked has no contacts saved
+    * 1b1. Overbooked informs the user that there are no contacts
+
+Use case ends. 
 
 ### Non-Functional Requirements
 
