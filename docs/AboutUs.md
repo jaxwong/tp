@@ -7,17 +7,18 @@ We are a team based in the [School of Computing, National University of Singapor
 
 You can reach us at the email `seer[at]comp.nus.edu.sg`
 
-## Project team
+## T10-2
 
-### John Doe
+### Zheng wei
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaxwong.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/jaxwong)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
+* Responsibilities: Model
 
 ### Jane Doe
 
