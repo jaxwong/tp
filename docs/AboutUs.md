@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Chan Wei Lun
 
-<img src="images/wailon18.png.png" width="200px">
+<img src="images/wailon18.png" width="200px">
 
 [[github](http://github.com/wailon18)] [[portfolio](team/johndoe.md)]
 
