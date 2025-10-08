@@ -134,6 +134,11 @@ public class AddressBook implements ReadOnlyAddressBook {
         events.setEvent(target, editedEvent);
     }
 
+    /** Removes event from the address book. */
+    public void removeEvent(Event e) {
+        events.remove(e);
+    }
+
     //// util methods
 
     @Override
