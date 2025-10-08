@@ -32,6 +32,10 @@ public class Event {
         return this.name.toString();
     }
 
+    public EventName getEventName() {
+        return this.name;
+    }
+
     public String getDescription() {
         return this.description;
     }
