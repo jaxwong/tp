@@ -150,10 +150,10 @@ public class ParserUtil {
         requireNonNull(datetime);
         String trimmed = datetime.trim().replaceAll(",$", "");
         try {
-           return LocalDateTime.parse(trimmed, FORMATTER);
-       } catch (DateTimeParseException e) {
-           throw new ParseException("Invalid date format. Expected format: yyyy-MM-dd HH:mm");
-       }
+            return LocalDateTime.parse(trimmed, FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+        }
     }
 
 

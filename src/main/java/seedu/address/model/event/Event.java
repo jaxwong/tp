@@ -1,16 +1,24 @@
 package seedu.address.model.event;
 
-
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an Event in the address book.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class Event {
     private final EventName name;
     private final LocalDateTime start;
     private final LocalDateTime end;
     private final String description;
 
+    /**
+     * Every field must be present and not null.
+     */
     public Event(EventName name, LocalDateTime start, LocalDateTime end, String description) {
+        requireAllNonNull(name, start, end, description);
         this.name = name;
         if (start.isAfter(end)) {
             throw new IllegalArgumentException("Start time must be before end time");
@@ -36,6 +44,9 @@ public class Event {
         return this.end;
     }
 
+    /**
+     * Returns true if both events have the same name, start and end.
+     */
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -53,6 +64,9 @@ public class Event {
                 && description.equals(otherEvent.description);
     }
 
+    /**
+     * Returns true if both events have the same name, start and end.
+     */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {
             return true;
