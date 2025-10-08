@@ -15,6 +15,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -87,6 +90,13 @@ public interface Model {
      * {@code event} must not already exist in the address book.
      */
     public void addEvent(Event event);
+
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEvent(Event target, Event editedEvent);
 
     /** Deletes the given event */
     public void deleteEvent(Event event);
