@@ -126,9 +126,6 @@ public class EditEventCommand extends Command {
         private LocalDateTime end;
         private String description;
 
-        public EditEventDescriptor() {
-        }
-
         /**
          * Returns true if at least one field is edited.
          */
