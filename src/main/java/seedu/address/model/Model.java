@@ -89,9 +89,9 @@ public interface Model {
     public void addEvent(Event event);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given event {@code target} with {@code editedEvent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The event {@code editedEvent} must not be the same as another existing event in the address book.
      */
     void setEvent(Event target, Event editedEvent);
 

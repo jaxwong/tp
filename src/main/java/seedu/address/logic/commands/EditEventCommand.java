@@ -131,7 +131,6 @@ public class EditEventCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setEventName(toCopy.name);
