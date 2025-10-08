@@ -47,4 +47,18 @@ public class ListEventsCommand extends Command {
             : "Events: [" + eventsJson + "]";
         return new CommandResult(resultMessage);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof ListEventsCommand)) {
+            return false;
+        }
+
+        return true; // All ListEventsCommand instances are equal since they have no state
+    }
 }
