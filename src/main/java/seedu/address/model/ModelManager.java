@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredEvents = new FilteredList<>(this.addressBook.getEventList());
     }
 
     public ModelManager() {
@@ -124,6 +126,12 @@ public class ModelManager implements Model {
         //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        addressBook.removeEvent(event);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -136,10 +144,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -155,7 +175,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredEvents.equals(otherModelManager.filteredEvents);
     }
 
 }
