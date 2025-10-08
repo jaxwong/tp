@@ -126,6 +126,19 @@ public class ModelManager implements Model {
         //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void deleteEvent(Event event) {
+        requireNonNull(event);
+        addressBook.removeEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+
+        addressBook.setEvent(target, editedEvent);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -135,6 +148,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
+    }
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
     }
 
     @Override
@@ -171,6 +189,13 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredEvents.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
+    }
+
 
     @Override
     public boolean equals(Object other) {

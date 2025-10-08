@@ -90,21 +90,27 @@ public interface Model {
      */
     public void addEvent(Event event);
 
+    /**
+     * Replaces the given event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the address book.
+     * The event {@code editedEvent} must not be the same as another existing event in the address book.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /** Deletes the given event */
+    public void deleteEvent(Event event);
+
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered event list */
+    ObservableList<Event> getFilteredEventList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
-
-    /**
-     * Returns an unmodifiable view of the filtered event list.
-     * This list is backed by the internal event list and will automatically update
-     * when the underlying data changes. The list cannot be modified directly.
-     */
-    ObservableList<Event> getFilteredEventList();
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
@@ -115,4 +121,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
 }

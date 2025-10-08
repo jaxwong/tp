@@ -41,6 +41,10 @@ public class Event {
         return this.name.toString();
     }
 
+    public EventName getEventName() {
+        return this.name;
+    }
+
     /**
      * Returns the description of the event.
      */
