@@ -55,7 +55,7 @@ public class EditEventCommand extends Command {
         requireNonNull(editEventDescriptor);
 
         this.index = index;
-        this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
+        this.editEventDescriptor = editEventDescriptor;
     }
 
     @Override
@@ -127,16 +127,6 @@ public class EditEventCommand extends Command {
         private String description;
 
         public EditEventDescriptor() {
-        }
-
-        /**
-         * Copy constructor.
-         */
-        public EditEventDescriptor(EditEventDescriptor toCopy) {
-            setEventName(toCopy.name);
-            setStart(toCopy.start);
-            setEnd(toCopy.end);
-            setDescription(toCopy.description);
         }
 
         /**
