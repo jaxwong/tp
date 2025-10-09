@@ -174,10 +174,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public ObservableList<Event> getFilteredEventList() {
-            throw new AssertionError("This method should not be called.");
-        }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
@@ -185,9 +181,15 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredEventList(Predicate<Event> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
