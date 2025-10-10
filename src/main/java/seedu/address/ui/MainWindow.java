@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -111,7 +112,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        
+        // Initially show person list
+        showPersonList();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -168,6 +172,22 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows the person list in the main content area.
+     */
+    public void showPersonList() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    }
+
+    /**
+     * Shows the event list in the main content area.
+     */
+    public void showEventList() {
+        personListPanelPlaceholder.getChildren().clear();
+        personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -177,6 +197,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            // Handle content switching based on command
+            if (commandText.trim().equals("list")) {
+                showPersonList();
+            } else if (commandText.trim().equals("list-events")) {
+                showEventList();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
