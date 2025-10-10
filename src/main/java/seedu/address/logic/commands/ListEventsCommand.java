@@ -3,15 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import seedu.address.model.Model;
-import seedu.address.model.event.Event;
 
 /**
  * Lists all events in the address book to the user.
- * This command displays all events in JSON format in the console since no UI exists for events yet.
+ * This command displays all events in the UI using EventCard components.
  *
  */
 public class ListEventsCommand extends Command {
@@ -27,7 +23,7 @@ public class ListEventsCommand extends Command {
      *
      * @param model The model containing the address book data and event management functionality.
      *              Must not be null.
-     * @return CommandResult containing either the formatted list of events or a "No events found" message.
+     * @return CommandResult containing success message.
      * @throws NullPointerException if model is null.
      */
     @Override
@@ -35,17 +31,7 @@ public class ListEventsCommand extends Command {
         requireNonNull(model);
         // Update the filtered event list to show all events
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        // Get the current filtered event list
-        List<Event> events = model.getFilteredEventList();
-        // Convert events to JSON-like string format and join with commas
-        String eventsJson = events.stream()
-            .map(Event::toString)
-            .collect(Collectors.joining(", "));
-        // Return appropriate message based on whether events exist
-        String resultMessage = events.isEmpty()
-            ? "No events found"
-            : "Events: [" + eventsJson + "]";
-        return new CommandResult(resultMessage);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
