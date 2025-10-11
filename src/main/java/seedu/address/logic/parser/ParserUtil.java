@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventAlias;
 import seedu.address.model.event.EventName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -140,6 +141,15 @@ public class ParserUtil {
             throw new ParseException(EventName.MESSAGE_CONSTRAINTS);
         }
         return new EventName(trimmedName);
+    }
+
+    public static EventAlias parseEventAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        String trimmedAlias = alias.trim();
+        if (!EventAlias.isValidAlias(trimmedAlias)) {
+            throw new ParseException(EventAlias.MESSAGE_CONSTRAINTS);
+        }
+        return new EventAlias(trimmedAlias);
     }
 
     /**
