@@ -23,7 +23,7 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
     @Override
     public DeleteEventCommand parse(String args) throws ParseException {
         try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,PREFIX_EVENT_ALIAS);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
 
             if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()) {
                 throw new ParseException(

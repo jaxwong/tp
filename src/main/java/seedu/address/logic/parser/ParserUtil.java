@@ -143,6 +143,12 @@ public class ParserUtil {
         return new EventName(trimmedName);
     }
 
+    /**
+     * Parses a {@code String event alias} into a {@code EventAlias}
+     * Leading and trailing whitespaces will be trimmed
+     *
+     * @throws ParseException if the given {@code event alias} is invalid.
+     */
     public static EventAlias parseEventAlias(String alias) throws ParseException {
         requireNonNull(alias);
         String trimmedAlias = alias.trim();

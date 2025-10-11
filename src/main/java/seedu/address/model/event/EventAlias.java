@@ -17,6 +17,11 @@ public class EventAlias {
 
     public final String value;
 
+    /**
+     * Constructs a {@code EventAlias}.
+     *
+     * @param alias A valid event alias.
+     */
     public EventAlias(String alias) {
         requireNonNull(alias);
         String aliasTrimmed = alias.trim();
