@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 
 import java.util.List;
 
