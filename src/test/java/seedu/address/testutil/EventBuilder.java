@@ -54,6 +54,14 @@ public class EventBuilder {
     }
 
     /**
+     * Sets the {@code EventAlias} of the {@code Event} that we are building.
+     */
+    public EventBuilder withAlias(String alias) {
+        this.alias = new EventAlias(alias);
+        return this;
+    }
+
+    /**
      * Sets the {@code start} of the {@code Event} that we are building.
      */
     public EventBuilder withStart(LocalDateTime start) {

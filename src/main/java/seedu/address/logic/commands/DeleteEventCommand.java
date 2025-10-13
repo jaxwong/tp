@@ -42,6 +42,7 @@ public class DeleteEventCommand extends Command {
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_EVENT_NOT_FOUND, eventAlias)));
 
         model.deleteEvent(eventToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }
 }

@@ -39,11 +39,7 @@ public class ListEventsCommandTest {
             expectedModel.addEvent(event);
         }
 
-        String expectedMessage = "Events: ["
-            + typicalEvents.stream()
-                .map(Event::toString)
-                .reduce((a, b) -> a + ", " + b)
-                .orElse("") + "]";
+        String expectedMessage = buildExpectedMessage(typicalEvents);
 
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
@@ -60,11 +56,7 @@ public class ListEventsCommandTest {
         // Filter events (simulate some filtering)
         model.updateFilteredEventList(event -> event.getName().contains("Concert"));
 
-        String expectedMessage = "Events: ["
-            + typicalEvents.stream()
-                .map(Event::toString)
-                .reduce((a, b) -> a + ", " + b)
-                .orElse("") + "]";
+        String expectedMessage = buildExpectedMessage(typicalEvents);
 
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
@@ -100,5 +92,27 @@ public class ListEventsCommandTest {
 
         // null -> returns false
         assertFalse(listEventsCommand.equals(null));
+    }
+
+    /**
+     * Helper to build the expected display message based on current toString() output
+     */
+    private String buildExpectedMessage(List<Event> events) {
+        if (events.isEmpty()) {
+            return "No events found";
+        }
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Events: [");
+
+        for (int i = 0; i < events.size(); i++) {
+            builder.append(events.get(i).toString());
+            if (i < events.size() - 1) {
+                builder.append(", ");
+            }
+        }
+
+        builder.append("]");
+        return builder.toString();
     }
 }
