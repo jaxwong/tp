@@ -96,6 +96,7 @@ public class Event {
         }
 
         Event otherEvent = (Event) other;
+
         return name.equals(otherEvent.name)
                 && alias.equals(otherEvent.alias)
                 && start.equals(otherEvent.start)
@@ -115,10 +116,7 @@ public class Event {
         }
 
         return otherEvent != null
-                && otherEvent.getName().equals(getName())
-                && otherEvent.getAlias().equalsIgnoreCase(getAlias())
-                && otherEvent.getStart().equals(getStart())
-                && otherEvent.getEnd().equals(getEnd());
+                && otherEvent.getAlias().equalsIgnoreCase(getAlias());
     }
 
     /**
