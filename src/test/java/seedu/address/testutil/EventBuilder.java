@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
 import seedu.address.model.event.EventName;
 
 /**
@@ -10,12 +11,14 @@ import seedu.address.model.event.EventName;
  */
 public class EventBuilder {
 
-    public static final String DEFAULT_NAME = "Team Meeting";
+    public static final String DEFAULT_NAME = "Taylor Swift Concert 2025";
+    public static final String DEFAULT_ALIAS = "TS2025";
     public static final LocalDateTime DEFAULT_START = LocalDateTime.of(2024, 12, 25, 10, 0);
     public static final LocalDateTime DEFAULT_END = LocalDateTime.of(2024, 12, 25, 11, 0);
-    public static final String DEFAULT_DESCRIPTION = "Weekly team standup meeting";
+    public static final String DEFAULT_DESCRIPTION = "Located in Indoor Sports Stadium";
 
     private EventName name;
+    private EventAlias alias;
     private LocalDateTime start;
     private LocalDateTime end;
     private String description;
@@ -25,6 +28,7 @@ public class EventBuilder {
      */
     public EventBuilder() {
         name = new EventName(DEFAULT_NAME);
+        alias = new EventAlias(DEFAULT_ALIAS);
         start = DEFAULT_START;
         end = DEFAULT_END;
         description = DEFAULT_DESCRIPTION;
@@ -34,7 +38,8 @@ public class EventBuilder {
      * Initializes the EventBuilder with the data of {@code eventToCopy}.
      */
     public EventBuilder(Event eventToCopy) {
-        name = new EventName(eventToCopy.getName());
+        name = eventToCopy.getEventName();
+        alias = eventToCopy.getEventAlias();
         start = eventToCopy.getStart();
         end = eventToCopy.getEnd();
         description = eventToCopy.getDescription();
@@ -45,6 +50,14 @@ public class EventBuilder {
      */
     public EventBuilder withName(String name) {
         this.name = new EventName(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code EventAlias} of the {@code Event} that we are building.
+     */
+    public EventBuilder withAlias(String alias) {
+        this.alias = new EventAlias(alias);
         return this;
     }
 
@@ -76,6 +89,6 @@ public class EventBuilder {
      * Builds the {@code Event} with the current details.
      */
     public Event build() {
-        return new Event(name, start, end, description);
+        return new Event(name, alias, start, end, description);
     }
 }

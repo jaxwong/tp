@@ -108,8 +108,8 @@ public class ModelManagerTest {
 
     @Test
     public void updateFilteredEventList_validPredicate_updatesFilteredEventList() {
-        Event event1 = new EventBuilder().withName("Meeting").build();
-        Event event2 = new EventBuilder().withName("Concert").build();
+        Event event1 = new EventBuilder().withName("Meeting").withAlias("MEET").build();
+        Event event2 = new EventBuilder().withName("Concert").withAlias("CONC").build();
         modelManager.addEvent(event1);
         modelManager.addEvent(event2);
 
@@ -122,8 +122,8 @@ public class ModelManagerTest {
 
     @Test
     public void updateFilteredEventList_showAllEvents_showsAllEvents() {
-        Event event1 = new EventBuilder().withName("Meeting").build();
-        Event event2 = new EventBuilder().withName("Concert").build();
+        Event event1 = new EventBuilder().withName("Meeting").withAlias("MEET").build();
+        Event event2 = new EventBuilder().withName("Concert").withAlias("CONC").build();
         modelManager.addEvent(event1);
         modelManager.addEvent(event2);
 

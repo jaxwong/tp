@@ -107,7 +107,7 @@ public class EditCommand extends Command {
                 updatedEmail,
                 updatedAddress,
                 updatedTags,
-                personToEdit.getEvent());
+                personToEdit.getEventAlias());
     }
 
     @Override
