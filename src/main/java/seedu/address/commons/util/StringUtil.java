@@ -39,30 +39,22 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} contains the {@code keyword}.
-     * Ignores case, but a prefix match for any word is required.
+     * Returns true if the {@code sentence} starts with {@code prefix}.
+     * Ignores case.
      * <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "DEF") == true
-     *       containsWordIgnoreCase("ABc def", "AB") == true
-     *       containsWordIgnoreCase("ABc def", "Bc") == false // no prefix match
+     *       startsWithIgnoreCase("ABc def", "AB") == true
+     *       startsWithIgnoreCase("ABc def", "Bc") == false // no prefix match
      *       </pre>
-     *
-     * @param sentence cannot be null
-     * @param word     cannot be null, cannot be empty, must be a single word
+     * @param string cannot be null
+     * @param prefix cannot be null, cannot be empty
      */
-    public static boolean containsIgnoreCase(String sentence, String word) {
-        requireNonNull(sentence);
-        requireNonNull(word);
+    public static boolean startsWithIgnoreCase(String string, String prefix) {
+        requireNonNull(string);
+        requireNonNull(prefix);
+        String preppedPrefix = prefix.trim();
+        checkArgument(!preppedPrefix.isEmpty(), "Prefix parameter cannot be empty");
 
-        String preppedWord = word.trim();
-        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
-        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-
-        String preppedSentence = sentence;
-        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
-
-        return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(sentenceWord -> preppedWord.regionMatches(true, 0, sentenceWord, 0, preppedWord.length()));
+        return preppedPrefix.regionMatches(true, 0, string, 0, preppedPrefix.length());
     }
 
     /**

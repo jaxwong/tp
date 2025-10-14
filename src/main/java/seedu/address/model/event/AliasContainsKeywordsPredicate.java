@@ -19,7 +19,7 @@ public class AliasContainsKeywordsPredicate implements Predicate<Event> {
     @Override
     public boolean test(Event event) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsIgnoreCase(event.getEventAlias().value, keyword));
+                .anyMatch(keyword -> StringUtil.startsWithIgnoreCase(event.getAlias(), keyword));
     }
 
     @Override
