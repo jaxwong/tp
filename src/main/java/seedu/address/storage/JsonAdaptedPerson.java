@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -30,7 +30,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
-    private final JsonAdaptedEvent event;
+    private final String eventAlias;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,7 +41,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
-                             @JsonProperty("event") JsonAdaptedEvent event) {
+                             @JsonProperty("eventAlias") String eventAlias) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,7 +49,7 @@ class JsonAdaptedPerson {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.event = event;
+        this.eventAlias = eventAlias;
     }
 
     /**
@@ -63,7 +63,7 @@ class JsonAdaptedPerson {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        event = source.getEvent() == null ? null : new JsonAdaptedEvent(source.getEvent());
+        eventAlias = source.getEventAlias() == null ? null : source.getEventAlias().toString();
     }
 
     /**
@@ -111,12 +111,12 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        Event modelEvent = null;
-        if (event != null) {
-            modelEvent = event.toModelType();
+        EventAlias modelEventAlias = null;
+        if (eventAlias != null) {
+            modelEventAlias = new EventAlias(eventAlias);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEvent);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEventAlias);
     }
 
 }

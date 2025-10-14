@@ -65,11 +65,11 @@ public class LinkEventCommand extends Command {
                 personToEdit.getEmail(),
                 personToEdit.getAddress(),
                 personToEdit.getTags(),
-                event
+                event.getEventAlias()
         );
 
         model.setPerson(personToEdit, linkedPerson);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit.getName(), event.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit.getName(), event.getEventAlias()));
     }
 }
