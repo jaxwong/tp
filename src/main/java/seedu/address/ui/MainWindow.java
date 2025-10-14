@@ -113,7 +113,6 @@ public class MainWindow extends UiPart<Stage> {
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
-        
         // Initially show person list
         showPersonList();
 

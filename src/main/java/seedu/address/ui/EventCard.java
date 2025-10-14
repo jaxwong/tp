@@ -44,3 +44,4 @@ public class EventCard extends UiPart<Region> {
         endTime.setText("End: " + event.getEnd().format(DATE_TIME_FORMATTER));
     }
 }
+

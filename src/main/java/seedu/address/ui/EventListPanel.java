@@ -46,3 +46,4 @@ public class EventListPanel extends UiPart<Region> {
         }
     }
 }
+
