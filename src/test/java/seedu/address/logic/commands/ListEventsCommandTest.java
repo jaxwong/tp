@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.ui.DisplayList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListEventsCommand.
@@ -41,7 +42,7 @@ public class ListEventsCommandTest {
 
         String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
@@ -58,13 +59,13 @@ public class ListEventsCommandTest {
 
         String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
     public void execute_noEvents_showsNoEventsMessage() {
         String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
@@ -74,7 +75,7 @@ public class ListEventsCommandTest {
         expectedModel.addEvent(singleEvent);
 
         String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
