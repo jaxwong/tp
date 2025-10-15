@@ -198,10 +198,13 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             // Handle content switching based on command
-            if (commandText.trim().equals("list")) {
-                showPersonList();
-            } else if (commandText.trim().equals("list-events")) {
-                showEventList();
+            DisplayList displayedList = commandResult.getDisplayList();
+            switch (displayedList) {
+            case NO_CHANGE -> {
+            }
+            case PERSON -> showPersonList();
+            case EVENT -> showEventList();
+            default -> throw new CommandException("Failed to display " + displayedList + " list.");
             }
 
             if (commandResult.isShowHelp()) {
