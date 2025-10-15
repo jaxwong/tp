@@ -34,7 +34,7 @@ public class ListCommandTest {
                 model,
                 ListCommand.MESSAGE_SUCCESS,
                 expectedModel,
-                DisplayList.CONTACT);
+                DisplayList.PERSON);
     }
 
     @Test
@@ -45,6 +45,6 @@ public class ListCommandTest {
                 model,
                 ListCommand.MESSAGE_SUCCESS,
                 expectedModel,
-                DisplayList.CONTACT);
+                DisplayList.PERSON);
     }
 }

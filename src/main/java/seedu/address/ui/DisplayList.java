@@ -5,7 +5,7 @@ package seedu.address.ui;
  */
 public enum DisplayList {
     NO_CHANGE(""),
-    CONTACT("contact"),
+    PERSON("person"),
     EVENT("event");
 
     /** Description of the type of list **/

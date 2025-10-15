@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             switch (displayedList) {
             case NO_CHANGE -> {
             }
-            case CONTACT -> showPersonList();
+            case PERSON -> showPersonList();
             case EVENT -> showEventList();
             default -> throw new CommandException("Failed to display " + displayedList + " list.");
             }
