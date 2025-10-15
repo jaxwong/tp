@@ -22,7 +22,7 @@ public class FindContactByEventCommand extends Command {
     private final EventAliasMatchesPredicate predicate;
 
     /**
-     * Creates an FindContactByEventCommand to find all the relevant persons
+     * Creates a FindContactByEventCommand to find all the relevant persons
      */
     public FindContactByEventCommand(EventAliasMatchesPredicate predicate) {
         requireNonNull(predicate);
