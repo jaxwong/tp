@@ -192,8 +192,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
-                .add("events", events)
-                .add("todos", todos)
                 .toString();
     }
 
@@ -223,9 +221,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         }
 
         AddressBook otherAddressBook = (AddressBook) other;
-        return persons.equals(otherAddressBook.persons)
-                && events.equals(otherAddressBook.events)
-                && todos.equals(otherAddressBook.todos);
+        return persons.equals(otherAddressBook.persons);
     }
 
     @Override

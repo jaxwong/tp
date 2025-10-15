@@ -125,7 +125,7 @@ public class ModelManager implements Model {
     @Override
     public void addEvent(Event event) {
         addressBook.addEvent(event);
-        //updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
@@ -156,6 +156,7 @@ public class ModelManager implements Model {
     public void addTodo(Todo todo) {
         requireNonNull(todo);
         addressBook.addTodo(todo);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
     }
 
     @Override
@@ -229,9 +230,7 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredEvents.equals(otherModelManager.filteredEvents)
-                && filteredTodos.equals(otherModelManager.filteredTodos);
+                && filteredPersons.equals(otherModelManager.filteredPersons);
     }
 
 }

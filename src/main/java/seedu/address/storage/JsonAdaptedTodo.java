@@ -70,7 +70,7 @@ public class JsonAdaptedTodo {
             try {
                 modelContactName = new Name(contactName);
             } catch (IllegalArgumentException ex) {
-                throw new IllegalArgumentException(ex.getMessage());
+                throw new IllegalValueException(ex.getMessage());
             }
         }
 
