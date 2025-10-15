@@ -19,6 +19,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.todo.TodoName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -129,7 +130,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String event name} into a {@code Name}.
+     * Parses a {@code String event name} into a {@code EventName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code event name} is invalid.
@@ -144,9 +145,8 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String event alias} into a {@code EventAlias}
-     * Leading and trailing whitespaces will be trimmed
-     *
+     * Parses a {@code String event alias} into a {@code EventAlias}.
+     * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code event alias} is invalid.
      */
     public static EventAlias parseEventAlias(String alias) throws ParseException {
@@ -172,5 +172,19 @@ public class ParserUtil {
         }
     }
 
+
+    /**
+     * Parses a {@code String todo name} into a {@code TodoName}
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code todo name} is invalid.
+     */
+    public static TodoName parseTodoName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!TodoName.isValidTodoName(trimmedName)) {
+            throw new ParseException(TodoName.MESSAGE_CONSTRAINTS);
+        }
+        return new TodoName(trimmedName);
+    }
 
 }

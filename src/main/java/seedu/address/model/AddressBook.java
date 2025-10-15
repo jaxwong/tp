@@ -10,15 +10,21 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.todo.Todo;
+import seedu.address.model.todo.UniqueTodoList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed:
+ * - Persons: as defined by {@code UniquePersonList}
+ * - Events: as defined by {@code UniqueEventList}
+ * - Todos: as defined by {@code UniqueTodoList}
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniqueEventList events;
+    private final UniqueTodoList todos;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,6 +36,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     {
         persons = new UniquePersonList();
         events = new UniqueEventList();
+        todos = new UniqueTodoList();
     }
 
     public AddressBook() {}
@@ -61,13 +68,21 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the todo list with {@code todos}.
+     * {@code todos} must not contain duplicate todos.
+     */
+    public void setTodos(List<Todo> todos) {
+        this.todos.setTodos(todos);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
         setEvents(newData.getEventList());
+        setTodos(newData.getTodoList());
     }
 
     //// person-level operations
@@ -108,7 +123,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
@@ -139,6 +154,38 @@ public class AddressBook implements ReadOnlyAddressBook {
         events.remove(e);
     }
 
+    /**
+     * Returns true if a todo with the same name as {@code todo} exists in the address book.
+     */
+    public boolean hasTodo(Todo todo) {
+        requireNonNull(todo);
+        return todos.contains(todo);
+    }
+
+    /**
+     * Adds a todo to the address book.
+     * The todo must not already exist in the address book.
+     */
+    public void addTodo(Todo todo) {
+        todos.add(todo);
+    }
+
+    /**
+     * Replaces the given todo {@code target} in the list with {@code editedTodo}.
+     * {@code target} must exist in the address book.
+     * The todo {@code editedTodo} must not be the same as another existing todo in the address book.
+     */
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireNonNull(editedTodo);
+
+        todos.setTodo(target, editedTodo);
+    }
+
+    /** Removes todo from the address book. */
+    public void removeTodo(Todo todo) {
+        todos.remove(todo);
+    }
+
     //// util methods
 
     @Override
@@ -158,6 +205,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
+    public ObservableList<Todo> getTodoList() {
+        return todos.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -174,6 +226,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public int hashCode() {
-        return persons.hashCode();
+        return java.util.Objects.hash(persons, events, todos);
     }
 }

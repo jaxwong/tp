@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.Todo;
 
 /**
  * Container for user visible messages.
@@ -63,6 +64,20 @@ public class Messages {
                 .append(event.getEnd())
                 .append("; Description: ")
                 .append(event.getDescription());
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code todo} for display to the user.
+     * @return
+     */
+    public static String format(Todo todo) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(todo.getTodoName())
+                .append("; Description: ")
+                .append(todo.getDescription())
+                .append("; Contact Name: ")
+                .append(todo.getContactNameDisplay());
         return builder.toString();
     }
 
