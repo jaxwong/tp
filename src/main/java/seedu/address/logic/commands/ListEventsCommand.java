@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import seedu.address.model.Model;
+import seedu.address.ui.DisplayList;
 
 /**
  * Lists all events in the address book to the user.
@@ -31,7 +32,7 @@ public class ListEventsCommand extends Command {
         requireNonNull(model);
         // Update the filtered event list to show all events
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, DisplayList.EVENT);
     }
 
     @Override

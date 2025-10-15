@@ -6,6 +6,7 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.event.AliasContainsKeywordsPredicate;
+import seedu.address.ui.DisplayList;
 
 /**
  * Finds and lists all events in address book whose alias contains any of the argument keywords.
@@ -15,8 +16,8 @@ public class FindEventCommand extends Command {
 
     public static final String COMMAND_WORD = "find-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose aliases contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose aliases have any of "
+            + "the specified keywords (case-insensitive) as a prefix and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " tsc bts 2025";
 
@@ -31,7 +32,8 @@ public class FindEventCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEventList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()),
+                DisplayList.EVENT);
     }
 
     @Override

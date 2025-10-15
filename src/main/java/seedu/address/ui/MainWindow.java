@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -198,10 +200,14 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             // Handle content switching based on command
-            if (commandText.trim().equals("list")) {
-                showPersonList();
-            } else if (commandText.trim().equals("list-events")) {
-                showEventList();
+            DisplayList displayedList = commandResult.getDisplayList();
+            requireNonNull(displayedList);
+            switch (displayedList) {
+            case NO_CHANGE -> {
+            }
+            case CONTACT -> showPersonList();
+            case EVENT -> showEventList();
+            default -> throw new CommandException("Failed to display " + displayedList + " list.");
             }
 
             if (commandResult.isShowHelp()) {
