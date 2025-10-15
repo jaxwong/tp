@@ -15,6 +15,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.Event;
+import seedu.address.ui.DisplayList;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListEventsCommand.
@@ -39,9 +40,9 @@ public class ListEventsCommandTest {
             expectedModel.addEvent(event);
         }
 
-        String expectedMessage = buildExpectedMessage(typicalEvents);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
@@ -56,15 +57,15 @@ public class ListEventsCommandTest {
         // Filter events (simulate some filtering)
         model.updateFilteredEventList(event -> event.getName().contains("Concert"));
 
-        String expectedMessage = buildExpectedMessage(typicalEvents);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
     public void execute_noEvents_showsNoEventsMessage() {
-        String expectedMessage = "No events found";
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
@@ -73,8 +74,8 @@ public class ListEventsCommandTest {
         model.addEvent(singleEvent);
         expectedModel.addEvent(singleEvent);
 
-        String expectedMessage = "Events: [" + singleEvent.toString() + "]";
-        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
+        assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel, DisplayList.EVENT);
     }
 
     @Test
@@ -94,25 +95,4 @@ public class ListEventsCommandTest {
         assertFalse(listEventsCommand.equals(null));
     }
 
-    /**
-     * Helper to build the expected display message based on current toString() output
-     */
-    private String buildExpectedMessage(List<Event> events) {
-        if (events.isEmpty()) {
-            return "No events found";
-        }
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("Events: [");
-
-        for (int i = 0; i < events.size(); i++) {
-            builder.append(events.get(i).toString());
-            if (i < events.size() - 1) {
-                builder.append(", ");
-            }
-        }
-
-        builder.append("]");
-        return builder.toString();
-    }
 }

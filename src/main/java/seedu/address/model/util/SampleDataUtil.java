@@ -1,11 +1,15 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
+import seedu.address.model.event.EventName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -40,10 +44,26 @@ public class SampleDataUtil {
         };
     }
 
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+            new Event(new EventName("Taylor Swift Concert"), new EventAlias("TSC2025"),
+                LocalDateTime.of(2025, 1, 15, 14, 0),
+                LocalDateTime.of(2025, 1, 15, 15, 0),
+                "Taylor swift eras tour"),
+            new Event(new EventName("Halloween horror night"), new EventAlias("HHN2025"),
+                LocalDateTime.of(2025, 1, 20, 23, 59),
+                LocalDateTime.of(2025, 1, 20, 23, 59),
+                "annual halloween horror nights at USS")
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Event sampleEvent : getSampleEvents()) {
+            sampleAb.addEvent(sampleEvent);
         }
         return sampleAb;
     }
