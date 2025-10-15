@@ -30,6 +30,8 @@ public class EventCard extends UiPart<Region> {
     private Label startTime;
     @FXML
     private Label endTime;
+    @FXML
+    private Label alias;
 
     /**
      * Creates a {@code EventCard} with the given {@code Event} and index to display.
@@ -39,6 +41,7 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         name.setText(event.getName());
+        alias.setText("(" + event.getAlias() + ")");
         description.setText(event.getDescription());
         startTime.setText("Start: " + event.getStart().format(DATE_TIME_FORMATTER));
         endTime.setText("End: " + event.getEnd().format(DATE_TIME_FORMATTER));
