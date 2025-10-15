@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,22 +25,25 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final Event event;
+    private final EventAlias linkedEventAlias;
 
     /**
      * Every field (except event) must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  Set<Tag> tags, Event event) {
+                  Set<Tag> tags, EventAlias linkedEventAlias) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        this.event = event;
+        this.linkedEventAlias = linkedEventAlias;
     }
 
+    /**
+     * Another constructor for default
+     */
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
         this(name, phone, email, address, tags, null);
     }
@@ -69,8 +72,8 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public Event getEvent() {
-        return event;
+    public EventAlias getEventAlias() {
+        return linkedEventAlias;
     }
 
     /**
@@ -123,7 +126,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("tags", tags)
-                .add("event", event == null ? "No event" : event.getName())
+                .add("event", linkedEventAlias == null ? "No event" : linkedEventAlias.toString())
                 .toString();
     }
 

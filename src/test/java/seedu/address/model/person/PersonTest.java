@@ -97,7 +97,7 @@ public class PersonTest {
                 + ", email=" + ALICE.getEmail()
                 + ", address=" + ALICE.getAddress()
                 + ", tags=" + ALICE.getTags()
-                + ", event=" + (ALICE.getEvent() == null ? "No event" : ALICE.getEvent().getName()) + "}";
+                + ", event=" + (ALICE.getEventAlias() == null ? "No event" : ALICE.getEventAlias().toString()) + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

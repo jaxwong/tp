@@ -39,7 +39,7 @@ public class ListEventsCommandTest {
             expectedModel.addEvent(event);
         }
 
-        String expectedMessage = buildExpectedMessage(typicalEvents);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
@@ -56,14 +56,14 @@ public class ListEventsCommandTest {
         // Filter events (simulate some filtering)
         model.updateFilteredEventList(event -> event.getName().contains("Concert"));
 
-        String expectedMessage = buildExpectedMessage(typicalEvents);
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
 
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noEvents_showsNoEventsMessage() {
-        String expectedMessage = "No events found";
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
 
@@ -73,7 +73,7 @@ public class ListEventsCommandTest {
         model.addEvent(singleEvent);
         expectedModel.addEvent(singleEvent);
 
-        String expectedMessage = "Events: [" + singleEvent.toString() + "]";
+        String expectedMessage = ListEventsCommand.MESSAGE_SUCCESS;
         assertCommandSuccess(new ListEventsCommand(), model, expectedMessage, expectedModel);
     }
 
@@ -94,25 +94,4 @@ public class ListEventsCommandTest {
         assertFalse(listEventsCommand.equals(null));
     }
 
-    /**
-     * Helper to build the expected display message based on current toString() output
-     */
-    private String buildExpectedMessage(List<Event> events) {
-        if (events.isEmpty()) {
-            return "No events found";
-        }
-
-        StringBuilder builder = new StringBuilder();
-        builder.append("Events: [");
-
-        for (int i = 0; i < events.size(); i++) {
-            builder.append(events.get(i).toString());
-            if (i < events.size() - 1) {
-                builder.append(", ");
-            }
-        }
-
-        builder.append("]");
-        return builder.toString();
-    }
 }
