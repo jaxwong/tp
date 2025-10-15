@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.Todo;
 
 /**
  * The API of the Model component.
@@ -16,6 +17,9 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     /** {@code Predicate} that always evaluate to true for events */
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+    /** {@code Predicate} that always evaluate to true for todos */
+    Predicate<Todo> PREDICATE_SHOW_ALL_TODOS = unused -> true;
+
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -79,16 +83,25 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
+    /** Returns an unmodifiable view of the filtered person list */
+    ObservableList<Person> getFilteredPersonList();
+
     /**
-     * Returns true if a event with the same identity as {@code event} exists in the address book.
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Returns true if an event with the same identity as {@code event} exists in the address book.
      */
     boolean hasEvent(Event event);
 
     /**
-     * Adds the given Event.
+     * Adds the given event.
      * {@code event} must not already exist in the address book.
      */
-    public void addEvent(Event event);
+    void addEvent(Event event);
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
@@ -97,20 +110,14 @@ public interface Model {
      */
     void setEvent(Event target, Event editedEvent);
 
-    /** Deletes the given event */
-    public void deleteEvent(Event event);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /**
+     * Deletes the given event.
+     * The event must exist in the address book.
+     */
+    void deleteEvent(Event event);
 
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
-
-    /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Updates the filter of the filtered event list to filter by the given {@code predicate}.
@@ -121,5 +128,38 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Returns true if a todo with the same identity as {@code todo} exists in the address book.
+     */
+    boolean hasTodo(Todo todo);
+
+    /**
+     * Deletes the given todo.
+     * The todo must exist in the address book.
+     */
+    void deleteTodo(Todo todo);
+
+    /**
+     * Adds the given todo.
+     * {@code todo} must not already exist in the address book.
+     */
+    void addTodo(Todo todo);
+
+    /**
+     * Replaces the given todo {@code target} with {@code editedTodo}.
+     * {@code target} must exist in the address book.
+     * The todo identity of {@code editedTodo} must not be the same as another existing todo in the address book.
+     */
+    void setTodo(Todo target, Todo editedTodo);
+
+    /** Returns an unmodifiable view of the filtered todo list */
+    ObservableList<Todo> getFilteredTodoList();
+
+    /**
+     * Updates the filter of the filtered todo list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTodoList(Predicate<Todo> predicate);
 
 }

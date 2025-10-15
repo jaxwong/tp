@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.todo.Todo;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+    private final FilteredList<Todo> filteredTodos;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredEvents = new FilteredList<>(this.addressBook.getEventList());
+        filteredTodos = new FilteredList<>(this.addressBook.getTodoList());
     }
 
     public ModelManager() {
@@ -110,7 +113,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -135,8 +137,31 @@ public class ModelManager implements Model {
     @Override
     public void setEvent(Event target, Event editedEvent) {
         requireAllNonNull(target, editedEvent);
-
         addressBook.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public boolean hasTodo(Todo todo) {
+        requireNonNull(todo);
+        return addressBook.hasTodo(todo);
+    }
+
+    @Override
+    public void deleteTodo(Todo todo) {
+        requireNonNull(todo);
+        addressBook.removeTodo(todo);
+    }
+
+    @Override
+    public void addTodo(Todo todo) {
+        requireNonNull(todo);
+        addressBook.addTodo(todo);
+    }
+
+    @Override
+    public void setTodo(Todo target, Todo editedTodo) {
+        requireAllNonNull(target, editedTodo);
+        addressBook.setTodo(target, editedTodo);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -151,11 +176,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return filteredEvents;
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -163,6 +183,10 @@ public class ModelManager implements Model {
 
     //=========== Filtered Event List Accessors =============================================================
 
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
 
     /**
      * Updates the filter predicate for the filtered event list.
@@ -178,6 +202,18 @@ public class ModelManager implements Model {
         filteredEvents.setPredicate(predicate);
     }
 
+    //=========== Filtered Todo List Accessors =============================================================
+
+    @Override
+    public ObservableList<Todo> getFilteredTodoList() {
+        return filteredTodos;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Todo> predicate) {
+        requireNonNull(predicate);
+        filteredTodos.setPredicate(predicate);
+    }
 
     @Override
     public boolean equals(Object other) {
@@ -194,7 +230,8 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons)
-                && filteredEvents.equals(otherModelManager.filteredEvents);
+                && filteredEvents.equals(otherModelManager.filteredEvents)
+                && filteredTodos.equals(otherModelManager.filteredTodos);
     }
 
 }
