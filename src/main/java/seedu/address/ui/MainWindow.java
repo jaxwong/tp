@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -201,7 +199,6 @@ public class MainWindow extends UiPart<Stage> {
 
             // Handle content switching based on command
             DisplayList displayedList = commandResult.getDisplayList();
-            requireNonNull(displayedList);
             switch (displayedList) {
             case NO_CHANGE -> {
             }
