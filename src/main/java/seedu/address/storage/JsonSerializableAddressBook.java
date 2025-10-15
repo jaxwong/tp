@@ -82,7 +82,7 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
-            Todo todo =  jsonAdaptedTodo.toModelType();
+            Todo todo = jsonAdaptedTodo.toModelType();
             if (addressBook.hasTodo(todo)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TODO);
             }

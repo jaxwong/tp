@@ -10,6 +10,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.todo.Todo;
 import seedu.address.model.todo.TodoName;
 
+/**
+ * Jackson-friendly adapted version of {@link Todo}
+ */
 public class JsonAdaptedTodo {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Todo's %s field is missing!";
@@ -19,6 +22,9 @@ public class JsonAdaptedTodo {
     private final String contactName; // references Person by unique name
     private final boolean isCompleted;
 
+    /**
+     * Constructs a {@code JsonAdaptedTodo} with the given todo details
+     */
     @JsonCreator
     public JsonAdaptedTodo(@JsonProperty("todoName") String todoName,
                            @JsonProperty("description") String description,
@@ -30,6 +36,9 @@ public class JsonAdaptedTodo {
         this.isCompleted = isCompleted;
     }
 
+    /**
+     * Converts a given {@code Todo} into this class for Jackson use.
+     */
     public JsonAdaptedTodo(Todo source) {
         requireNonNull(source);
         this.todoName = source.getTodoName().toString();
@@ -40,6 +49,11 @@ public class JsonAdaptedTodo {
         this.isCompleted = source.getIsCompleted();
     }
 
+    /**
+     * Converts this Jackson-friendly adapted todo object into the model's {@code Todo} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted todo.
+     */
     public Todo toModelType() throws IllegalValueException {
         if (todoName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "todoName"));
