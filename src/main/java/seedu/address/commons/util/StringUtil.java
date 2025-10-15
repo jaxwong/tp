@@ -39,6 +39,25 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} starts with {@code prefix}.
+     * Ignores case.
+     * <br>examples:<pre>
+     *       startsWithIgnoreCase("ABc def", "AB") == true
+     *       startsWithIgnoreCase("ABc def", "Bc") == false // no prefix match
+     *       </pre>
+     * @param string cannot be null
+     * @param prefix cannot be null, cannot be empty
+     */
+    public static boolean startsWithIgnoreCase(String string, String prefix) {
+        requireNonNull(string);
+        requireNonNull(prefix);
+        String preppedPrefix = prefix.trim();
+        checkArgument(!preppedPrefix.isEmpty(), "Prefix parameter cannot be empty");
+
+        return preppedPrefix.regionMatches(true, 0, string, 0, preppedPrefix.length());
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {
