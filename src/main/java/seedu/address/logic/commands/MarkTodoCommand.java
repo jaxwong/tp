@@ -20,7 +20,8 @@ public class MarkTodoCommand extends Command {
     public static final String COMMAND_WORD = "mark-todo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the todo identified by the index number used in the displayed todo list as completed.\n"
+            + ": Marks the todo identified by the index number used in the displayed todo "
+            + "list as completed.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -44,7 +45,9 @@ public class MarkTodoCommand extends Command {
         Todo todoToMark = lastShownList.get(targetIndex.getZeroBased());
         Todo markedTodo = todoToMark.withCompletionStatus(true);
         model.setTodo(todoToMark, markedTodo);
-        return new CommandResult(String.format(MESSAGE_MARK_TODO_SUCCESS, Messages.format(markedTodo)), DisplayList.TODO);
+        return new CommandResult(
+                String.format(MESSAGE_MARK_TODO_SUCCESS, Messages.format(markedTodo)),
+                DisplayList.TODO);
     }
 
     @Override

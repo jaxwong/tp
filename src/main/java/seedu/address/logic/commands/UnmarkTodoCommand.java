@@ -20,7 +20,8 @@ public class UnmarkTodoCommand extends Command {
     public static final String COMMAND_WORD = "unmark-todo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the todo identified by the index number used in the displayed todo list as incomplete.\n"
+            + ": Marks the todo identified by the index number used in the displayed todo list "
+            + "as incomplete.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
@@ -44,7 +45,9 @@ public class UnmarkTodoCommand extends Command {
         Todo todoToUnmark = lastShownList.get(targetIndex.getZeroBased());
         Todo unmarkedTodo = todoToUnmark.withCompletionStatus(false);
         model.setTodo(todoToUnmark, unmarkedTodo);
-        return new CommandResult(String.format(MESSAGE_UNMARK_TODO_SUCCESS, Messages.format(unmarkedTodo)), DisplayList.TODO);
+        return new CommandResult(
+                String.format(MESSAGE_UNMARK_TODO_SUCCESS, Messages.format(unmarkedTodo)),
+                DisplayList.TODO);
     }
 
     @Override
