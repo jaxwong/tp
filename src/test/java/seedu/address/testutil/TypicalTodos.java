@@ -66,7 +66,7 @@ public class TypicalTodos {
      * Returns a list of typical todos for testing.
      */
     public static List<Todo> getTypicalTodos() {
-        return new ArrayList<>(Arrays.asList(REVIEW_PROPOSAL, SEND_INVITES, UPDATE_DOCS, 
+        return new ArrayList<>(Arrays.asList(REVIEW_PROPOSAL, SEND_INVITES, UPDATE_DOCS,
                 BACKUP_DATABASE, CODE_REVIEW, TESTING, DEPLOYMENT));
     }
 }

@@ -37,7 +37,6 @@ public class TodoCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         todoName.setText(todo.getTodoName().toString());
         description.setText("Description: " + todo.getDescription());
-        
         // Set contact tag
         if (todo.getContactName() != null) {
             contactName.setText(todo.getContactName().fullName);
@@ -47,7 +46,6 @@ public class TodoCard extends UiPart<Region> {
             contactName.getStyleClass().add("contact-tag");
             contactName.getStyleClass().add("no-contact");
         }
-        
         // Set status checkbox
         if (todo.getIsCompleted()) {
             status.setText("☑ Completed"); // Checked box with X
