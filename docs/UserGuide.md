@@ -45,6 +45,7 @@ Follow these steps to get started with Overbooked in under 2 minutes:
 5. **Try these Commands**
 
    - `help` : Open the help window.
+
    - `list-contacts` : Lists all contacts.
    
    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
@@ -216,6 +217,10 @@ Example:
 ### Finding events by alias: `find-event`
 
 Find events whose aliases start with any of the given keywords.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+an EventAlias cannot be edited in order to enforce uniqueness
+</div>
 
 Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 
