@@ -143,7 +143,7 @@ public class EditTodoCommand extends Command {
      */
     public static class EditTodoDescriptor {
         private TodoName todoName;
-        private String description;
+        private String todoDescription;
         private Name contactName;
         private Boolean isCompleted;
 
@@ -151,7 +151,7 @@ public class EditTodoCommand extends Command {
          * Returns true if at least one field is edited
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(todoName, description, contactName, isCompleted);
+            return CollectionUtil.isAnyNonNull(todoName, todoDescription, contactName, isCompleted);
         }
 
         public void setTodoName(TodoName todoName) {
@@ -163,11 +163,11 @@ public class EditTodoCommand extends Command {
         }
 
         public void setDescription(String description) {
-            this.description = description;
+            this.todoDescription = description;
         }
 
         public Optional<String> getDescription() {
-            return Optional.ofNullable(description);
+            return Optional.ofNullable(todoDescription);
         }
 
         public void setContactName(Name contactName) {
@@ -198,7 +198,7 @@ public class EditTodoCommand extends Command {
 
             EditTodoDescriptor otherDescriptor = (EditTodoDescriptor) other;
             return Objects.equals(todoName, otherDescriptor.todoName)
-                    && Objects.equals(description, otherDescriptor.description)
+                    && Objects.equals(todoDescription, otherDescriptor.todoDescription)
                     && Objects.equals(contactName, otherDescriptor.contactName)
                     && Objects.equals(isCompleted, otherDescriptor.isCompleted);
         }
@@ -207,7 +207,7 @@ public class EditTodoCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("todoName", todoName)
-                    .add("description", description)
+                    .add("description", todoDescription)
                     .add("contactName", contactName)
                     .add("isCompleted", isCompleted)
                     .toString();
