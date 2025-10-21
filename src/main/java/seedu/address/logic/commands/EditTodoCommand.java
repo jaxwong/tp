@@ -162,7 +162,7 @@ public class EditTodoCommand extends Command {
             return Optional.ofNullable(todoName);
         }
 
-        public void setDescription(String description) {
+        public void setTodoDescription(String description) {
             this.todoDescription = description;
         }
 
