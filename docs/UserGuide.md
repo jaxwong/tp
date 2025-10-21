@@ -96,6 +96,8 @@ Format: `help`
 
 ## 👤 Contacts
 
+![listContacts](images/listContacts.png)
+
 ### Adding a person: `add-contact`
 
 Adds a person to the address book.
@@ -172,6 +174,8 @@ Examples:
 --- 
 ## 🎫 Events
 
+![listEvents](images/listEvents.png)
+
 ### Adding an event: `add-event`
 
 Adds an event to the address book.
@@ -245,6 +249,8 @@ Examples:
 
 ---
 ## 📝 Todos
+
+![listTodos](images/listTodos.png)
 
 ### Adding a todo: `add-todo`
 
