@@ -195,9 +195,9 @@ Format: `link-event INDEX ea/EVENT_ALIAS`
 Examples: 
 - `link-event 1 ea/TSC2025`
 
-### Uninking an event: `unlink-event`
+### Unlinking an event: `unlink-event`
 
-Unlink a given contact (by index) from an event (by alias)
+Unlink a given contact (by index) from an event
 
 Format: `unlink-event INDEX`
 
