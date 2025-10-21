@@ -205,7 +205,7 @@ Format: `list-events`
 
 Edits an existing event in the address book.
 
-Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [ea/EVENT_ALIAS] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
+Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
 
 At least one of the optional fields must be provided.
 Existing values will be updated to the input values.
@@ -366,7 +366,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | Action             | Format, Examples                                                                                                                                                                                 |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 👤 **Contacts**    |                                                                                                                                                                                                  |
-| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                    |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`            |
 | **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                              |
 | **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                |
 | **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |                                                                                                                                                                |
@@ -374,7 +374,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                |
 | 🎫 **Events**      |                                                                                                                                                                                                  |
 | **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
-| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                             |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                       |
 | **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                  |
 | **list-events**    | `list-events`                                                                                                                                                                                    |
 | **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                              |
