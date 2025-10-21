@@ -39,12 +39,16 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-//    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in the address book";
-    public static final String MESSAGE_TODO_NOT_FOUND = "Todo not found.";
+    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in the address book";
 
     private final Index targetIndex;
     private final EditTodoDescriptor editTodoDescriptor;
 
+    /**
+     * Constructor for an EditTodoCommand
+     * @param targetIndex based on the indexing listed in the todo list
+     * @param editTodoDescriptor details to edit the todo with
+     */
     public EditTodoCommand(Index targetIndex, EditTodoDescriptor editTodoDescriptor) {
         requireNonNull(targetIndex);
         requireNonNull(editTodoDescriptor);
@@ -69,6 +73,10 @@ public class EditTodoCommand extends Command {
         }
 
         Todo editedTodo = createEditedTodo(todoToEdit, editTodoDescriptor);
+
+        if (!todoToEdit.isSameTodo(editedTodo) && model.hasTodo(editedTodo)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TODO);
+        }
 
         Name updatedContact = editedTodo.getContactName();
         if (updatedContact != null && !hasContactName(model, updatedContact)) {
