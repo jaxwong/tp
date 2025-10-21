@@ -21,7 +21,7 @@ public class Messages {
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
     public static final String MESSAGE_EVENTS_LISTED_OVERVIEW = "%1$d events listed!";
-    public static final String MESSAGE_INVALID_EVENT_DISPLAYED_INDEX = "The event index provided is invalid";
+    public static final String MESSAGE_INVALID_TODO_DISPLAYED_INDEX = "The todo index provided is invalid";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -75,7 +75,7 @@ public class Messages {
         final StringBuilder builder = new StringBuilder();
         builder.append(todo.getTodoName())
                 .append("; Description: ")
-                .append(todo.getDescription())
+                .append(todo.getTodoDescription())
                 .append("; Contact Name: ")
                 .append(todo.getContactNameDisplay());
         return builder.toString();

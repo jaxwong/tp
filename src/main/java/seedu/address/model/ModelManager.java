@@ -194,6 +194,7 @@ public class ModelManager implements Model {
      * This method allows for dynamic filtering of events based on various criteria.
      * The predicate is applied to each event in the internal event list, and only events
      * that match the predicate will be visible in the filtered list.
+     *
      * @param predicate The predicate to filter events by. Must not be null.
      * @throws NullPointerException if {@code predicate} is null.
      */

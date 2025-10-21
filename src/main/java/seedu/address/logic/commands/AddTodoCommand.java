@@ -57,6 +57,9 @@ public class AddTodoCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
+    /**
+     * Checks if the input contact name exists in the current PersonList
+     */
     private boolean hasContactName(Model model, Name name) {
         return model.getAddressBook().getPersonList().stream()
                 .map(Person::getName)

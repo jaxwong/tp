@@ -2,6 +2,9 @@ package seedu.address.model.todo;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Name;
 
 /**
@@ -9,20 +12,20 @@ import seedu.address.model.person.Name;
  */
 public class Todo {
     private final TodoName todoName;
-    private final String description;
+    private final String todoDescription;
     private final Name contactName; // may be null
-    private boolean isCompleted;
+    private final boolean isCompleted;
 
     /**
      * Constructs a Todo with the specified details.
      * @param todoName The name of the todo. Must not be null and must be a valid todo name.
-     * @param description The description of the todo. Must not be null.
+     * @param todoDescription The description of the todo. Must not be null.
      * @param contactName The name of the linked contact. Can be null.
      */
-    public Todo(TodoName todoName, String description, Name contactName) {
-        requireAllNonNull(todoName, description);
+    public Todo(TodoName todoName, String todoDescription, Name contactName) {
+        requireAllNonNull(todoName, todoDescription);
         this.todoName = todoName;
-        this.description = description;
+        this.todoDescription = todoDescription;
         this.contactName = contactName;
         this.isCompleted = false;
     }
@@ -31,10 +34,10 @@ public class Todo {
      * Separate constructor for loading from database into the code.
      * @param isCompleted true if the todo is marked as completed.
      */
-    public Todo(TodoName todoName, String description, Name contactName, boolean isCompleted) {
-        requireAllNonNull(todoName, description, isCompleted);
+    public Todo(TodoName todoName, String todoDescription, Name contactName, boolean isCompleted) {
+        requireAllNonNull(todoName, todoDescription, isCompleted);
         this.todoName = todoName;
-        this.description = description;
+        this.todoDescription = todoDescription;
         this.contactName = contactName;
         this.isCompleted = isCompleted;
     }
@@ -49,8 +52,8 @@ public class Todo {
     /**
      * Returns the description of the todo
      */
-    public String getDescription() {
-        return description;
+    public String getTodoDescription() {
+        return todoDescription;
     }
 
     /**
@@ -77,6 +80,20 @@ public class Todo {
         return isCompleted;
     }
 
+    /**
+     * Returns true if both events have the same name, start and end.
+     * This defines a weaker notion of equality between two events.
+     * @param otherTodo The todo to compare with this todo.
+     * @return true if the other todo has the same TodoName, TodoDescription, ContactName and isCompleted
+     */
+    public boolean isSameTodo(Todo otherTodo) {
+        if (otherTodo == this) {
+            return true;
+        }
+
+        return this.equals(otherTodo);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -86,7 +103,10 @@ public class Todo {
             return false;
         }
         Todo otherTodo = (Todo) other;
-        return this.todoName.equals(otherTodo.todoName);
+        return Objects.equals(todoName, otherTodo.todoName)
+                && Objects.equals(todoDescription, otherTodo.todoDescription)
+                && Objects.equals(contactName, otherTodo.contactName)
+                && Objects.equals(isCompleted, otherTodo.isCompleted);
     }
 
     @Override
