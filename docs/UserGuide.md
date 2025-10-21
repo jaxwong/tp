@@ -40,7 +40,7 @@ Follow these steps to get started with Overbooked in under 2 minutes:
     ```
    You should see a window like this:
    <br>
-   ![Ui](images/Ui.png)
+   ![listContacts](images/listContacts.png)
 
 5. **Try these Commands**
 
