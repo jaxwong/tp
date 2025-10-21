@@ -49,7 +49,7 @@ Follow these steps to get started with Overbooked in under 2 minutes:
    
    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   - `clear` : Deletes all contacts.
+   - `clear` : clears all Entries in the book
 
    - `exit` : Exits the app.
 
@@ -263,7 +263,7 @@ Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
 
 Examples:
 - `edit-todo tn/Call John n/John Doe`
-- `edit-todo n/ ` unlinks the person from the todo task.
+- `edit-todo n/<blank>` unlinks the person from the todo task.
 
 ### Deleting a todo: `delete-todo`
 
@@ -355,11 +355,12 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | Action             | Format, Examples                                                                                                                                                                                 |
 |--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 👤 **Contacts**    |                                                                                                                                                                                                  |
-| **add-contact**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                            |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                    |
 | **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                              |
 | **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                |
 | **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |                                                                                                                                                                |
 | **list-contacts**  | `list-contacts`                                                                                                                                                                                  |
+| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                |
 | 🎫 **Events**      |                                                                                                                                                                                                  |
 | **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
 | **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                             |
@@ -367,7 +368,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | **list-events**    | `list-events`                                                                                                                                                                                    |
 | **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                              |
 | **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                            |
-| **unlink-event**   | `unlink-event INDEX`<br>.g. `unlink-event 1`                                                                                                                                                     |
+| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                    |
 | 📝 **Todos**       |                                                                                                                                                                                                  |
 | **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                  |
 | **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                    |
