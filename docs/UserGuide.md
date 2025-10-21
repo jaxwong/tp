@@ -148,6 +148,33 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Deleting an event: `delete-event`
+
+Deletes an event from the address book.
+
+Format: `delete-event ea/EVENT_ALIAS`
+
+Examples:
+`delete-event ea/TSC2025`
+
+### Adding a todo: `add-todo`
+
+Adds a todo to the address book.
+
+Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME
+
+Examples:
+`add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
+
+### Deleting a todo: `delete-todo`
+
+Deletes a todo from the address book.
+
+Format: `delete-todo INDEX`
+
+Examples:
+`delete-todo 1`
+
 ### Exiting the program : `exit`
 
 Exits the program.
