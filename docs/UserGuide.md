@@ -148,6 +148,16 @@ Clears all entries from the address book.
 
 Format: `clear`
 
+### Adding an event: `add-event`
+
+Adds an event to the address book.
+
+Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`
+
+Examples:
+`add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Swift Eras tour`
+
+
 ### Deleting an event: `delete-event`
 
 Deletes an event from the address book.
@@ -156,6 +166,15 @@ Format: `delete-event ea/EVENT_ALIAS`
 
 Examples:
 `delete-event ea/TSC2025`
+
+### Finding a contact by event: `find-by-event`
+
+Finds and displays all contacts that are linked to a specific event.
+
+Format: `find-by-event ea/EVENT_ALIAS`
+
+Examples:
+`find-by-event ea/TSC2025`
 
 ### Adding a todo: `add-todo`
 
