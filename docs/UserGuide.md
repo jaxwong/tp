@@ -161,7 +161,7 @@ Examples:
 
 Adds a todo to the address book.
 
-Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME
+Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME`
 
 Examples:
 `add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
