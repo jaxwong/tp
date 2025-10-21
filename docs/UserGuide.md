@@ -45,7 +45,7 @@ Follow these steps to get started with Overbooked in under 2 minutes:
 5. **Try these Commands**
 
    - `help` : Open the help window.
-   - `list` : Lists all contacts.
+   - `list-contacts` : Lists all contacts.
    
    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
