@@ -107,7 +107,12 @@ public class EditTodoCommand extends Command {
 
         TodoName updatedName = editTodoDescriptor.getTodoName().orElse(todoToEdit.getTodoName());
         String updatedDescription = editTodoDescriptor.getDescription().orElse(todoToEdit.getTodoDescription());
-        Name updatedContactName = editTodoDescriptor.getContactName().orElse(todoToEdit.getContactName());
+        Name updatedContactName;
+        if (editTodoDescriptor.isContactUnlinked) {
+            updatedContactName = null;
+        } else {
+            updatedContactName = editTodoDescriptor.getContactName().orElse(todoToEdit.getContactName());
+        }
         boolean updatedIsCompleted = editTodoDescriptor.getIsCompleted().orElse(todoToEdit.getIsCompleted());
 
         return new Todo(updatedName, updatedDescription, updatedContactName, updatedIsCompleted);
@@ -147,11 +152,14 @@ public class EditTodoCommand extends Command {
         private Name contactName;
         private Boolean isCompleted;
 
+        private boolean isContactUnlinked = false;
+
         /**
          * Returns true if at least one field is edited
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(todoName, todoDescription, contactName, isCompleted);
+            return CollectionUtil.isAnyNonNull(todoName, todoDescription, contactName, isCompleted)
+                    || isContactUnlinked;
         }
 
         public void setTodoName(TodoName todoName) {
@@ -184,6 +192,10 @@ public class EditTodoCommand extends Command {
 
         public Optional<Boolean> getIsCompleted() {
             return Optional.ofNullable(isCompleted);
+        }
+
+        public void markContactUnlinked() {
+            this.isContactUnlinked = true;
         }
 
         @Override

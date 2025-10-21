@@ -52,7 +52,13 @@ public class EditTodoCommandParser implements Parser<EditTodoCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editTodoDescriptor.setContactName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            String nameInput = argMultimap.getValue(PREFIX_NAME).get().trim();
+            if (nameInput.isEmpty()) {
+                editTodoDescriptor.setContactName(null);
+                editTodoDescriptor.markContactUnlinked();
+            } else {
+                editTodoDescriptor.setContactName(ParserUtil.parseName(nameInput));
+            }
         }
 
         if (!editTodoDescriptor.isAnyFieldEdited()) {
