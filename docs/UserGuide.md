@@ -188,12 +188,18 @@ Examples:
 
 ### Linking an event: `link-event`
 
-Links a given contact (by index) to an event (by alias), creating an event tagged to that contact
+Links a given contact (by index) to an event (by alias)
 
 Format: `link-event INDEX ea/EVENT_ALIAS`
 
 Examples: 
 - `link-event 1 ea/TSC2025`
+
+### Uninking an event: `unlink-event`
+
+Unlink a given contact (by index) from an event (by alias)
+
+Format: `unlink-event INDEX`
 
 ### Listing all events : `list-events`
 
@@ -261,7 +267,7 @@ Examples:
 
 Adds a todo to the address book.
 
-Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME`
+Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
 
 Examples:
 - `add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
