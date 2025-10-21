@@ -28,9 +28,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
    * `list` : Lists all contacts.
 
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   * `delete 3` : Deletes the 3rd contact shown in the current list.
+   * `delete-contact 3` : Deletes the 3rd contact shown in the current list.
 
    * `clear` : Deletes all contacts.
 
@@ -47,7 +47,7 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add-contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -128,7 +128,7 @@ Examples:
 * `find-contact n/alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a person : `delete-contact`
 
 Deletes the specified person from the address book.
 
@@ -139,8 +139,8 @@ Format: `delete-contact INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list-contact` followed by `delete-contact 2` deletes the 2nd person in the address book.
-* `find-contact n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find` command.
+* `list-contacts` followed by `delete-contact 2` deletes the 2nd person in the address book.
+* `find-contact n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
 
 ### Adding an event: `add-event`
 
@@ -162,7 +162,7 @@ Existing values will be updated to the input values.
 
 Example:
 
-* `edit ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30` Edits the event name and start datetime of the event with alias `TSC2025` to be `Taylor Swift’s Concert` and `2025-09-19 18:30` respectively.
+* `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30` Edits the event name and start datetime of the event with alias `TSC2025` to be `Taylor Swift’s Concert` and `2025-09-19 18:30` respectively.
 
 ### Locating events by alias: `find-event`
 
