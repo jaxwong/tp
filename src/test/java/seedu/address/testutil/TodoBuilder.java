@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import jdk.jfr.Description;
 import seedu.address.model.person.Name;
 import seedu.address.model.todo.Todo;
 import seedu.address.model.todo.TodoName;

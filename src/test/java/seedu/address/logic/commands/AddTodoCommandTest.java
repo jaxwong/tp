@@ -22,7 +22,6 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
 import seedu.address.testutil.TodoBuilder;
@@ -67,17 +66,18 @@ public class AddTodoCommandTest {
         AddTodoCommand addTodoCommand = new AddTodoCommand(validTodo);
         ModelStub modelStub = new ModelStubWithTodo(validTodo);
 
-        assertThrows(CommandException.class, AddTodoCommand.MESSAGE_DUPLICATE_TODO,
-                () -> addTodoCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddTodoCommand.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(modelStub));
     }
 
     @Test
     public void execute_contactNameProvidedButNotFound_throwsCommandException() {
         ModelStubAcceptingTodoAdded modelStub = new ModelStubAcceptingTodoAdded();
-        Todo todoWithMissingContact = new TodoBuilder().withContactName("Nonexistent Person").build();
+        Todo todoWithMissingContact = new TodoBuilder().withContactName("N").build();
 
-        assertThrows(CommandException.class, "Contact not found: Nonexistent Person",
-                () -> new AddTodoCommand(todoWithMissingContact).execute(modelStub));
+        assertThrows(CommandException.class,
+                "Contact not found: N", () -> new AddTodoCommand(todoWithMissingContact)
+                        .execute(modelStub));
     }
 
     @Test
@@ -109,32 +109,85 @@ public class AddTodoCommandTest {
      * A default model stub that has all methods failing.
      */
     private class ModelStub implements Model {
-        @Override public void setUserPrefs(ReadOnlyUserPrefs userPrefs) { throw new AssertionError("This method should not be called."); }
-        @Override public ReadOnlyUserPrefs getUserPrefs() { throw new AssertionError("This method should not be called."); }
-        @Override public GuiSettings getGuiSettings() { throw new AssertionError("This method should not be called."); }
-        @Override public void setGuiSettings(GuiSettings guiSettings) { throw new AssertionError("This method should not be called."); }
-        @Override public Path getAddressBookFilePath() { throw new AssertionError("This method should not be called."); }
-        @Override public void setAddressBookFilePath(Path addressBookFilePath) { throw new AssertionError("This method should not be called."); }
-        @Override public void addPerson(Person person) { throw new AssertionError("This method should not be called."); }
-        @Override public void setAddressBook(ReadOnlyAddressBook newData) { throw new AssertionError("This method should not be called."); }
-        @Override public ReadOnlyAddressBook getAddressBook() { throw new AssertionError("This method should not be called."); }
-        @Override public boolean hasPerson(Person person) { throw new AssertionError("This method should not be called."); }
-        @Override public void deletePerson(Person target) { throw new AssertionError("This method should not be called."); }
-        @Override public void setPerson(Person target, Person editedPerson) { throw new AssertionError("This method should not be called."); }
-        @Override public boolean hasEvent(seedu.address.model.event.Event event) { throw new AssertionError("This method should not be called."); }
-        @Override public void addEvent(seedu.address.model.event.Event event) { throw new AssertionError("This method should not be called."); }
-        @Override public void deleteEvent(seedu.address.model.event.Event event) { throw new AssertionError("This method should not be called."); }
-        @Override public void setEvent(seedu.address.model.event.Event target, seedu.address.model.event.Event editedEvent) { throw new AssertionError("This method should not be called."); }
-        @Override public ObservableList<Person> getFilteredPersonList() { throw new AssertionError("This method should not be called."); }
-        @Override public void updateFilteredPersonList(java.util.function.Predicate<Person> predicate) { throw new AssertionError("This method should not be called."); }
-        @Override public ObservableList<seedu.address.model.event.Event> getFilteredEventList() { throw new AssertionError("This method should not be called."); }
-        @Override public void updateFilteredEventList(Predicate<seedu.address.model.event.Event> predicate) { throw new AssertionError("This method should not be called."); }
-        @Override public boolean hasTodo(Todo todo) { throw new AssertionError("This method should not be called."); }
-        @Override public void deleteTodo(Todo todo) { throw new AssertionError("This method should not be called."); }
-        @Override public void addTodo(Todo todo) { throw new AssertionError("This method should not be called."); }
-        @Override public void setTodo(Todo target, Todo editedTodo) { throw new AssertionError("This method should not be called."); }
-        @Override public ObservableList<Todo> getFilteredTodoList() { throw new AssertionError("This method should not be called."); }
-        @Override public void updateFilteredTodoList(Predicate<Todo> predicate) { throw new AssertionError("This method should not be called."); }
+        @Override public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public ReadOnlyUserPrefs getUserPrefs() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public GuiSettings getGuiSettings() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public Path getAddressBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setAddressBook(ReadOnlyAddressBook newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public boolean hasPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public boolean hasEvent(seedu.address.model.event.Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void addEvent(seedu.address.model.event.Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void deleteEvent(seedu.address.model.event.Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setEvent(seedu.address.model.event.Event target,
+                                       seedu.address.model.event.Event editedEvent) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void updateFilteredPersonList(java.util.function.Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public ObservableList<seedu.address.model.event.Event> getFilteredEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void updateFilteredEventList(Predicate<seedu.address.model.event.Event> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public boolean hasTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void deleteTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void addTodo(Todo todo) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void setTodo(Todo target, Todo editedTodo) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public ObservableList<Todo> getFilteredTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override public void updateFilteredTodoList(Predicate<Todo> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
