@@ -40,6 +40,11 @@ public class UniqueEventList implements Iterable<Event> {
         internalList.add(toAdd);
     }
 
+    public void setEvents(UniqueEventList replacement) {
+        requireNonNull(replacement);
+        internalList.setAll(replacement.internalList);
+    }
+
     public void setEvents(List<Event> events) {
         requireAllNonNull(events);
         if (!eventsAreUnique(events)) {
@@ -87,6 +92,26 @@ public class UniqueEventList implements Iterable<Event> {
     @Override
     public Iterator<Event> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UniqueEventList)) {
+            return false;
+        }
+
+        UniqueEventList otherUniqueEventList = (UniqueEventList) other;
+        return internalList.equals(otherUniqueEventList.internalList);
+    }
+
+    @Override
+    public String toString() {
+        return internalList.toString();
     }
 
     /**
