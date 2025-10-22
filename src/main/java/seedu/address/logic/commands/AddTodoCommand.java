@@ -62,4 +62,21 @@ public class AddTodoCommand extends Command {
                 .map(Person::getName)
                 .anyMatch(name::equals);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof AddTodoCommand)) {
+            return false;
+        }
+        AddTodoCommand e = (AddTodoCommand) other;
+        return toAdd.equals(e.toAdd);
+    }
+
+    @Override
+    public String toString() {
+        return toAdd.toString();
+    }
 }

@@ -43,4 +43,16 @@ public class TodoName {
     public String toString() {
         return todoName;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof TodoName)) {
+            return false;
+        }
+        TodoName otherTodoName = (TodoName) other;
+        return todoName.equals(otherTodoName.todoName);
+    }
 }
