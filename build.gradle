@@ -23,17 +23,33 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+
+    // Headless JavaFX configuration for CI (Linux)
     jvmArgs = [
             '-Dtestfx.headless=true',
-            '-Dheadless=true',
             '-Djava.awt.headless=true',
-            '-Djavafx.headless=true',
+            '-Dfile.encoding=UTF-8',
+            '-Duser.timezone=UTC',
             '-Dprism.order=sw',
             '-Dprism.text=t2k'
     ]
+
+    // Tell JavaFX to use Monocle (headless glass driver)
+    systemProperty 'glass.platform', 'Monocle'
+    systemProperty 'monocle.platform', 'Headless'
+    systemProperty 'prism.order', 'sw'
+    systemProperty 'headless.geometry', '1600x1200-32'
+
+    // Disable hardware acceleration and verbose logs
+    systemProperty 'sun.java2d.d3d', 'false'
+    systemProperty 'sun.java2d.noddraw', 'true'
+    systemProperty 'prism.verbose', 'false'
+    systemProperty 'javafx.verbose', 'false'
 }
 
+
 task coverage(type: JacocoReport) {
+    dependsOn test
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
     classDirectories.from files(sourceSets.main.output)
     executionData.from files(jacocoTestReport.executionData)
@@ -55,7 +71,6 @@ run {
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '17.0.7'
-    String testFxVersion = '4.0.18'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -74,6 +89,9 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.7.4'
 
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
+
+    // Add Monocle for headless JavaFX testing
+    testImplementation group: 'org.testfx', name: 'openjfx-monocle', version: 'jdk-12.0.1+2'
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
 }
