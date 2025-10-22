@@ -12,7 +12,7 @@ import seedu.address.model.event.EventAlias;
 import seedu.address.model.event.EventName;
 
 public class JsonAdaptedEventTest {
-    private static final String INVALID_ALIAS = "a ";
+    private static final String INVALID_ALIAS = "a++";
     private static final String INVALID_NAME = "c++";
 
     private static final String VALID_ALIAS = CONCERT.getAlias();
