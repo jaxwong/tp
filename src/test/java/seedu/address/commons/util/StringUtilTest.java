@@ -123,6 +123,52 @@ public class StringUtilTest {
         assertTrue(StringUtil.containsWordIgnoreCase("AAA bBb ccc  bbb", "bbB"));
     }
 
+
+    //---------------- Tests for startsWithIgnoreCase --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for string: null
+     * Invalid equivalence partitions for prefix: null, empty
+     * The three test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void startsWithIgnoreCase_nullString_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.startsWithIgnoreCase(null, "abc"));
+    }
+
+    @Test
+    public void startsWithIgnoreCase_nullPrefix_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.startsWithIgnoreCase("string", null));
+    }
+
+    @Test
+    public void startsWithIgnoreCase_emptyPrefix_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Prefix parameter cannot be empty", ()
+            -> StringUtil.startsWithIgnoreCase("string", "  "));
+    }
+
+    /*
+     * The method below tests using valid inputs.
+     */
+
+    @Test
+    public void startsWithIgnoreCase_validInputs_correctResult() {
+
+        // Empty string
+        assertFalse(StringUtil.startsWithIgnoreCase("", "abc")); // Boundary case
+        assertFalse(StringUtil.startsWithIgnoreCase("    ", "123"));
+
+        // Not a prefix
+        assertFalse(StringUtil.startsWithIgnoreCase("abcd", "bc")); // Matches in the middle
+        assertFalse(StringUtil.startsWithIgnoreCase("abcd", "bcd")); // Suffix
+
+        // Is a prefix, different upper/lower case letters
+        assertTrue(StringUtil.startsWithIgnoreCase("AaaA", "aaa")); // Normal prefix
+        assertTrue(StringUtil.startsWithIgnoreCase("bBb", "Bbb")); // Same string, different case
+        assertTrue(StringUtil.startsWithIgnoreCase("ccc", "  ccc  ")); // Leading/trailing spaces
+    }
+
     //---------------- Tests for getDetails --------------------------------------
 
     /*
