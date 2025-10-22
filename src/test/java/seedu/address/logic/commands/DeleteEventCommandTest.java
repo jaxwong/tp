@@ -212,7 +212,10 @@ public class DeleteEventCommandTest {
 
     private static class ModelStubWithEvents extends ModelStub {
         final ArrayList<Event> events = new ArrayList<>();
-        private final ObservableList<Event> observable = FXCollections.observableList(events);
+        final ArrayList<Person> persons = new ArrayList<>();
+        private final ObservableList<Event> eventsObservable = FXCollections.observableList(events);
+        private final ObservableList<Person> personsObservable = FXCollections.observableArrayList(persons);
+
 
         ModelStubWithEvents(Event... initial) {
             for (Event e : initial) {
@@ -223,8 +226,11 @@ public class DeleteEventCommandTest {
 
         @Override
         public ObservableList<Event> getFilteredEventList() {
-            return observable;
+            return eventsObservable;
         }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() { return personsObservable; }
 
         @Override
         public void deleteEvent(Event event) {

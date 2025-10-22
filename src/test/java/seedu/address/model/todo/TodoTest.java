@@ -15,7 +15,7 @@ public class TodoTest {
         Todo todo = new TodoBuilder()
                 .withTodoName("Call TSC2025")
                 .withDescription("Call Taylor Swift's manager")
-                .withoutContact()
+                .withoutContactName()
                 .build();
 
         assertEquals("No contact linked", todo.getContactNameDisplay());
@@ -73,7 +73,7 @@ public class TodoTest {
         assertFalse(base.equals(diffDesc));
 
         // different contact -> false (null vs non-null)
-        Todo diffContact = new TodoBuilder(base).withoutContact().build();
+        Todo diffContact = new TodoBuilder(base).withoutContactName().build();
         assertFalse(base.equals(diffContact));
 
         // different isCompleted -> false
@@ -108,7 +108,7 @@ public class TodoTest {
         Todo todo = new TodoBuilder()
                 .withTodoName("Draft email")
                 .withDescription("Write and send the draft")
-                .withoutContact()
+                .withoutContactName()
                 .build();
 
         String expected = "Todo{"
