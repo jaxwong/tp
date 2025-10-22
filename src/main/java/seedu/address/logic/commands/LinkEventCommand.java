@@ -27,6 +27,7 @@ public class LinkEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Linked %1$d person(s) to event: %2$s";
     public static final String MESSAGE_EVENT_NOT_FOUND = "Event not found.";
+    public static final String MESSAGE_DUPLICATE_INDEX = "Duplicate index found! Please try again";
 
     private final List<Index> indexes;
     private final EventAlias eventAlias;
@@ -46,10 +47,17 @@ public class LinkEventCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
+        List<Index> duplicateIndexes = new ArrayList<>();
 
         for (Index index : indexes) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            if (duplicateIndexes.contains(index)) {
+                throw new CommandException(MESSAGE_DUPLICATE_INDEX);
+            } else {
+                duplicateIndexes.add(index);
             }
         }
 

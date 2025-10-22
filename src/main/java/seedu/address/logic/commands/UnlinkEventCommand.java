@@ -22,6 +22,7 @@ public class UnlinkEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_SUCCESS = "Unlinked %1$d persons(s) from their events";
+    public static final String MESSAGE_DUPLICATE_INDEX = "Duplicate index found! Please try again";
 
     private final List<Index> indexes;
 
@@ -38,10 +39,17 @@ public class UnlinkEventCommand extends Command {
         requireNonNull(model);
 
         List<Person> lastShownList = model.getFilteredPersonList();
+        List<Index> duplicateIndexes = new ArrayList<>();
 
         for (Index index : indexes) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
+            if (duplicateIndexes.contains(index)) {
+                throw new CommandException(MESSAGE_DUPLICATE_INDEX);
+            } else {
+                duplicateIndexes.add(index);
             }
         }
 

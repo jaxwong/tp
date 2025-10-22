@@ -35,7 +35,7 @@ public class UnlinkEventCommandParser implements Parser<UnlinkEventCommand> {
     }
 
     /**
-     * Parses a string containing multiple space-seperated indices into a List of Index objects
+     * Parses a string containing multiple space-separated indices into a List of Index objects
      * @param preamble The preamble string containing the indices
      * @return List of parsed Index objects
      * @throws ParseException if any index is invalid
