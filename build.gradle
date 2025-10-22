@@ -28,19 +28,28 @@ test {
     jvmArgs = [
             '-Dtestfx.headless=true',
             '-Djava.awt.headless=true',
+            '-Djavafx.headless=true',
             '-Dfile.encoding=UTF-8',
             '-Duser.timezone=UTC',
             '-Dprism.order=sw',
-            '-Dprism.text=t2k'
+            '-Dprism.text=t2k',
+            '-Dglass.platform=Monocle',
+            '-Dmonocle.platform=Headless',
+            '-Dheadless.geometry=1600x1200-32',
+            '-Dprism.verbose=false',
+            '-Djavafx.verbose=false',
+            '-Dsun.java2d.d3d=false',
+            '-Dsun.java2d.noddraw=true',
+            '-Dsun.java2d.headless=true'
     ]
 
-    // Tell JavaFX to use Monocle (headless glass driver)
-    systemProperty 'glass.platform', 'Monocle'
-    systemProperty 'monocle.platform', 'Headless'
+    // Additional system properties for robust headless operation
+    systemProperty 'testfx.robot', 'glass'
+    systemProperty 'testfx.headless', 'true'
     systemProperty 'prism.order', 'sw'
-    systemProperty 'headless.geometry', '1600x1200-32'
-
-    // Disable hardware acceleration and verbose logs
+    systemProperty 'prism.text', 't2k'
+    systemProperty 'java.awt.headless', 'true'
+    systemProperty 'sun.java2d.headless', 'true'
     systemProperty 'sun.java2d.d3d', 'false'
     systemProperty 'sun.java2d.noddraw', 'true'
     systemProperty 'prism.verbose', 'false'
