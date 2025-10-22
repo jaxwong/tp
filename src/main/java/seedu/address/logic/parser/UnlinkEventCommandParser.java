@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UnlinkEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,8 +29,26 @@ public class UnlinkEventCommandParser implements Parser<UnlinkEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkEventCommand.MESSAGE_USAGE));
         }
 
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        List<Index> indexes = parseIndexes(argMultimap.getPreamble());
 
-        return new UnlinkEventCommand(index);
+        return new UnlinkEventCommand(indexes);
+    }
+
+    /**
+     * Parses a string containing multiple space-seperated indices into a List of Index objects
+     * @param preamble The preamble string containing the indices
+     * @return List of parsed Index objects
+     * @throws ParseException if any index is invalid
+     */
+    private List<Index> parseIndexes(String preamble) throws ParseException {
+        String trimmedPreamble = preamble.trim();
+        String[] indexStrings = trimmedPreamble.split("\\s+");
+        List<Index> indexes = new ArrayList<>();
+
+        for (String indexString : indexStrings) {
+            indexes.add(ParserUtil.parseIndex(indexString));
+        }
+
+        return indexes;
     }
 }

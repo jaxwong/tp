@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -16,20 +17,20 @@ import seedu.address.model.person.Person;
 public class UnlinkEventCommand extends Command {
     public static final String COMMAND_WORD = "unlink-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unlnks a person from his/her linked event. "
-            + "Parameters: INDEX "
-            + "Example: " + COMMAND_WORD + " 1 ";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unlinks one or more person from their linked event. "
+            + "Parameters: INDEX [MORE INDEXES]...\n"
+            + "Example: " + COMMAND_WORD + " 1 2 3";
 
-    public static final String MESSAGE_SUCCESS = "Unlinked %1$s from event %2$s";
+    public static final String MESSAGE_SUCCESS = "Unlinked %1$d persons(s) from their events";
 
-    private final Index index;
+    private final List<Index> indexes;
 
     /**
      * Creates a UnlinkEventCommand to unlink the person from his/her linked event
      */
-    public UnlinkEventCommand(Index index) {
-        requireNonNull(index);
-        this.index = index;
+    public UnlinkEventCommand(List<Index> indexes) {
+        requireNonNull(indexes);
+        this.indexes = indexes;
     }
 
     @Override
@@ -38,24 +39,30 @@ public class UnlinkEventCommand extends Command {
 
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        for (Index index : indexes) {
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        List<Person> personsToUnlink = new ArrayList<>();
+        for (Index index : indexes) {
+            personsToUnlink.add(lastShownList.get(index.getZeroBased()));
+        }
 
-        Person unlinkedPerson = new Person(
-                personToEdit.getName(),
-                personToEdit.getPhone(),
-                personToEdit.getEmail(),
-                personToEdit.getAddress(),
-                personToEdit.getTags(),
-                null
-        );
+        for (Person personToUnlink : personsToUnlink) {
+            Person unlinkedPerson = new Person(
+                    personToUnlink.getName(),
+                    personToUnlink.getPhone(),
+                    personToUnlink.getEmail(),
+                    personToUnlink.getAddress(),
+                    personToUnlink.getTags(),
+                    null
+            );
+            model.setPerson(personToUnlink, unlinkedPerson);
+        }
 
-        model.setPerson(personToEdit, unlinkedPerson);
-
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personToEdit.getName(), personToEdit.getEventAlias()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, indexes.size()));
     }
 
 }
