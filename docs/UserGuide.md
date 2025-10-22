@@ -2,43 +2,60 @@
 layout: page
 title: User Guide
 ---
+## Introduction
 
-OverBooked is a desktop app for managing contacts, events, and todos, optimized for use via a 
-Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, OverBooked can get your contact management, event planning, and task organization done faster than traditional GUI apps.
+OverBooked is a desktop app for managing **contacts, events, and todos** — all from a single, efficient interface.
 
-- Table of Contents
-  {:toc}
+Designed for **event planners** who prefer **keyboard efficiency** over clicking through menus, OverBooked combines the **speed of a Command Line Interface (CLI)** with the **convenience of a modern GUI**.
 
+### 📖 Table of Contents
+- [Quick Start](#quick-start)
+- [Features](#features)
+    - [Contacts](#contacts)
+    - [Events](#events)
+    - [Todos](#todos)
+- [FAQ](#faq)
+- [Known Issues](#known-issues)
+- [Command Summary](#command-summary)
 ---
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
-   **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+Follow these steps to get started with Overbooked in under 2 minutes:
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. **Install Java `17`**
+    - Verify with `java -version` in your own device's terminal
+    - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+2. **Download the App**
+    - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+3. **Set up your workspace**
+    - Move the `.jar` file into a folder of your choice — this will be your *OverBooked home folder*.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+4. **Run the app**
+    ```bash
+    cd path/to/folder
+   java -jar OverBooked.jar
+    ```
+   You should see a window like this:
+   <br>
+   ![listContacts](images/listContacts.png)
 
-   - `list` : Lists all contacts.
+5. **Try these Commands**
 
+   - `help` : Open the help window.
+
+   - `list-contacts` : Lists all contacts.
+   
    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
-   - `delete-contact 3` : Deletes the 3rd contact shown in the current list.
-
-   - `clear` : Deletes all contacts.
+   - `clear` : clears all Entries in the book
 
    - `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+
+Refer to the [Features](#features) below for details of each command.
 
 ---
 
@@ -53,6 +70,8 @@ If you can type fast, OverBooked can get your contact management, event planning
 
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+- Items with <blank> means that an empty field (i.e. " ") can be used to define nothing for supported commands
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -73,6 +92,12 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+---
+
+## 👤 Contacts
+
+![listContacts](images/listContacts.png)
 
 ### Adding a person: `add-contact`
 
@@ -113,7 +138,7 @@ Examples:
 - `edit-contact 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit-contact 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find-contact`
+### Finding persons by name: `find-contact`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -147,6 +172,11 @@ Examples:
 - `list-contacts` followed by `delete-contact 2` deletes the 2nd person in the address book.
 - `find-contact n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
 
+--- 
+## 🎫 Events
+
+![listEvents](images/listEvents.png)
+
 ### Adding an event: `add-event`
 
 Adds an event to the address book.
@@ -154,7 +184,22 @@ Adds an event to the address book.
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`
 
 Examples:
-`add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Swift Eras tour`
+- `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Swift Eras tour`
+
+### Linking an event: `link-event`
+
+Links a given contact (by index) to an event (by alias)
+
+Format: `link-event INDEX ea/EVENT_ALIAS`
+
+Examples: 
+- `link-event 1 ea/TSC2025`
+
+### Unlinking an event: `unlink-event`
+
+Unlink a given contact (by index) from an event
+
+Format: `unlink-event INDEX`
 
 ### Listing all events : `list-events`
 
@@ -166,7 +211,7 @@ Format: `list-events`
 
 Edits an existing event in the address book.
 
-Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [ea/EVENT_ALIAS] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
+Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
 
 At least one of the optional fields must be provided.
 Existing values will be updated to the input values.
@@ -175,9 +220,13 @@ Example:
 
 - `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30` Edits the event name and start datetime of the event with alias `TSC2025` to be `Taylor Swift’s Concert` and `2025-09-19 18:30` respectively.
 
-### Locating events by alias: `find-event`
+### Finding events by alias: `find-event`
 
 Find events whose aliases start with any of the given keywords.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+an EventAlias cannot be edited in order to enforce uniqueness
+</div>
 
 Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 
@@ -198,7 +247,7 @@ Deletes an event from the address book.
 Format: `delete-event ea/EVENT_ALIAS`
 
 Examples:
-`delete-event ea/TSC2025`
+- `delete-event ea/TSC2025`
 
 ### Finding a contact by event: `find-by-event`
 
@@ -207,16 +256,40 @@ Finds and displays all contacts that are linked to a specific event.
 Format: `find-by-event ea/EVENT_ALIAS`
 
 Examples:
-`find-by-event ea/TSC2025`
+- `find-by-event ea/TSC2025`
+
+---
+## 📝 Todos
+
+![listTodos](images/listTodos.png)
 
 ### Adding a todo: `add-todo`
 
 Adds a todo to the address book.
 
-Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION n/NAME`
+Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
 
 Examples:
-`add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
+- `add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
+
+### Editing a todo: 'edit-todo'
+
+Edits an existing todo in the address book.
+
+Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
+
+Examples:
+- `edit-todo tn/Call John n/John Doe`
+- `edit-todo n/<blank>` unlinks the person from the todo task.
+
+### Deleting a todo: `delete-todo`
+
+Deletes a todo from the address book.
+
+Format: `delete-todo INDEX`
+
+Examples:
+- `delete-todo 1`
 
 ### Listing all todos : `list-todos`
 
@@ -253,15 +326,6 @@ Examples:
 
 - `list-todos` followed by `unmark-todo 2` marks the 2nd todo in the address book as incomplete.
 
-### Deleting a todo: `delete-todo`
-
-Deletes a todo from the address book.
-
-Format: `delete-todo INDEX`
-
-Examples:
-`delete-todo 1`
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -287,10 +351,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ---
 
 ## FAQ
@@ -309,12 +369,32 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                      |
-| ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**  | `clear`                                                                                                                                                               |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
-| **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| Action             | Format, Examples                                                                                                                                                                                 |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 👤 **Contacts**    |                                                                                                                                                                                                  |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`            |
+| **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                              |
+| **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                |
+| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |                                                                                                                                                                |
+| **list-contacts**  | `list-contacts`                                                                                                                                                                                  |
+| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                |
+| 🎫 **Events**      |                                                                                                                                                                                                  |
+| **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                       |
+| **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                  |
+| **list-events**    | `list-events`                                                                                                                                                                                    |
+| **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                              |
+| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                            |
+| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                    |
+| 📝 **Todos**       |                                                                                                                                                                                                  |
+| **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                |
+| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                    |
+| **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                     |
+| **list-todos**     | `list-todos`                                                                                                                                                                                     |
+| **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                          |
+| **unmark-todo**    | `unmark-todo INDEX` <br> e.g.`unmark-todo 1`                                                                                                                                                     |
+| 💻 **System**      |                                                                                                                                                                                                  |
+| **help**           | `help`                                                                                                                                                                                           |
+| **clear**          | `clear`                                                                                                                                                                                          |
+| **exit**           | `exit`                                                                                                                                                                                           |                                                                                                                                                                                              |
+
