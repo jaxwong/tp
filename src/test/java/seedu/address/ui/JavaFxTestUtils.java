@@ -13,7 +13,6 @@ public class JavaFxTestUtils {
     /**
      * Runs the given runnable on the JavaFX application thread and waits for completion.
      * This is useful for testing JavaFX operations that need to complete before assertions.
-     * 
      * @param runnable the code to run on the JavaFX thread
      * @throws InterruptedException if the thread is interrupted while waiting
      */
@@ -36,7 +35,6 @@ public class JavaFxTestUtils {
     /**
      * Waits for JavaFX operations to complete by giving the platform time to process.
      * This is a simple delay-based approach for testing.
-     * 
      * @param milliseconds the number of milliseconds to wait
      */
     public static void waitForFxOperations(int milliseconds) {
@@ -56,7 +54,6 @@ public class JavaFxTestUtils {
 
     /**
      * Checks if the JavaFX platform is initialized and running.
-     * 
      * @return true if the platform is initialized, false otherwise
      */
     public static boolean isJavaFxInitialized() {

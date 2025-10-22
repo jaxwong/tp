@@ -153,7 +153,8 @@ public class TodoListPanelTest extends JavaFxTestBase {
                 .withCompleted(false)
                 .build();
 
-        ObservableList<Todo> todoList = FXCollections.observableArrayList(Arrays.asList(todoWithContact, todoWithoutContact));
+        ObservableList<Todo> todoList = FXCollections.observableArrayList(
+                Arrays.asList(todoWithContact, todoWithoutContact));
         TodoListPanel todoListPanel = new TodoListPanel(todoList);
 
         assertNotNull(todoListPanel);

@@ -1,15 +1,13 @@
 package seedu.address.ui;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 
 import javafx.application.Platform;
 import javafx.stage.Stage;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Base class for JavaFX UI component tests.
@@ -19,6 +17,12 @@ public abstract class JavaFxTestBase {
 
     private static boolean platformStarted = false;
 
+    /**
+     * Initializes the JavaFX platform for testing purposes.
+     * This method ensures that the JavaFX runtime is started before any tests
+     * that require JavaFX components are executed. If the platform is already
+     * started, it safely ignores the exception.
+     */
     @BeforeAll
     public static void initializeJavaFX() {
         if (!platformStarted) {
