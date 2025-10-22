@@ -80,6 +80,16 @@ public class Todo {
     }
 
     @Override
+    public String toString() {
+        return "Todo{" +
+                "todoName='" + todoName + '\''
+                + ", description='" + description + '\''
+                + ", contactName='" + contactName + '\''
+                + ", isCompleted=" + isCompleted
+                + '}';
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -90,7 +100,7 @@ public class Todo {
         Todo otherTodo = (Todo) other;
         return this.todoName.equals(otherTodo.todoName)
                 && this.description.equals(otherTodo.description)
-                && this.contactName.equals(otherTodo.contactName)
+                && java.util.Objects.equals(contactName, otherTodo.contactName)
                 && this.isCompleted == otherTodo.isCompleted;
     }
 

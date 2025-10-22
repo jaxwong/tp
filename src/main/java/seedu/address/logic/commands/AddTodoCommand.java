@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODO_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODO_NAME;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -77,6 +78,8 @@ public class AddTodoCommand extends Command {
 
     @Override
     public String toString() {
-        return toAdd.toString();
+        return new ToStringBuilder(this)
+                .add("toAdd", toAdd)
+                .toString();
     }
 }

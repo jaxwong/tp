@@ -81,6 +81,14 @@ public class AddTodoCommandTest {
     }
 
     @Test
+    public void toStringMethod() {
+        Todo todo = new TodoBuilder().build();
+        AddTodoCommand cmd = new AddTodoCommand(todo);
+        String expected = AddTodoCommand.class.getCanonicalName() + "{toAdd=" + todo + "}";
+        assertEquals(expected, cmd.toString());
+    }
+
+    @Test
     public void equals() {
         Todo first = new TodoBuilder().withTodoName("Call TSC2025").build();
         Todo second = new TodoBuilder().withTodoName("Draft email").build();

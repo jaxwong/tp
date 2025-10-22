@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 
 import java.util.List;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -45,4 +46,24 @@ public class DeleteEventCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof DeleteEventCommand)) {
+            return false;
+        }
+        DeleteEventCommand o = (DeleteEventCommand) other;
+        return this.eventAlias.equals(o.eventAlias);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("eventAlias", eventAlias)
+                .toString();
+    }
+
 }
