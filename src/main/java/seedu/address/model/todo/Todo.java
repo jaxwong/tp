@@ -81,8 +81,8 @@ public class Todo {
 
     @Override
     public String toString() {
-        return "Todo{" +
-                "todoName='" + todoName + '\''
+        return "Todo{"
+                + "todoName='" + todoName + '\''
                 + ", description='" + description + '\''
                 + ", contactName='" + contactName + '\''
                 + ", isCompleted=" + isCompleted
