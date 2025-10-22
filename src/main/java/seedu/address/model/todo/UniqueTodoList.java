@@ -94,7 +94,7 @@ public class UniqueTodoList implements Iterable<Todo> {
 
         for (Todo todo : this) {
             if (targetName.equals(todo.getContactName())) {
-                setTodo(todo, todo.withContactName(editedPerson.getName()));
+                setTodo(todo, todo.withLinkedContactName(editedPerson.getName()));
             }
         }
     }

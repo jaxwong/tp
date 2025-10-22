@@ -83,7 +83,7 @@ public class Todo {
      * @param contactName the new linked contact name
      * @return a new Todo with the same properties but different linked contact name
      */
-    public Todo withContactName(Name contactName) {
+    public Todo withLinkedContactName(Name contactName) {
         return new Todo(this.todoName, this.description, contactName, this.isCompleted);
     }
 
