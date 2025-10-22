@@ -150,7 +150,7 @@ public class TodoCardTest extends JavaFxTestBase {
 
         assertEquals(todo, todoCard.todo);
         assertEquals("Test Todo", todoCard.todo.getTodoName().toString());
-        assertEquals("Test Description", todoCard.todo.getDescription());
+        assertEquals("Test Description", todoCard.todo.getTodoDescription());
         assertEquals("Test Contact", todoCard.todo.getContactName().toString());
         assertTrue(todoCard.todo.getIsCompleted());
     }
