@@ -105,7 +105,7 @@ public class UniqueTodoList implements Iterable<Todo> {
     private boolean todosAreUnique(List<Todo> todos) {
         for (int i = 0; i < todos.size() - 1; i++) {
             for (int j = i + 1; j < todos.size(); j++) {
-                if (todos.get(i).equals(todos.get(j))) {
+                if (todos.get(i).isSameTodo(todos.get(j))) {
                     return false;
                 }
             }

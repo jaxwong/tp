@@ -79,7 +79,7 @@ public class TodoTest {
         // different isCompleted -> false
         Todo completedVariant = new Todo(
                 new TodoName(base.getTodoName().toString()),
-                base.getDescription(),
+                base.getTodoDescription(),
                 base.getContactName(),
                 true);
         assertFalse(base.equals(completedVariant));
@@ -95,7 +95,7 @@ public class TodoTest {
 
         String expected = "Todo{"
                 + "todoName='" + todo.getTodoName() + '\''
-                + ", description='" + todo.getDescription() + '\''
+                + ", todoDescription='" + todo.getTodoDescription() + '\''
                 + ", contactName='" + todo.getContactName() + '\''
                 + ", isCompleted=" + todo.getIsCompleted()
                 + '}';
@@ -113,7 +113,7 @@ public class TodoTest {
 
         String expected = "Todo{"
                 + "todoName='" + todo.getTodoName() + '\''
-                + ", description='" + todo.getDescription() + '\''
+                + ", todoDescription='" + todo.getTodoDescription() + '\''
                 + ", contactName='" + todo.getContactName() + '\''
                 + ", isCompleted=" + todo.getIsCompleted()
                 + '}';

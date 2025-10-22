@@ -36,7 +36,7 @@ public class TodoCard extends UiPart<Region> {
         this.todo = todo;
         id.setText(displayedIndex + ". ");
         todoName.setText(todo.getTodoName().toString());
-        description.setText("Description: " + todo.getDescription());
+        description.setText("Description: " + todo.getTodoDescription());
         // Set contact tag
         if (todo.getContactName() != null) {
             contactName.setText(todo.getContactName().fullName);

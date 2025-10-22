@@ -33,7 +33,7 @@ public class TodoBuilder {
      */
     public TodoBuilder(Todo todoToCopy) {
         todoName = todoToCopy.getTodoName();
-        description = todoToCopy.getDescription();
+        description = todoToCopy.getTodoDescription();
         contactName = todoToCopy.getContactName();
         isCompleted = todoToCopy.getIsCompleted();
     }
