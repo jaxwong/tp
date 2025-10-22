@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new LinkEventCommand object
  */
-public class UnlinkEventCommandParser implements Parser<UnlinkEventCommand>{
+public class UnlinkEventCommandParser implements Parser<UnlinkEventCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the UnlinkEventCommand
