@@ -77,6 +77,16 @@ public class Todo {
         return isCompleted;
     }
 
+    /**
+     * Creates and returns a copy of this todo with the specified linked contact name.
+     *
+     * @param contactName the new linked contact name
+     * @return a new Todo with the same properties but different linked contact name
+     */
+    public Todo withLinkedContactName(Name contactName) {
+        return new Todo(this.todoName, this.description, contactName, this.isCompleted);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
