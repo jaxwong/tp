@@ -28,8 +28,8 @@ import seedu.address.logic.commands.LinkEventCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEventsCommand;
 import seedu.address.logic.commands.ListTodosCommand;
-import seedu.address.logic.commands.UnlinkEventCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
+import seedu.address.logic.commands.UnlinkEventCommand;
 import seedu.address.logic.commands.UnmarkTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
