@@ -9,34 +9,37 @@ import seedu.address.model.todo.TodoName;
  */
 public class TodoBuilder {
 
-    public static final String DEFAULT_TODO_NAME = "Call Alic";
-    public static final String DEFAULT_TODO_DESCRIPTION = "Find out about event requirements.";
-    public static final String DEFAULT_NAME = "Alice Pauline";
+    public static final String DEFAULT_TODO_NAME = "Review Project Proposal";
+    public static final String DEFAULT_DESCRIPTION = "Review the Q1 project proposal document";
+    public static final String DEFAULT_CONTACT_NAME = "John Doe";
 
     private TodoName todoName;
     private String description;
-    private Name name;
+    private Name contactName;
+    private boolean isCompleted;
 
     /**
      * Creates a {@code TodoBuilder} with the default details.
      */
     public TodoBuilder() {
         todoName = new TodoName(DEFAULT_TODO_NAME);
-        description = DEFAULT_TODO_DESCRIPTION;
-        name = new Name(DEFAULT_NAME);
+        description = DEFAULT_DESCRIPTION;
+        contactName = new Name(DEFAULT_CONTACT_NAME);
+        isCompleted = false;
     }
 
     /**
-     * Initializes the TodoBuilder with the data of {@code todoToCopy}
+     * Initializes the TodoBuilder with the data of {@code todoToCopy}.
      */
     public TodoBuilder(Todo todoToCopy) {
         todoName = todoToCopy.getTodoName();
         description = todoToCopy.getDescription();
-        name = todoToCopy.getContactName();
+        contactName = todoToCopy.getContactName();
+        isCompleted = todoToCopy.getIsCompleted();
     }
 
     /**
-     * Sets the {@code TodoName} of the @{code Todo} that we are building.
+     * Sets the {@code TodoName} of the {@code Todo} that we are building.
      */
     public TodoBuilder withTodoName(String todoName) {
         this.todoName = new TodoName(todoName);
@@ -44,7 +47,7 @@ public class TodoBuilder {
     }
 
     /**
-     * Sets the description of the {@code Todo} that we are building.
+     * Sets the {@code description} of the {@code Todo} that we are building.
      */
     public TodoBuilder withDescription(String description) {
         this.description = description;
@@ -52,23 +55,33 @@ public class TodoBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Todo} that we are building.
+     * Sets the {@code contactName} of the {@code Todo} that we are building.
      */
-    public TodoBuilder withContactName(String name) {
-        this.name = (name == null) ? null : new Name(name);
+    public TodoBuilder withContactName(String contactName) {
+        this.contactName = new Name(contactName);
         return this;
-    }
-
-    public Todo build() {
-        return new Todo(todoName, description, name);
     }
 
     /**
-     * Sets the {@code name} of the {@code Todo} that we are building to null.
-     * @return
+     * Sets the {@code contactName} to null for the {@code Todo} that we are building.
      */
-    public TodoBuilder withoutContact() {
-        this.name = null;
+    public TodoBuilder withoutContactName() {
+        this.contactName = null;
         return this;
+    }
+
+    /**
+     * Sets the {@code isCompleted} status of the {@code Todo} that we are building.
+     */
+    public TodoBuilder withCompleted(boolean isCompleted) {
+        this.isCompleted = isCompleted;
+        return this;
+    }
+
+    /**
+     * Builds the {@code Todo} object.
+     */
+    public Todo build() {
+        return new Todo(todoName, description, contactName, isCompleted);
     }
 }
