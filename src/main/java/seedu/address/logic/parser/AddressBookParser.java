@@ -114,9 +114,6 @@ public class AddressBookParser {
         case FindContactByEventCommand.COMMAND_WORD:
             return new FindContactByEventParser().parse(arguments);
 
-        case AddTodoCommand.COMMAND_WORD:
-            return new AddTodoCommandParser().parse(arguments);
-
         case DeleteTodoCommand.COMMAND_WORD:
             return new DeleteTodoCommandParser().parse(arguments);
 
