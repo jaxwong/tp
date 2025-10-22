@@ -85,7 +85,7 @@ public class EditTodoCommandTest {
     }
 
     @Test
-    public void execute_noFieldsEdited_throwsCommandEXception() {
+    public void execute_noFieldsEdited_throwsCommandException() {
         EditTodoCommand command = new EditTodoCommand(Index.fromOneBased(1), new EditTodoDescriptor());
 
         assertCommandFailure(command, model, EditTodoCommand.MESSAGE_NOT_EDITED);
@@ -106,6 +106,48 @@ public class EditTodoCommandTest {
         EditTodoCommand command = new EditTodoCommand(Index.fromOneBased(2), descriptor);
 
         assertCommandFailure(command, model, EditTodoCommand.MESSAGE_DUPLICATE_TODO);
+    }
+
+    @Test
+    public void execute_unlinkContact_success() {
+        Todo todoToEdit = model.getFilteredTodoList().get(0);
+        Todo editedTodo = new TodoBuilder(todoToEdit)
+                .withoutContactName()
+                .build();
+
+        EditTodoDescriptor descriptor = new EditTodoCommand.EditTodoDescriptor();
+        descriptor.markContactUnlinked();
+
+        EditTodoCommand command = new EditTodoCommand(Index.fromOneBased(1), descriptor);
+
+        String expectedMessage = String.format(EditTodoCommand.MESSAGE_EDIT_TODO_SUCCESS, Messages.format(editedTodo));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setTodo(todoToEdit, editedTodo);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_unlinkContactAndEditDescription_success() {
+        Todo todoToEdit = model.getFilteredTodoList().get(0);
+        Todo editedTodo = new TodoBuilder(todoToEdit)
+                .withoutContactName()
+                .withDescription("Updated new description while unlinking")
+                .build();
+
+        EditTodoDescriptor descriptor = new EditTodoCommand.EditTodoDescriptor();
+        descriptor.markContactUnlinked();
+        descriptor.setTodoDescription("Updated new description while unlinking");
+
+        EditTodoCommand command = new EditTodoCommand(Index.fromOneBased(1), descriptor);
+
+        String expectedMessage = String.format(EditTodoCommand.MESSAGE_EDIT_TODO_SUCCESS, Messages.format(editedTodo));
+
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.setTodo(todoToEdit, editedTodo);
+
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
 
     @Test

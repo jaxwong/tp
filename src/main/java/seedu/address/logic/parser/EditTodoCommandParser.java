@@ -39,7 +39,7 @@ public class EditTodoCommandParser implements Parser<EditTodoCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTodoCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TODO_DESCRIPTION, PREFIX_NAME);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TODO_NAME, PREFIX_TODO_DESCRIPTION, PREFIX_NAME);
 
         EditTodoCommand.EditTodoDescriptor editTodoDescriptor = new EditTodoCommand.EditTodoDescriptor();
 
