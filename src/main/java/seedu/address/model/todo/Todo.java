@@ -2,6 +2,8 @@ package seedu.address.model.todo;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Objects;
+
 import seedu.address.model.person.Name;
 
 /**
@@ -97,6 +99,16 @@ public class Todo {
     }
 
     @Override
+    public String toString() {
+        return "Todo{"
+                + "todoName='" + todoName + '\''
+                + ", description='" + description + '\''
+                + ", contactName='" + contactName + '\''
+                + ", isCompleted=" + isCompleted
+                + '}';
+    }
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -105,11 +117,15 @@ public class Todo {
             return false;
         }
         Todo otherTodo = (Todo) other;
-        return this.todoName.equals(otherTodo.todoName);
+        return this.todoName.equals(otherTodo.todoName)
+                && this.description.equals(otherTodo.description)
+                && java.util.Objects.equals(contactName, otherTodo.contactName)
+                && this.isCompleted == otherTodo.isCompleted;
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(todoName);
+        return Objects.hash(todoName, description, contactName, isCompleted);
     }
+
 }
