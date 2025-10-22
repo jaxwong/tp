@@ -63,4 +63,8 @@ public class TodoBuilder {
         return new Todo(todoName, description, name);
     }
 
+    public TodoBuilder withoutContact() {
+        this.name = null;
+        return this;
+    }
 }
