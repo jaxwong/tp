@@ -44,6 +44,21 @@ public class EventName {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EventName)) {
+            return false;
+        }
+
+        EventName otherName = (EventName) other;
+        return fullName.equals(otherName.fullName);
+    }
+
+    @Override
     public String toString() {
         return fullName;
     }

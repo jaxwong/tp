@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTodos.getTypicalTodos;
@@ -82,15 +84,15 @@ public class ListTodosCommandTest {
         ListTodosCommand listTodosCommand = new ListTodosCommand();
 
         // same object -> returns true
-        assert listTodosCommand.equals(listTodosCommand);
+        assertTrue(listTodosCommand.equals(listTodosCommand));
 
         // same type -> returns true
-        assert listTodosCommand.equals(new ListTodosCommand());
+        assertTrue(listTodosCommand.equals(new ListTodosCommand()));
 
         // different types -> returns false
-        assert !listTodosCommand.equals(1);
+        assertFalse(listTodosCommand.equals(1));
 
         // null -> returns false
-        assert !listTodosCommand.equals(null);
+        assertFalse(listTodosCommand.equals(null));
     }
 }

@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditTodoCommand;
@@ -28,6 +29,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEventsCommand;
 import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.UnlinkEventCommand;
+import seedu.address.logic.commands.MarkTodoCommand;
+import seedu.address.logic.commands.UnmarkTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -115,11 +118,20 @@ public class AddressBookParser {
         case EditTodoCommand.COMMAND_WORD:
             return new EditTodoCommandParser().parse(arguments);
 
+        case MarkTodoCommand.COMMAND_WORD:
+            return new MarkTodoCommandParser().parse(arguments);
+
+        case UnmarkTodoCommand.COMMAND_WORD:
+            return new UnmarkTodoCommandParser().parse(arguments);
+
         case FindEventCommand.COMMAND_WORD:
             return new FindEventCommandParser().parse(arguments);
 
         case FindContactByEventCommand.COMMAND_WORD:
             return new FindContactByEventParser().parse(arguments);
+
+        case DeleteTodoCommand.COMMAND_WORD:
+            return new DeleteTodoCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

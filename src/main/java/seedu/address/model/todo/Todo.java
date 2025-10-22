@@ -80,10 +80,10 @@ public class Todo {
     }
 
     /**
-     * Returns true if both events have the same name, start and end.
-     * This defines a weaker notion of equality between two events.
+     * Returns true if both todo have the same todoName, todoDescription, contactName and isCompleted
+     * This defines a weaker notion of equality between two todos.
      * @param otherTodo The todo to compare with this todo.
-     * @return true if the other todo has the same TodoName, TodoDescription, ContactName and isCompleted
+     * @return true if the other todo has the same todoName, todoDescription, contactName and isCompleted
      */
     public boolean isSameTodo(Todo otherTodo) {
         if (otherTodo == this) {
@@ -91,6 +91,35 @@ public class Todo {
         }
 
         return this.equals(otherTodo);
+    }
+
+    /**
+     * Creates and returns a copy of this todo with the specified linked contact name.
+     *
+     * @param contactName the new linked contact name
+     * @return a new Todo with the same properties but different linked contact name
+     */
+    public Todo withLinkedContactName(Name contactName) {
+        return new Todo(this.todoName, this.todoDescription, contactName, this.isCompleted);
+    }
+
+    /**
+     * Creates and returns a copy of this todo with the specified completion status.
+     * @param isCompleted the new completion status
+     * @return a new Todo with the same properties but different completion status
+     */
+    public Todo withCompletionStatus(boolean isCompleted) {
+        return new Todo(this.todoName, this.todoDescription, this.contactName, isCompleted);
+    }
+
+    @Override
+    public String toString() {
+        return "Todo{"
+                + "todoName='" + todoName + '\''
+                + ", todoDescription='" + todoDescription + '\''
+                + ", contactName='" + contactName + '\''
+                + ", isCompleted=" + isCompleted
+                + '}';
     }
 
     @Override
@@ -102,14 +131,15 @@ public class Todo {
             return false;
         }
         Todo otherTodo = (Todo) other;
-        return Objects.equals(todoName, otherTodo.todoName)
-                && Objects.equals(todoDescription, otherTodo.todoDescription)
-                && Objects.equals(contactName, otherTodo.contactName)
-                && Objects.equals(isCompleted, otherTodo.isCompleted);
+        return this.todoName.equals(otherTodo.todoName)
+                && this.todoDescription.equals(otherTodo.todoDescription)
+                && java.util.Objects.equals(contactName, otherTodo.contactName)
+                && this.isCompleted == otherTodo.isCompleted;
     }
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(todoName);
+        return Objects.hash(todoName, todoDescription, contactName, isCompleted);
     }
+
 }

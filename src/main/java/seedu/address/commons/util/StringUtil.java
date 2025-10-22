@@ -39,7 +39,7 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} starts with {@code prefix}.
+     * Returns true if the {@code string} starts with {@code prefix}.
      * Ignores case.
      * <br>examples:<pre>
      *       startsWithIgnoreCase("ABc def", "AB") == true
