@@ -42,7 +42,7 @@ public class JsonAdaptedTodo {
     public JsonAdaptedTodo(Todo source) {
         requireNonNull(source);
         this.todoName = source.getTodoName().toString();
-        this.description = source.getDescription();
+        this.description = source.getTodoDescription();
         this.contactName = source.getContactName() == null
                 ? null
                 : source.getContactName().fullName;

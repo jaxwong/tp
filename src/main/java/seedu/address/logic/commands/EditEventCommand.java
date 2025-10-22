@@ -53,6 +53,7 @@ public class EditEventCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
+     * Constructor for an EditEventCommand
      * @param eventAlias of the event in the list to edit
      * @param editEventDescriptor details to edit the event with
      */

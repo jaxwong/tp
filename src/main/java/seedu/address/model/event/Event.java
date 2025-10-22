@@ -108,7 +108,7 @@ public class Event {
      * Returns true if both events have the same name, start and end.
      * This defines a weaker notion of equality between two events.
      * @param otherEvent The event to compare with this event.
-     * @return true if the other event has the same name, start, and end times.
+     * @return true if the other event has the same event alias.
      */
     public boolean isSameEvent(Event otherEvent) {
         if (otherEvent == this) {

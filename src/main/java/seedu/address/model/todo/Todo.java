@@ -11,20 +11,20 @@ import seedu.address.model.person.Name;
  */
 public class Todo {
     private final TodoName todoName;
-    private final String description;
+    private final String todoDescription;
     private final Name contactName; // may be null
-    private boolean isCompleted;
+    private final boolean isCompleted;
 
     /**
      * Constructs a Todo with the specified details.
      * @param todoName The name of the todo. Must not be null and must be a valid todo name.
-     * @param description The description of the todo. Must not be null.
+     * @param todoDescription The description of the todo. Must not be null.
      * @param contactName The name of the linked contact. Can be null.
      */
-    public Todo(TodoName todoName, String description, Name contactName) {
-        requireAllNonNull(todoName, description);
+    public Todo(TodoName todoName, String todoDescription, Name contactName) {
+        requireAllNonNull(todoName, todoDescription);
         this.todoName = todoName;
-        this.description = description;
+        this.todoDescription = todoDescription;
         this.contactName = contactName;
         this.isCompleted = false;
     }
@@ -33,10 +33,10 @@ public class Todo {
      * Separate constructor for loading from database into the code.
      * @param isCompleted true if the todo is marked as completed.
      */
-    public Todo(TodoName todoName, String description, Name contactName, boolean isCompleted) {
-        requireAllNonNull(todoName, description, isCompleted);
+    public Todo(TodoName todoName, String todoDescription, Name contactName, boolean isCompleted) {
+        requireAllNonNull(todoName, todoDescription, isCompleted);
         this.todoName = todoName;
-        this.description = description;
+        this.todoDescription = todoDescription;
         this.contactName = contactName;
         this.isCompleted = isCompleted;
     }
@@ -51,8 +51,8 @@ public class Todo {
     /**
      * Returns the description of the todo
      */
-    public String getDescription() {
-        return description;
+    public String getTodoDescription() {
+        return todoDescription;
     }
 
     /**
@@ -80,13 +80,27 @@ public class Todo {
     }
 
     /**
+     * Returns true if both todo have the same todoName, todoDescription, contactName and isCompleted
+     * This defines a weaker notion of equality between two todos.
+     * @param otherTodo The todo to compare with this todo.
+     * @return true if the other todo has the same todoName, todoDescription, contactName and isCompleted
+     */
+    public boolean isSameTodo(Todo otherTodo) {
+        if (otherTodo == this) {
+            return true;
+        }
+
+        return this.equals(otherTodo);
+    }
+
+    /**
      * Creates and returns a copy of this todo with the specified linked contact name.
      *
      * @param contactName the new linked contact name
      * @return a new Todo with the same properties but different linked contact name
      */
     public Todo withLinkedContactName(Name contactName) {
-        return new Todo(this.todoName, this.description, contactName, this.isCompleted);
+        return new Todo(this.todoName, this.todoDescription, contactName, this.isCompleted);
     }
 
     /**
@@ -95,14 +109,14 @@ public class Todo {
      * @return a new Todo with the same properties but different completion status
      */
     public Todo withCompletionStatus(boolean isCompleted) {
-        return new Todo(this.todoName, this.description, this.contactName, isCompleted);
+        return new Todo(this.todoName, this.todoDescription, this.contactName, isCompleted);
     }
 
     @Override
     public String toString() {
         return "Todo{"
                 + "todoName='" + todoName + '\''
-                + ", description='" + description + '\''
+                + ", todoDescription='" + todoDescription + '\''
                 + ", contactName='" + contactName + '\''
                 + ", isCompleted=" + isCompleted
                 + '}';
@@ -118,14 +132,14 @@ public class Todo {
         }
         Todo otherTodo = (Todo) other;
         return this.todoName.equals(otherTodo.todoName)
-                && this.description.equals(otherTodo.description)
+                && this.todoDescription.equals(otherTodo.todoDescription)
                 && java.util.Objects.equals(contactName, otherTodo.contactName)
                 && this.isCompleted == otherTodo.isCompleted;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(todoName, description, contactName, isCompleted);
+        return Objects.hash(todoName, todoDescription, contactName, isCompleted);
     }
 
 }

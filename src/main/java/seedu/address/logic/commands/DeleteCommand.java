@@ -47,7 +47,7 @@ public class DeleteCommand extends Command {
             if (todoList.get(i).getContactName() != null
                     && todoList.get(i).getContactName().equals(personToDelete.getName())) {
                 Todo oldTodo = todoList.get(i);
-                Todo newTodo = new Todo(oldTodo.getTodoName(), oldTodo.getDescription(),
+                Todo newTodo = new Todo(oldTodo.getTodoName(), oldTodo.getTodoDescription(),
                         null, oldTodo.getIsCompleted());
                 model.setTodo(oldTodo, newTodo);
             }
