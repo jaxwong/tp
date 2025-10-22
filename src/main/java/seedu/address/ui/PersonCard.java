@@ -56,9 +56,12 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
 
         if (person.getEventAlias() == null) {
-            eventAlias.setText("");
+            eventAlias.setVisible(false);
+            eventAlias.setManaged(false);
         } else {
             eventAlias.setText(person.getEventAlias().value);
+            eventAlias.setVisible(true);
+            eventAlias.setManaged(true);
         }
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
