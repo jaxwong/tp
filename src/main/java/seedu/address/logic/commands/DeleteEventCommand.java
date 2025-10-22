@@ -44,7 +44,8 @@ public class DeleteEventCommand extends Command {
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_EVENT_NOT_FOUND, eventAlias)));
 
         for (int i = 0; i < personList.size(); i++) {
-            if (personList.get(i).getEventAlias() != null && personList.get(i).getEventAlias().equals(eventToDelete.getEventAlias())) {
+            if (personList.get(i).getEventAlias() != null
+                    && personList.get(i).getEventAlias().equals(eventToDelete.getEventAlias())) {
                 Person personToEdit = personList.get(i);
                 Person unlinkedPerson = new Person(
                         personToEdit.getName(),
