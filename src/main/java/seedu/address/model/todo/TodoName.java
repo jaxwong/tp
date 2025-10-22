@@ -46,14 +46,13 @@ public class TodoName {
 
     @Override
     public boolean equals(Object other) {
-        if (other == null) {
-            return false;
+        if (other == this) {
+            return true;
         }
-
         if (!(other instanceof TodoName)) {
             return false;
         }
         TodoName otherTodoName = (TodoName) other;
-        return todoName.equalsIgnoreCase(otherTodoName.todoName);
+        return todoName.equals(otherTodoName.todoName);
     }
 }

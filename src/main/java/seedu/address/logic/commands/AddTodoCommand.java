@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODO_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TODO_NAME;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -64,5 +65,24 @@ public class AddTodoCommand extends Command {
         return model.getAddressBook().getPersonList().stream()
                 .map(Person::getName)
                 .anyMatch(name::equals);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof AddTodoCommand)) {
+            return false;
+        }
+        AddTodoCommand e = (AddTodoCommand) other;
+        return toAdd.equals(e.toAdd);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("toAdd", toAdd)
+                .toString();
     }
 }

@@ -26,9 +26,10 @@ public class AddEventCommand extends Command {
             + PREFIX_END + "END DATETIME "
             + PREFIX_DESC + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EVENT_NAME + "Taylor swift concert"
-            + PREFIX_START + "2025-09-19 19:30"
-            + PREFIX_END + "2025-09-19 23:30"
+            + PREFIX_EVENT_NAME + "Taylor swift concert "
+            + PREFIX_EVENT_ALIAS + "TS2025 "
+            + PREFIX_START + "2025-09-19 19:30 "
+            + PREFIX_END + "2025-09-19 23:30 "
             + PREFIX_DESC + "Taylor’s Swift Eras tour";
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
@@ -53,5 +54,20 @@ public class AddEventCommand extends Command {
 
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddEventCommand)) {
+            return false;
+        }
+
+        AddEventCommand otherAddCommand = (AddEventCommand) other;
+        return toAdd.equals(otherAddCommand.toAdd);
     }
 }

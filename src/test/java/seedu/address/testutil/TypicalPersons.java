@@ -70,6 +70,15 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Add all typical persons into the specified {@code AddressBook}
+     */
+    public static void addTypicalPersons(AddressBook ab) {
+        for (Person person : getTypicalPersons()) {
+            ab.addPerson(person);
+        }
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }

@@ -5,11 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 
 import java.util.List;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventAlias;
+import seedu.address.model.person.Person;
 
 /**
  * Deletes an event identified using its alias from the address book.
@@ -35,14 +37,51 @@ public class DeleteEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> lastShownList = model.getFilteredEventList();
+        List<Person> personList = model.getFilteredPersonList();
 
         Event eventToDelete = lastShownList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_EVENT_NOT_FOUND, eventAlias)));
 
+        for (int i = 0; i < personList.size(); i++) {
+            if (personList.get(i).getEventAlias() != null
+                    && personList.get(i).getEventAlias().equals(eventToDelete.getEventAlias())) {
+                Person personToEdit = personList.get(i);
+                Person unlinkedPerson = new Person(
+                        personToEdit.getName(),
+                        personToEdit.getPhone(),
+                        personToEdit.getEmail(),
+                        personToEdit.getAddress(),
+                        personToEdit.getTags()
+                );
+                model.setPerson(personToEdit, unlinkedPerson);
+            }
+        }
+
+
         model.deleteEvent(eventToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof DeleteEventCommand)) {
+            return false;
+        }
+        DeleteEventCommand o = (DeleteEventCommand) other;
+        return this.eventAlias.equals(o.eventAlias);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("eventAlias", eventAlias)
+                .toString();
+    }
+
 }
