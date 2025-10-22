@@ -42,7 +42,7 @@ public class EventAlias {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof EventAlias
-                && value.equals(((EventAlias) other).value));
+                && value.equalsIgnoreCase(((EventAlias) other).value));
     }
 
     @Override
