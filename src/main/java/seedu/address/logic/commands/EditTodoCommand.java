@@ -99,7 +99,7 @@ public class EditTodoCommand extends Command {
     }
 
     /**
-     * Creates an returns {@code Todo} with the details of {@code todoToEdit}
+     * Creates and returns {@code Todo} with the details of {@code todoToEdit}
      * edited with {@code editTodoDescriptor}
      */
     private static Todo createEditedTodo(Todo todoToEdit, EditTodoDescriptor editTodoDescriptor) {
@@ -212,14 +212,15 @@ public class EditTodoCommand extends Command {
             return Objects.equals(todoName, otherDescriptor.todoName)
                     && Objects.equals(todoDescription, otherDescriptor.todoDescription)
                     && Objects.equals(contactName, otherDescriptor.contactName)
-                    && Objects.equals(isCompleted, otherDescriptor.isCompleted);
+                    && Objects.equals(isCompleted, otherDescriptor.isCompleted)
+                    && Objects.equals(isContactUnlinked, otherDescriptor.isContactUnlinked);
         }
 
         @Override
         public String toString() {
             return new ToStringBuilder(this)
                     .add("todoName", todoName)
-                    .add("description", todoDescription)
+                    .add("todoDescription", todoDescription)
                     .add("contactName", contactName)
                     .add("isCompleted", isCompleted)
                     .toString();
