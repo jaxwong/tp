@@ -11,7 +11,7 @@ public class TodoBuilder {
 
     public static final String DEFAULT_TODO_NAME = "Review Project Proposal";
     public static final String DEFAULT_DESCRIPTION = "Review the Q1 project proposal document";
-    public static final String DEFAULT_CONTACT_NAME = "John Doe";
+    public static final String DEFAULT_CONTACT_NAME = "Alice Pauline";
 
     private TodoName todoName;
     private String description;
