@@ -105,7 +105,7 @@ public class Event {
     }
 
     /**
-     * Returns true if both events have the same name, start and end.
+     * Returns true if both events have the same event alias.
      * This defines a weaker notion of equality between two events.
      * @param otherEvent The event to compare with this event.
      * @return true if the other event has the same event alias.

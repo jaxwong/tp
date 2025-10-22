@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -25,17 +27,34 @@ public class LinkEventCommandParser implements Parser<LinkEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
 
-        // Ensure alias is present and a person index frm the preamble is provided
+        // Ensure alias is present and a person index from the preamble is provided
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_ALIAS)
             || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE));
         }
 
-
-        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        List<Index> indexes = parseIndexes(argMultimap.getPreamble());
         EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 
-        return new LinkEventCommand(index, eventAlias);
+        return new LinkEventCommand(indexes, eventAlias);
+    }
+
+    /**
+     * Parses a string containing multiple space-separated indices into a List of Index objects
+     * @param preamble The preamble string containing the indices
+     * @return List of parsed Index objects
+     * @throws ParseException if any index is invalid
+     */
+    private List<Index> parseIndexes(String preamble) throws ParseException {
+        String trimmedPreamble = preamble.trim();
+        String[] indexStrings = trimmedPreamble.split("\\s+");
+        List<Index> indexes = new ArrayList<>();
+
+        for (String indexString : indexStrings) {
+            indexes.add(ParserUtil.parseIndex(indexString));
+        }
+
+        return indexes;
     }
 
     /**
