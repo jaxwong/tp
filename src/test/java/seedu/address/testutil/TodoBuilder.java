@@ -63,6 +63,10 @@ public class TodoBuilder {
         return new Todo(todoName, description, name);
     }
 
+    /**
+     * Sets the {@code name} of the {@code Todo} that we are building to null.
+     * @return
+     */
     public TodoBuilder withoutContact() {
         this.name = null;
         return this;
