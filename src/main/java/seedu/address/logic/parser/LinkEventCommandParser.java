@@ -25,7 +25,7 @@ public class LinkEventCommandParser implements Parser<LinkEventCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
 
-        // Ensure alias is present and a person index frm the preamble is provided
+        // Ensure alias is present and a person index from the preamble is provided
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENT_ALIAS)
             || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE));
