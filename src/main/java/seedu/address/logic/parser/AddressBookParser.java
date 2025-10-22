@@ -15,6 +15,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -120,6 +121,9 @@ public class AddressBookParser {
 
         case FindContactByEventCommand.COMMAND_WORD:
             return new FindContactByEventParser().parse(arguments);
+
+        case DeleteTodoCommand.COMMAND_WORD:
+            return new DeleteTodoCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
