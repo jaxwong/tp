@@ -27,7 +27,9 @@ test {
             '-Dtestfx.headless=true',
             '-Dheadless=true',
             '-Djava.awt.headless=true',
-            '-Djavafx.headless=true'
+            '-Djavafx.headless=true',
+            '-Dprism.order=sw',
+            '-Dprism.text=t2k'
     ]
 }
 
@@ -53,6 +55,7 @@ run {
 dependencies {
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '17.0.7'
+    String testFxVersion = '4.0.18'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'

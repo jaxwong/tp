@@ -43,7 +43,7 @@ public class MainWindowTodoTest extends JavaFxTestBase {
         Model model = new ModelManager();
         logic = new LogicManager(model, storage);
 
-        // ✅ Construct MainWindow on JavaFX thread
+        // Construct MainWindow on JavaFX thread
         JavaFxTestUtils.runOnFxThreadAndWait(() -> {
             mainWindow = new MainWindow(stage, logic);
         });
