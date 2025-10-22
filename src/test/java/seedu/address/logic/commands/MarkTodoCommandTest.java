@@ -35,7 +35,6 @@ public class MarkTodoCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        
         // Add typical todos to both models
         List<Todo> typicalTodos = getTypicalTodos();
         for (Todo todo : typicalTodos) {
@@ -69,7 +68,6 @@ public class MarkTodoCommandTest {
     public void execute_validIndexFilteredList_success() {
         // Get the first todo before filtering
         Todo firstTodo = model.getFilteredTodoList().get(0);
-        
         // Filter todos to show only the first one
         model.updateFilteredTodoList(todo -> todo.equals(firstTodo));
         expectedModel.updateFilteredTodoList(todo -> todo.equals(firstTodo));
@@ -89,7 +87,6 @@ public class MarkTodoCommandTest {
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         // Get the first todo before filtering
         Todo firstTodo = model.getFilteredTodoList().get(0);
-        
         // Filter todos to show only the first one
         model.updateFilteredTodoList(todo -> todo.equals(firstTodo));
 
@@ -109,13 +106,10 @@ public class MarkTodoCommandTest {
                 .filter(Todo::getIsCompleted)
                 .findFirst()
                 .orElse(null);
-        
         assertTrue(completedTodo != null, "Should have at least one completed todo in test data");
-        
         // Find the index of this todo
         int todoIndex = model.getFilteredTodoList().indexOf(completedTodo);
         Index index = Index.fromZeroBased(todoIndex);
-        
         MarkTodoCommand markTodoCommand = new MarkTodoCommand(index);
 
         String expectedMessage = String.format(MarkTodoCommand.MESSAGE_MARK_TODO_SUCCESS,
@@ -133,15 +127,11 @@ public class MarkTodoCommandTest {
                 .filter(todo -> !todo.getIsCompleted())
                 .findFirst()
                 .orElse(null);
-        
         assertTrue(incompleteTodo != null, "Should have at least one incomplete todo in test data");
-        
         // Find the index of this todo
         int todoIndex = model.getFilteredTodoList().indexOf(incompleteTodo);
         Index index = Index.fromZeroBased(todoIndex);
-        
         MarkTodoCommand markTodoCommand = new MarkTodoCommand(index);
-
         String expectedMessage = String.format(MarkTodoCommand.MESSAGE_MARK_TODO_SUCCESS,
                 Messages.format(incompleteTodo.withCompletionStatus(true)));
 

@@ -57,7 +57,9 @@ public class MarkTodoCommandParserTest {
 
     @Test
     public void parse_mixedValidInvalidArgs_throwsParseException() {
-        assertParseFailure(parser, "1 abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTodoCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                "1 abc",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTodoCommand.MESSAGE_USAGE));
     }
 }
 
