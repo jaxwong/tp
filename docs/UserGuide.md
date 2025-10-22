@@ -17,6 +17,7 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
+
 ---
 
 ## Quick start
@@ -211,6 +212,10 @@ Format: `list-events`
 
 Edits an existing event in the address book.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+an EventAlias cannot be edited in order to enforce uniqueness
+</div>
+
 Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
 
 At least one of the optional fields must be provided.
@@ -223,10 +228,6 @@ Example:
 ### Finding events by alias: `find-event`
 
 Find events whose aliases start with any of the given keywords.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-an EventAlias cannot be edited in order to enforce uniqueness
-</div>
 
 Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 
