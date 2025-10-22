@@ -31,7 +31,6 @@ public abstract class JavaFxTestBase {
                 System.setProperty("testfx.headless", "true");
                 System.setProperty("java.awt.headless", "true");
                 System.setProperty("javafx.headless", "true");
-                
                 // Start JavaFX platform
                 Platform.startup(() -> {});
                 platformStarted = true;
