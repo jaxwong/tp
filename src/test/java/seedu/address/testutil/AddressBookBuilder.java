@@ -31,4 +31,15 @@ public class AddressBookBuilder {
     public AddressBook build() {
         return addressBook;
     }
+
+    /**
+     * Returns an {@code AddressBook} with all the typical persons and events.
+     */
+    public static AddressBook getTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        TypicalPersons.addTypicalPersons(ab);
+        TypicalEvents.addTypicalEvents(ab);
+        return ab;
+    }
+
 }
