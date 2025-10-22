@@ -21,6 +21,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.todo.Todo;
 import seedu.address.testutil.TodoBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditTodoCommand.
+ */
 public class EditTodoCommandTest {
     private Model model;
 
