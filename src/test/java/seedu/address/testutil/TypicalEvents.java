@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.address.model.AddressBook;
 import seedu.address.model.event.Event;
 
 /**
@@ -69,6 +70,15 @@ public class TypicalEvents {
             .build();
 
     private TypicalEvents() {} // prevents instantiation
+
+    /**
+     * Add all typical events into the specified {@code AddressBook}
+     */
+    public static void addTypicalEvents(AddressBook ab) {
+        for (Event event : getTypicalEvents()) {
+            ab.addEvent(event);
+        }
+    }
 
     /**
      * Returns a list of typical events for testing.
