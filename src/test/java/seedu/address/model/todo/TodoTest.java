@@ -33,6 +33,17 @@ public class TodoTest {
     }
 
     @Test
+    public void hashCode_sameValues_sameHash() {
+        Todo a = new TodoBuilder()
+                .withTodoName("Call TSC2025")
+                .withDescription("Call manager")
+                .withContactName("Alex Yeoh")
+                .build();
+        Todo b = new TodoBuilder(a).build();
+        assertEquals(a.hashCode(), b.hashCode());
+    }
+
+    @Test
     public void equals() {
         Todo base = new TodoBuilder()
                 .withTodoName("Call TSC2025")
