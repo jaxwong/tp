@@ -5,6 +5,7 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model as ModelPackage <<Rectangle>>{
+' === CORE INTERFACES AND MANAGERS ===
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
@@ -12,21 +13,30 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
+' === PERSON ENTITIES ===
 Class UniquePersonList
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
 
+' === EVENT ENTITIES ===
 Class UniqueEventList
 Class Event
+
+' === TODO ENTITIES ===
+Class UniqueTodoList
+Class Todo
+
+' === PERSON FIELD CLASSES ===
+Class Name
+Class Phone
+Class Email
+Class Address
+Class Tag
+
+' === EVENT FIELD CLASSES ===
 Class EventName
 Class EventAlias
 
-Class UniqueTodoList
-Class Todo
+' === TODO FIELD CLASSES ===
 Class TodoName
 
 Class I #FFFFFF
@@ -35,8 +45,8 @@ Class I #FFFFFF
 'Class HiddenOutside #FFFFFF
 'HiddenOutside ..> Model
 
+' === CORE INTERFACE RELATIONSHIPS ===
 AddressBook .up.|> ReadOnlyAddressBook
-
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
@@ -44,36 +54,61 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+' === ADDRESSBOOK TO UNIQUE LISTS ===
 AddressBook *--> "1" UniquePersonList
 AddressBook *--> "1" UniqueEventList
 AddressBook *--> "1" UniqueTodoList
+
+' === UNIQUE LISTS TO ENTITIES ===
 UniquePersonList --> "~* all" Person
 UniqueEventList --> "~* all" Event
 UniqueTodoList --> "~* all" Todo
+
+' === PERSON FIELD RELATIONSHIPS ===
 Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> "0..1" EventAlias
+
+' === EVENT FIELD RELATIONSHIPS ===
 Event *--> EventName
 Event *--> EventAlias
+
+' === TODO FIELD RELATIONSHIPS ===
 Todo *--> TodoName
 Todo *--> "0..1" Name
 
-Person -[hidden]up--> I
-UniquePersonList -[hidden]right-> I
-Event -[hidden]up--> I
-UniqueEventList -[hidden]right-> I
-Todo -[hidden]up--> I
-UniqueTodoList -[hidden]right-> I
+' === HIDDEN RELATIONSHIPS FOR LAYOUT CONTROL ===
+' Core classes positioning
+ReadOnlyAddressBook -[hidden]right-> ReadOnlyUserPrefs
+Model -[hidden]down-> AddressBook
+AddressBook -[hidden]down-> ModelManager
+ModelManager -[hidden]down-> UserPrefs
 
+' Entity list positioning - create vertical lanes
+UniquePersonList -[hidden]down-> UniqueEventList
+UniqueEventList -[hidden]down-> UniqueTodoList
+
+' Entity positioning - align with their lists
+Person -[hidden]right-> Event
+Event -[hidden]right-> Todo
+
+' Field classes positioning - create horizontal lanes
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
+Email -[hidden]right-> Address
+Address -[hidden]right-> Tag
+
 EventName -[hidden]right-> EventAlias
 TodoName -[hidden]right-> Name
 
+' Spacing between logical groups
+Tag -[hidden]down-> EventName
+EventAlias -[hidden]down-> TodoName
+
+' === MODELMANAGER FILTERED LISTS ===
 ModelManager --> "~* filtered" Person
 ModelManager --> "~* filtered" Event
 ModelManager --> "~* filtered" Todo
