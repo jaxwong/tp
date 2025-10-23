@@ -11,10 +11,10 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(addEvent)
+[-> LogicManager : execute("add-event...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(addEvent)
+LogicManager -> AddressBookParser : parseCommand("add-event...)
 activate AddressBookParser
 
 create AddEventCommand
