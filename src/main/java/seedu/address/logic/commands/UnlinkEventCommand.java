@@ -32,6 +32,7 @@ public class UnlinkEventCommand extends Command {
     public UnlinkEventCommand(List<Index> indexes) {
         requireNonNull(indexes);
         this.indexes = indexes;
+        assert !indexes.isEmpty() : "Indexes cannot be empty";
     }
 
     @Override
@@ -42,6 +43,7 @@ public class UnlinkEventCommand extends Command {
         List<Index> duplicateIndexes = new ArrayList<>();
 
         for (Index index : indexes) {
+            assert index != null : "Index cannot be null";
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
@@ -55,7 +57,9 @@ public class UnlinkEventCommand extends Command {
 
         List<Person> personsToUnlink = new ArrayList<>();
         for (Index index : indexes) {
-            personsToUnlink.add(lastShownList.get(index.getZeroBased()));
+            Person personToUnlink = lastShownList.get(index.getZeroBased());
+            assert personToUnlink != null : "Person to unlink cannot be null";
+            personsToUnlink.add(personToUnlink);
         }
 
         for (Person personToUnlink : personsToUnlink) {
