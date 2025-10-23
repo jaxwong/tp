@@ -40,7 +40,7 @@ public class LinkEventCommand extends Command {
         requireNonNull(eventAlias);
         this.indexes = indexes;
         this.eventAlias = eventAlias;
-        assert !indexes.isEmpty(): "Indexes cannot be empty!";
+        assert !indexes.isEmpty() : "Indexes cannot be empty!";
         assert eventAlias != null : "EventAlias cannot be null!";
     }
 
@@ -52,7 +52,7 @@ public class LinkEventCommand extends Command {
         List<Index> duplicateIndexes = new ArrayList<>();
 
         for (Index index : indexes) {
-            assert index != null: "Index cannot be null!";
+            assert index != null : "Index cannot be null!";
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
@@ -73,7 +73,7 @@ public class LinkEventCommand extends Command {
         List<Person> personsToLink = new ArrayList<>();
         for (Index index : indexes) {
             Person personToLink = lastShownList.get(index.getZeroBased());
-            assert personToLink != null: "Person to link cannot be null!";
+            assert personToLink != null : "Person to link cannot be null!";
             personsToLink.add(personToLink);
         }
 
