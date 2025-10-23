@@ -112,5 +112,4 @@ Event *--> EventAlias
 ' === TODO FIELD RELATIONSHIPS ===
 Todo *--> TodoName
 Todo *--> "0..1" Name
-
 @enduml
