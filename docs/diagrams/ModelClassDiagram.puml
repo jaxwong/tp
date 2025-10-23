@@ -8,25 +8,39 @@ skinparam classBackgroundColor MODEL_COLOR
 Class I #FFFFFF
 
 Package Model as ModelPackage <<Rectangle>> {
-  ' === TOP ROW: INTERFACES ===
-  Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+  ' === TOP ROW: INTERFACES - FORCE POSITIONING ===
   Class "<<interface>>\nModel" as Model
+
+  Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
   Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+
+  ' Force Model in the middle
+  ReadOnlyAddressBook -[hidden]right-> Model
+  Model -[hidden]right-> ReadOnlyUserPrefs
 
   ' === SECOND ROW: IMPLEMENTATIONS ===
   Class AddressBook
   Class ModelManager
   Class UserPrefs
 
+  AddressBook -[hidden]right-> ModelManager
+  ModelManager -[hidden]right-> UserPrefs
+
   ' === THIRD ROW: UNIQUE LISTS ===
   Class UniquePersonList
   Class UniqueEventList
   Class UniqueTodoList
 
+  UniquePersonList -[hidden]right-> UniqueEventList
+  UniqueEventList -[hidden]right-> UniqueTodoList
+
   ' === FOURTH ROW: ENTITIES ===
   Class Person
   Class Event
   Class Todo
+
+  Person -[hidden]right-> Event
+  Event -[hidden]right-> Todo
 
   ' === PERSON FIELD CLASSES ===
   Class Name
@@ -46,30 +60,16 @@ Package Model as ModelPackage <<Rectangle>> {
 ' === DASHED REFERENCE FROM OUTSIDE ===
 I ..> Model
 
-' === LAYOUT: TOP ROW - FORCE EQUAL SPACING ===
-ReadOnlyAddressBook -[hidden]right-> Model
-Model -[hidden]right-> ReadOnlyUserPrefs
-
-' === LAYOUT: ALIGN IMPLEMENTATIONS UNDER INTERFACES ===
+' === VERTICAL ALIGNMENT ===
 ReadOnlyAddressBook -[hidden]down-> AddressBook
 Model -[hidden]down-> ModelManager
 ReadOnlyUserPrefs -[hidden]down-> UserPrefs
-
-' === LAYOUT: SECOND ROW ===
-AddressBook -[hidden]right-> ModelManager
-ModelManager -[hidden]right-> UserPrefs
-
-' === LAYOUT: ALIGN UNIQUE LISTS ===
 AddressBook -[hidden]down-> UniquePersonList
-UniquePersonList -[hidden]right-> UniqueEventList
-UniqueEventList -[hidden]right-> UniqueTodoList
-
-' === LAYOUT: ALIGN ENTITIES ===
+ModelManager -[hidden]down-> UniqueEventList
+UserPrefs -[hidden]down-> UniqueTodoList
 UniquePersonList -[hidden]down-> Person
 UniqueEventList -[hidden]down-> Event
 UniqueTodoList -[hidden]down-> Todo
-Person -[hidden]right-> Event
-Event -[hidden]right-> Todo
 
 ' === CORE INTERFACE RELATIONSHIPS ===
 AddressBook .up.|> ReadOnlyAddressBook
