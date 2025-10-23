@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("add-event...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add-event...)
+activate AddressBookParser
+
+create AddEventCommand
+AddressBookParser -> AddEventCommand
+activate AddEventCommand
+
+AddEventCommand --> AddressBookParser : a
+deactivate AddEventCommand
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddEventCommand : execute()
+activate AddEventCommand
+
+AddEventCommand -> Model : addEvent(toAdd)
+activate Model
+
+Model --> AddEventCommand
+deactivate Model
+
+AddEventCommand --> LogicManager : result
+deactivate AddEventCommand
+AddEventCommand -[hidden]-> LogicManager : result
+destroy AddEventCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
