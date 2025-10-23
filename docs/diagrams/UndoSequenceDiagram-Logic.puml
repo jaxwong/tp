@@ -5,41 +5,41 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
+participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(undo)
+[-> LogicManager : execute(addEvent)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
+LogicManager -> AddressBookParser : parseCommand(addEvent)
 activate AddressBookParser
 
-create UndoCommand
-AddressBookParser -> UndoCommand
-activate UndoCommand
+create AddEventCommand
+AddressBookParser -> AddEventCommand
+activate AddEventCommand
 
-UndoCommand --> AddressBookParser
-deactivate UndoCommand
+AddEventCommand --> AddressBookParser : a
+deactivate AddEventCommand
 
-AddressBookParser --> LogicManager : u
+AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
-LogicManager -> UndoCommand : execute()
-activate UndoCommand
+LogicManager -> AddEventCommand : execute()
+activate AddEventCommand
 
-UndoCommand -> Model : undoAddressBook()
+AddEventCommand -> Model : addEvent(toAdd)
 activate Model
 
-Model --> UndoCommand
+Model --> AddEventCommand
 deactivate Model
 
-UndoCommand --> LogicManager : result
-deactivate UndoCommand
-UndoCommand -[hidden]-> LogicManager : result
-destroy UndoCommand
+AddEventCommand --> LogicManager : result
+deactivate AddEventCommand
+AddEventCommand -[hidden]-> LogicManager : result
+destroy AddEventCommand
 
 [<--LogicManager
 deactivate LogicManager
