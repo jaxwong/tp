@@ -35,7 +35,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
                 );
 
         if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()
-        || !argMultimap.getPreamble().isEmpty()) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
         }
 
