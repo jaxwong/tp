@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.UniqueEventList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.exceptions.DuplicateTodoException;
@@ -121,5 +122,25 @@ public class UniqueTodoList implements Iterable<Todo> {
     @Override
     public Iterator<Todo> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UniqueTodoList)) {
+            return false;
+        }
+
+        UniqueTodoList otherUniqueTodoList = (UniqueTodoList) other;
+        return internalList.equals(otherUniqueTodoList.internalList);
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
     }
 }
