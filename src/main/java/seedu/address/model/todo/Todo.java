@@ -81,7 +81,7 @@ public class Todo {
 
     /**
      * Returns true if both todo have the same todoName, todoDescription, contactName and isCompleted
-     * This defines a weaker notion of equality between two todos.
+     * For consistency with other models, even though Todo has no unique identifier
      * @param otherTodo The todo to compare with this todo.
      * @return true if the other todo has the same todoName, todoDescription, contactName and isCompleted
      */
