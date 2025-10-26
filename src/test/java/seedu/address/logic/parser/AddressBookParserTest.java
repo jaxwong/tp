@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -18,17 +19,25 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindEventCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEventsCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
 import seedu.address.logic.commands.UnmarkTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.AliasContainsKeywordsPredicate;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.EventUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
@@ -95,6 +104,23 @@ public class AddressBookParserTest {
     public void parseCommand_listEvents() throws Exception {
         assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD) instanceof ListEventsCommand);
         assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD + " 3") instanceof ListEventsCommand);
+    }
+
+    @Test
+    public void parseCommand_editEvent() throws Exception {
+        Event event = new EventBuilder().build();
+        EditEventCommand.EditEventDescriptor descriptor = new EditEventDescriptorBuilder(event).build();
+        EditEventCommand command = (EditEventCommand) parser.parseCommand(EditEventCommand.COMMAND_WORD + " "
+                + PREFIX_EVENT_ALIAS + "abc" + " " + EventUtil.getEditEventDescriptorDetails(descriptor));
+        assertEquals(new EditEventCommand(new EventAlias("abc"), descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_findEvent() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindEventCommand command = (FindEventCommand) parser.parseCommand(
+                FindEventCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindEventCommand(new AliasContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
