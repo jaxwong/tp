@@ -25,7 +25,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         Optional<String> keywords = argMultimap.getValue(PREFIX_NAME);
 
-        if (!keywords.isPresent() || !argMultimap.getPreamble().isEmpty()) {
+        if (keywords.isEmpty() || keywords.get().isEmpty() || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
