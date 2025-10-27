@@ -18,20 +18,17 @@ public class FindContactByEventParser implements Parser<FindContactByEventComman
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindContactByEventCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
 
-            if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactByEventCommand.MESSAGE_USAGE));
-            }
-
-            EventAlias alias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
-            return new FindContactByEventCommand(new EventAliasMatchesPredicate(alias));
-
-        } catch (ParseException pe) {
+        if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactByEventCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactByEventCommand.MESSAGE_USAGE));
         }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
+
+        EventAlias alias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
+        return new FindContactByEventCommand(new EventAliasMatchesPredicate(alias));
+
     }
 }
