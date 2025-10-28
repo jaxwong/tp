@@ -444,7 +444,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User uses the invalid format or parameters.
+* 1a. User uses the invalid format, invalid parameters or does not provide an alias.
   * 1a1. OverBooked displays the correct format to the user.
 
 Use case ends.
@@ -457,6 +457,11 @@ Use case ends.
 * 1c. User does not provide any parameters to edit.
   * 1c1. OverBooked informs user that they need to provide at least 1 parameter.
 
+Use case ends.
+
+* 1d. Start time of the edited event is after its end time.
+  * 1d1. OverBooked informs user that the start time has to be before the end time.
+  
 Use case ends.
 
 
