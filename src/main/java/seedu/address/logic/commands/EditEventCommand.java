@@ -68,7 +68,7 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> eventList = model.getFilteredEventList();
+        List<Event> eventList = model.getEventList();
 
         Event eventToEdit = eventList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))

@@ -169,6 +169,11 @@ public class DeleteEventCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getEventList() {
+            throw new AssertionError("Should not be called.");
+        }
+
+        @Override
         public ObservableList<Event> getFilteredEventList() {
             throw new AssertionError("Should not be called.");
         }
@@ -225,7 +230,7 @@ public class DeleteEventCommandTest {
         }
 
         @Override
-        public ObservableList<Event> getFilteredEventList() {
+        public ObservableList<Event> getEventList() {
             return eventsObservable;
         }
 

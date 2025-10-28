@@ -22,6 +22,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.event.Event;
 import seedu.address.model.person.Person;
 import seedu.address.model.todo.Todo;
 import seedu.address.testutil.TodoBuilder;
@@ -171,6 +172,11 @@ public class AddTodoCommandTest {
         }
         @Override public void updateFilteredPersonList(java.util.function.Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            throw new AssertionError("Should not be called.");
         }
         @Override public ObservableList<seedu.address.model.event.Event> getFilteredEventList() {
             throw new AssertionError("This method should not be called.");

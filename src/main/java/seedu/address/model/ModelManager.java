@@ -182,7 +182,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Filtered Event List Accessors =============================================================
+    //=========== Event List Accessors =======================================================================
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return addressBook.getEventList();
+    }
 
     @Override
     public ObservableList<Event> getFilteredEventList() {

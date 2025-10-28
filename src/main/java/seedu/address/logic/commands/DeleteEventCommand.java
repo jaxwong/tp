@@ -36,10 +36,10 @@ public class DeleteEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> lastShownList = model.getFilteredEventList();
+        List<Event> eventList = model.getEventList();
         List<Person> personList = model.getFilteredPersonList();
 
-        Event eventToDelete = lastShownList.stream()
+        Event eventToDelete = eventList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(String.format(MESSAGE_EVENT_NOT_FOUND, eventAlias)));
