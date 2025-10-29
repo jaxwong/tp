@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalEvents.CONCERT;
@@ -60,27 +61,27 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = "Invalid command format! \n" + AddEventCommand.MESSAGE_USAGE;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE);
 
         // missing name
-        String userInput1 = "ea/" + VALID_ALIAS + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
+        String userInput1 = " ea/" + VALID_ALIAS + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
         assertParseFailure(parser, userInput1, expectedMessage);
 
         // missing alias
-        String userInput2 = "en/" + VALID_NAME + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
+        String userInput2 = " en/" + VALID_NAME + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
         assertParseFailure(parser, userInput2, expectedMessage);
 
 
         // missing start
-        String userInput3 = "en/" + VALID_NAME + " ea/" + VALID_ALIAS + " e/" + VALID_END + " d/" + VALID_DESC;
+        String userInput3 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS + " e/" + VALID_END + " d/" + VALID_DESC;
         assertParseFailure(parser, userInput3, expectedMessage);
 
         // missing end
-        String userInput4 = "en/" + VALID_NAME + " ea/" + VALID_ALIAS + " s/" + VALID_START + " d/" + VALID_DESC;
+        String userInput4 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS + " s/" + VALID_START + " d/" + VALID_DESC;
         assertParseFailure(parser, userInput4, expectedMessage);
 
         // missing description
-        String userInput5 = "en/" + VALID_NAME + " ea/" + VALID_ALIAS + " s/" + VALID_START + " e/" + VALID_END;
+        String userInput5 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS + " s/" + VALID_START + " e/" + VALID_END;
         assertParseFailure(parser, userInput5, expectedMessage);
     }
 

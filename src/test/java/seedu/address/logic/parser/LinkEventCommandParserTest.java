@@ -58,7 +58,7 @@ public class LinkEventCommandParserTest {
         String expectedMesage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE);
 
         // if user inputs command without index but with alias only
-        assertParseFailure(parser, PREFIX_EVENT_ALIAS + "TSC2025", expectedMesage);
+        assertParseFailure(parser, " " + PREFIX_EVENT_ALIAS + "TSC2025", expectedMesage);
     }
 
     @Test
