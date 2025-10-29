@@ -28,6 +28,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final String MESSAGE_DESCRIPTION_CANNOT_CONTAIN_SLASH = "Descriptions must not contain '/' .";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -185,6 +186,20 @@ public class ParserUtil {
             throw new ParseException(TodoName.MESSAGE_CONSTRAINTS);
         }
         return new TodoName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String description} and enforces that it does not contain '/'.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code description} contains '/'.
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmed = description.trim();
+        if (trimmed.contains("/")) {
+            throw new ParseException(MESSAGE_DESCRIPTION_CANNOT_CONTAIN_SLASH);
+        }
+        return trimmed;
     }
 
 }

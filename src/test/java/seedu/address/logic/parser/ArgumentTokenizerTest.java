@@ -14,15 +14,6 @@ public class ArgumentTokenizerTest {
     private final Prefix dashT = new Prefix("-t");
     private final Prefix hatQ = new Prefix("^Q");
 
-    @Test
-    public void tokenize_emptyArgsString_noValues() {
-        String argsString = "  ";
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
-
-        assertPreambleEmpty(argMultimap);
-        assertArgumentAbsent(argMultimap, pSlash);
-    }
-
     private void assertPreamblePresent(ArgumentMultimap argMultimap, String expectedPreamble) {
         assertEquals(expectedPreamble, argMultimap.getPreamble());
     }
@@ -31,19 +22,9 @@ public class ArgumentTokenizerTest {
         assertTrue(argMultimap.getPreamble().isEmpty());
     }
 
-    /**
-     * Asserts all the arguments in {@code argMultimap} with {@code prefix} match the {@code expectedValues}
-     * and only the last value is returned upon calling {@code ArgumentMultimap#getValue(Prefix)}.
-     */
     private void assertArgumentPresent(ArgumentMultimap argMultimap, Prefix prefix, String... expectedValues) {
-
-        // Verify the last value is returned
         assertEquals(expectedValues[expectedValues.length - 1], argMultimap.getValue(prefix).get());
-
-        // Verify the number of values returned is as expected
         assertEquals(expectedValues.length, argMultimap.getAllValues(prefix).size());
-
-        // Verify all values returned are as expected and in order
         for (int i = 0; i < expectedValues.length; i++) {
             assertEquals(expectedValues[i], argMultimap.getAllValues(prefix).get(i));
         }
@@ -57,10 +38,7 @@ public class ArgumentTokenizerTest {
     public void tokenize_noPrefixes_allTakenAsPreamble() {
         String argsString = "  some random string /t tag with leading and trailing spaces ";
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString);
-
-        // Same string expected as preamble, but leading/trailing spaces should be trimmed
         assertPreamblePresent(argMultimap, argsString.trim());
-
     }
 
     @Test
@@ -71,12 +49,10 @@ public class ArgumentTokenizerTest {
         assertPreamblePresent(argMultimap, "Some preamble string");
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
 
-        // No preamble
         argsString = " p/   Argument value ";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
         assertPreambleEmpty(argMultimap);
         assertArgumentPresent(argMultimap, pSlash, "Argument value");
-
     }
 
     @Test
@@ -89,7 +65,6 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, dashT, "dashT-Value");
         assertArgumentAbsent(argMultimap, hatQ);
 
-        // All three arguments are present
         argsString = "Different Preamble String ^Q111 -t dashT-Value p/pSlash value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreamblePresent(argMultimap, "Different Preamble String");
@@ -97,18 +72,11 @@ public class ArgumentTokenizerTest {
         assertArgumentPresent(argMultimap, dashT, "dashT-Value");
         assertArgumentPresent(argMultimap, hatQ, "111");
 
-        /* Also covers: Reusing of the tokenizer multiple times */
-
-        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
-        // (i.e. no stale values from the previous tokenizing remain)
         argsString = "";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertPreambleEmpty(argMultimap);
         assertArgumentAbsent(argMultimap, pSlash);
 
-        /* Also covers: testing for prefixes not specified as a prefix */
-
-        // Prefixes not previously given to the tokenizer should not return any values
         argsString = unknownPrefix + "some value";
         argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
         assertArgumentAbsent(argMultimap, unknownPrefix);
@@ -139,10 +107,8 @@ public class ArgumentTokenizerTest {
     @Test
     public void equalsMethod() {
         Prefix aaa = new Prefix("aaa");
-
         assertEquals(aaa, aaa);
         assertEquals(aaa, new Prefix("aaa"));
-
         assertNotEquals(aaa, "aaa");
         assertNotEquals(aaa, new Prefix("aab"));
     }

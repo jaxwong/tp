@@ -57,7 +57,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         LocalDateTime start = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START).get());
         LocalDateTime end = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END).get());
 
-        Event event = new Event(name, alias, start, end, argMultimap.getValue(PREFIX_DESC).get());
+        String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get());
+        Event event = new Event(name, alias, start, end, description);
 
         return new AddEventCommand(event);
     }
