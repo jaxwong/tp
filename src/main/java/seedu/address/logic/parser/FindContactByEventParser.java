@@ -24,6 +24,7 @@ public class FindContactByEventParser implements Parser<FindContactByEventComman
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactByEventCommand.MESSAGE_USAGE));
         }
+
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
 
         EventAlias alias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());

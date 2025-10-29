@@ -24,6 +24,21 @@ public class EventAliasMatchesPredicate implements Predicate<Person> {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EventAliasMatchesPredicate)) {
+            return false;
+        }
+
+        EventAliasMatchesPredicate otherEventAliasMatchesPredicate = (EventAliasMatchesPredicate) other;
+        return alias.equals(otherEventAliasMatchesPredicate.alias);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this).add("event alias", alias).toString();
     }
