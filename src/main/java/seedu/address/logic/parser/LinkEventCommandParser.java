@@ -33,6 +33,8 @@ public class LinkEventCommandParser implements Parser<LinkEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
+
         List<Index> indexes = parseIndexes(argMultimap.getPreamble());
         EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 

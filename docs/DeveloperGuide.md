@@ -316,7 +316,50 @@ Use case ends.
 
 Use case resumes from step 3.
 
-**Use case: UC2 - Delete a contact**
+
+**Use case: UC2 - List contacts**
+
+**MSS**
+
+1. User requests to view the list of contacts
+2. Overbooked shows the list of contacts
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Overbooked is unable to get the list of contacts
+    * 1a1. Overbooked shows an error message
+
+Use case ends.
+
+* 1b. Overbooked has no contacts saved
+    * 1b1. Overbooked informs the user that there are no contacts
+
+Use case ends.
+
+
+**Use case: UC3 - Edit a contact**
+
+
+**Use case: UC4 - Find contact by contact name**
+
+**MSS**
+
+1. User types in keywords to search for contacts
+2. Overbooked shows a list of contacts with matching keywords
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Overbooked did not find any contacts with matching keywords
+    * 1a1. Overbooked shows user a message saying no matching keywords
+
+Use case ends.
+
+
+**Use case: UC5 - Delete a contact**
 
 **MSS**
 
@@ -338,7 +381,8 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC3 - Add an event**
+
+**Use case: UC6 - Add an event**
 
 **MSS**
 
@@ -360,7 +404,41 @@ Use case ends.
 
 Use case resumes from step 3.
 
-**Use case: UC4 - Delete an event**
+
+**Use case: UC7 - Link contacts to an event**
+
+
+**Use case: UC8 - Unlink contacts from events**
+
+
+**Use case: UC9 - List events**
+
+**MSS**
+
+1. User requests to view the list of events
+2. Overbooked shows the list of events
+
+Use case ends.
+
+**Extensions**
+* 1a. Overbooked is unable to get the list of events
+    * 1a1. Overbooked shows an error message
+
+Use case ends.
+
+* 1b. Overbooked has no events saved
+    * 1b1. Overbooked informs the user that there are no events
+
+Use case ends.
+
+
+**Use case: UC10 - Edit an event**
+
+
+**Use case: UC11 - Find events by alias**
+
+
+**Use case: UC12 - Delete an event**
 
 **MSS**
 
@@ -389,62 +467,27 @@ Use case ends.
 
 Use case ends.
 
-**Use case: UC5 - Search contact**
 
-**MSS**
+**Use case: UC13 - Find contacts by event alias**
 
-1. User types in keywords to search for contacts
-2. Overbooked shows a list of contacts with matching keywords
 
-Use case ends.
+**Use case: UC14 - Add a todo**
 
-**Extensions**
 
-* 1a. Overbooked did not find any contacts with matching keywords
-    * 1a1. Overbooked shows user a message saying no matching keywords
+**Use case: UC15 - Edit a todo**
 
-Use case ends.
 
-**Use case: UC6 - List event**
+**Use case: UC16 - Delete a todo**
 
-**MSS**
 
-1. User requests to view the list of events
-2. Overbooked shows the list of events
+**Use case: UC17 - List todos**
 
-Use case ends.
 
-**Extensions**
-* 1a. Overbooked is unable to get the list of events
-    * 1a1. Overbooked shows an error message
+**Use case: UC18 - Mark a todo as complete**
 
-Use case ends.
 
-* 1b. Overbooked has no events saved
-    * 1b1. Overbooked informs the user that there are no events
+**Use case: UC19 - Mark a todo as incomplete**
 
-Use case ends.
-
-**Use case: UC7 - List contacts**
-
-**MSS**
-
-1. User requests to view the list of contacts
-2. Overbooked shows the list of contacts
-
-Use case ends.
-
-**Extensions**
-
-* 1a. Overbooked is unable to get the list of contacts
-    * 1a1. Overbooked shows an error message
-
-Use case ends.
-
-* 1b. Overbooked has no contacts saved
-    * 1b1. Overbooked informs the user that there are no contacts
-
-Use case ends. 
 
 ### Non-Functional Requirements
 

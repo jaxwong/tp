@@ -92,4 +92,18 @@ public class LinkEventCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, indexes.size(), event.getEventAlias()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof LinkEventCommand)) {
+            return false;
+        }
+
+        LinkEventCommand otherCommand = (LinkEventCommand) other;
+        return indexes.equals(otherCommand.indexes) && eventAlias.equals(otherCommand.eventAlias);
+    }
 }
