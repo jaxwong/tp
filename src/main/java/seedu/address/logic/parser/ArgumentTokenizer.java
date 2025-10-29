@@ -125,7 +125,8 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         if (value.contains("/")) {
-            throw new ParseException("Arguments cannot contain forward slashes(/)");
+            throw new ParseException(currentPrefixPosition.getPrefix() + " cannot contain forward"
+                    + " slashes(/)");
         }
         return value.trim();
     }

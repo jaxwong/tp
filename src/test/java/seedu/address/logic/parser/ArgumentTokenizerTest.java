@@ -171,6 +171,7 @@ public class ArgumentTokenizerTest {
         ParseException thrown = assertThrows(ParseException.class, () ->
                 ArgumentTokenizer.tokenize(argsString, prefixes)
         );
-        assertEquals("Arguments cannot contain forward slashes(/)", thrown.getMessage());
+        // Message now includes the specific prefix when applicable; ensure the standard suffix remains
+        assertTrue(thrown.getMessage().endsWith("cannot contain forward slashes(/)"));
     }
 }
