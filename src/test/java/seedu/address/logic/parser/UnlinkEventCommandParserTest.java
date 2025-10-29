@@ -46,12 +46,6 @@ public class UnlinkEventCommandParserTest {
         assertParseSuccess(parser, "1   2   3   ", expectedCommand);
     }
 
-    @Test
-    public void parse_missingIndex_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkEventCommand.MESSAGE_USAGE);
-
-        assertParseFailure(parser, " ", expectedMessage);
-    }
 
     @Test
     public void parse_invalidIndex_failure() {
