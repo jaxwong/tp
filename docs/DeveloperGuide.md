@@ -459,7 +459,7 @@ Use case ends.
 
 Use case ends.
 
-* 1d. Start time of the edited event is after its end time.
+* 1d. Start time of the edited event is the same or after its end time.
   * 1d1. OverBooked informs user that the start time has to be before the end time.
   
 Use case ends.
