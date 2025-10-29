@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventAlias;
+import seedu.address.model.event.EventName;
 import seedu.address.testutil.EventBuilder;
 
 
@@ -84,28 +86,26 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        String date_constraints = "Invalid date format. Expected format: yyyy-MM-dd HH:mm";
         // invalid alias
         String userInput1 = " en/" + VALID_NAME + " ea/" + INVALID_ALIAS
                 + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput1, "Aliases should be 1-20 characters long, "
-                + "alphanumeric, may include hyphens (-) or underscores (_), and should not be blank.");
+        assertParseFailure(parser, userInput1, EventAlias.MESSAGE_CONSTRAINTS);
 
         // invalid name
         String userInput2 = " en/" + INVALID_NAME + " ea/" + VALID_ALIAS
                 + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput2, "Event names should be 1–100 characters long and "
-                + "may only contain letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), and "
-                + "commas (,). Extra whitespace is trimmed.");
+        assertParseFailure(parser, userInput2, EventName.MESSAGE_CONSTRAINTS);
 
         // invalid start datetime
         String userInput3 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS
                 + " s/" + INVALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput3, "Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+        assertParseFailure(parser, userInput3, date_constraints);
 
         // invalid end datetime
         String userInput4 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS
                 + " s/" + VALID_START + " e/" + INVALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput4, "Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+        assertParseFailure(parser, userInput4, date_constraints);
     }
 }
 
