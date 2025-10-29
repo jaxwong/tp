@@ -19,7 +19,7 @@ public class ListTodosCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all todos";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists all events in the system.\n"
+            + ": Lists all todos in the system.\n"
             + "Parameters: " + " none\n"
             + "Example: " + COMMAND_WORD;
 
