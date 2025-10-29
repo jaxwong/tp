@@ -82,9 +82,11 @@ public class UnlinkEventCommand extends Command {
         if (other == this) {
             return true;
         }
+
         if (!(other instanceof UnlinkEventCommand)) {
             return false;
         }
+
         UnlinkEventCommand otherCommand = (UnlinkEventCommand) other;
         return indexes.equals(otherCommand.indexes);
     }
