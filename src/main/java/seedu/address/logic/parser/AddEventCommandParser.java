@@ -56,10 +56,12 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         EventAlias alias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
         LocalDateTime start = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START).get());
         LocalDateTime end = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END).get());
-
-        Event event = new Event(name, alias, start, end, argMultimap.getValue(PREFIX_DESC).get());
-
-        return new AddEventCommand(event);
+        try {
+            Event event = new Event(name, alias, start, end, argMultimap.getValue(PREFIX_DESC).get());
+            return new AddEventCommand(event);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
 
