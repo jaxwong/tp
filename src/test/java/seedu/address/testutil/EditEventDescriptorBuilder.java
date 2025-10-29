@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
 import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 
@@ -63,7 +64,7 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder withStart(String start) {
         try {
             descriptor.setStart(ParserUtil.parseDate(start));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format: " + start);
         }
         return this;
@@ -83,7 +84,7 @@ public class EditEventDescriptorBuilder {
     public EditEventDescriptorBuilder withEnd(String end) {
         try {
             descriptor.setEnd(ParserUtil.parseDate(end));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             throw new IllegalArgumentException("Invalid date format: " + end);
         }
         return this;
