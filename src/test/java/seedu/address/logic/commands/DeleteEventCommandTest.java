@@ -88,7 +88,7 @@ public class DeleteEventCommandTest {
         }
 
         @Override
-        public ObservableList<Event> getFilteredEventList() {
+        public ObservableList<Event> getEventList() {
             return eventsObservable;
         }
 
