@@ -122,4 +122,24 @@ public class UniqueTodoList implements Iterable<Todo> {
     public Iterator<Todo> iterator() {
         return internalList.iterator();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UniqueTodoList)) {
+            return false;
+        }
+
+        UniqueTodoList otherUniqueTodoList = (UniqueTodoList) other;
+        return internalList.equals(otherUniqueTodoList.internalList);
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
 }
