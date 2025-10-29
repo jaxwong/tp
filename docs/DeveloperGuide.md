@@ -482,12 +482,50 @@ Use case ends.
 
 **Use case: UC17 - List todos**
 
+**MSS**
+1. User requests to view the lists of todos
+2. Overbooked shows the list of todos
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Overbooked is unable to get the list of todos
+    * 1a1. Overbooked shows an error message
+
+Use case ends.
 
 **Use case: UC18 - Mark a todo as complete**
 
+**MSS**
+1. User requests to mark a todo as complete
+2. Overbooked marks the contact as complete in the database
+3. Overbooked updates the list to reflect the marking
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User provides an unacceptable value for the argument
+    * 1a1. Overbooked informs the user of the acceptable values
+
+Use case ends.
 
 **Use case: UC19 - Mark a todo as incomplete**
 
+**MSS**
+1. User requests to mark a todo as complete
+2. Overbooked marks the contact as complete in the database
+3. Overbooked updates the list to reflect the marking
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User provides an unacceptable value for the argument
+    * 1a1. Overbooked informs the user of the acceptable values
+
+Use case ends.
 
 ### Non-Functional Requirements
 
