@@ -120,7 +120,8 @@ public class AddressBookParserTest {
     public void parseCommand_findEvent() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindEventCommand command = (FindEventCommand) parser.parseCommand(
-                FindEventCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindEventCommand.COMMAND_WORD + " " + PREFIX_EVENT_ALIAS + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindEventCommand(new AliasContainsKeywordsPredicate(keywords)), command);
     }
 
