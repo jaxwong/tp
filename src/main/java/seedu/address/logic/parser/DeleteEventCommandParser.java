@@ -22,21 +22,17 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
      */
     @Override
     public DeleteEventCommand parse(String args) throws ParseException {
-        try {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
 
-            if (argMultimap.getValue(PREFIX_EVENT_ALIAS).isEmpty()
+        if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()
                 || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
-            }
-
-            EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
-            return new DeleteEventCommand(eventAlias);
-
-        } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
+
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
+
+        EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
+        return new DeleteEventCommand(eventAlias);
     }
 }

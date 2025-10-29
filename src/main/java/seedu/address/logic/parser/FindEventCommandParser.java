@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 
 import java.util.Arrays;
 
@@ -20,13 +21,18 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindEventCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEventCommand.MESSAGE_USAGE));
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EVENT_ALIAS);
+
+        if (!argMultimap.getPreamble().isEmpty()
+                || !argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()
+                || argMultimap.getValue(PREFIX_EVENT_ALIAS).get().trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEventCommand.MESSAGE_USAGE));
         }
 
-        String[] aliasKeywords = trimmedArgs.split("\\s+");
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
+
+        String[] aliasKeywords = argMultimap.getValue(PREFIX_EVENT_ALIAS).get().trim().split("\\s+");
 
         return new FindEventCommand(new AliasContainsKeywordsPredicate(Arrays.asList(aliasKeywords)));
     }

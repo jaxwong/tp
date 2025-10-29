@@ -29,8 +29,8 @@ public class Event {
         requireAllNonNull(name, alias, start, end, description);
         this.name = name;
         this.alias = alias;
-        if (start.isAfter(end)) {
-            throw new IllegalArgumentException("Start time must be before end time");
+        if (!start.isBefore(end)) {
+            throw new IllegalArgumentException("Start date time must be before end date time");
         }
         this.start = start;
         this.end = end;

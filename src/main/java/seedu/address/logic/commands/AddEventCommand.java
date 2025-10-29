@@ -53,6 +53,7 @@ public class AddEventCommand extends Command {
         }
 
         model.addEvent(toAdd);
+        assert model.hasEvent(toAdd) : "Event should have been added successfully";
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

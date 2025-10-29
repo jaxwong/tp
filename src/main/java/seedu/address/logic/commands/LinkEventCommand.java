@@ -65,7 +65,7 @@ public class LinkEventCommand extends Command {
         }
 
         // Find the event by alias (this is case insensitive)
-        Event event = model.getAddressBook().getEventList().stream()
+        Event event = model.getEventList().stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(MESSAGE_EVENT_NOT_FOUND));
@@ -91,5 +91,19 @@ public class LinkEventCommand extends Command {
 
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, indexes.size(), event.getEventAlias()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof LinkEventCommand)) {
+            return false;
+        }
+
+        LinkEventCommand otherCommand = (LinkEventCommand) other;
+        return indexes.equals(otherCommand.indexes) && eventAlias.equals(otherCommand.eventAlias);
     }
 }
