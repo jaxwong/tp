@@ -155,6 +155,57 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Add-Event Feature
+
+The Add-Event mechanism is facilitated by the `AddEventCOmmand` class. It allows users to create and store new events in 
+the address book with complete details including name, alias, start time, end time, and description. 
+
+The `EventAlias` serves as a unique identifier for each event
+
+The command implements the following key operations through the `Model` interface:
+- Model#hasEvent(Event) — Checks if an event with the same alias already exists in the address book
+- Model#addEvent(Event) — Adds a new event to the address book's event list and updates the filtered event list
+
+These operations are backed by the `AddreessBook` which maintains a `UniqueEventList` to ensure no duplicate events exist.
+
+Given below is an example usage scenario and how the add-event mechanism behaves at each step.
+
+Step 1. The user launches the application. The `AddressBook` is initialised with its saved state, which may contain zero
+or more existing events stored in a `UniqueEventList`
+
+Step 2. The user executes `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Eras Tour`
+to add a new event. The input string is passed to `LogicManager`, which passes it to `AddressBookParser` for parsing.
+
+Step 3. `AddressBookParser` identifies the command word `add-event` and delegates to `AddEventCommandParser`. The parser performs the following steps:
+
+1. Tokenization: The parser uses `Argument.Tokenizer.tokenize()` to seperate the input into an `ArgumentMultimap` containing:
+2. Validation: The parser then checks that
+    - All five required prefixes are present
+    - The preamble is empty (no text before first prefix)
+    - No duplicate prefixes exists (via `verifyNoDuplicatePrefixesFor()`)
+
+If any of the validation fails, a `ParseException` is thrown with the appropriate usage message.
+
+Step 4. The parser uses `ParserUtil` to convert string values into strongly-typed objects
+
+Step 5. A new `Event` object will thus be constructed with these parsed values via its constructor. which will then be
+passed on to the `AddEventCommand`
+
+Step 6. When `AddEventCommand#execute(Model)` is called, it first checks for duplicates using `Model#hasEvent(Event)`, which
+compares and considers two events to be the same if their `EventAlias` is the same (case-insensitive). 
+
+Step 7. If no duplicate is found, `Model#addEvent(Event)` is then called. This method;
+
+1. Calls `AddressBook#addEvent(Event)` to add the event to the `UniqueEventList`
+2. Calls `updateFilteredEventLIst(PREDICATE_SHOW_ALL_EVENTS)` to refresh the filtered view
+
+The `UniqueEventList` maintains the internal observable list that JavaFx uses to update the UI automatically
+
+Step 8. After successful addition, a CommandResult is returend with a success message: "New Event added:[formatted event details]". 
+The UI automatically reflects the new event in the event list panel.
+
+The following sequence diagram shows how an add-event operation goes through the `Logic` component:
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
