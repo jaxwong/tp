@@ -3,6 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 
@@ -11,10 +13,10 @@ import seedu.address.model.event.EventName;
  */
 public class EditEventDescriptorBuilder {
 
-    private EditEventCommand.EditEventDescriptor descriptor;
+    private EditEventDescriptor descriptor;
 
     public EditEventDescriptorBuilder() {
-        descriptor = new EditEventCommand.EditEventDescriptor();
+        descriptor = new EditEventDescriptor();
     }
 
     /**
@@ -32,7 +34,7 @@ public class EditEventDescriptorBuilder {
      * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details.
      */
     public EditEventDescriptorBuilder(Event event) {
-        descriptor = new EditEventCommand.EditEventDescriptor();
+        descriptor = new EditEventDescriptor();
         descriptor.setEventName(event.getEventName());
         descriptor.setStart(event.getStart());
         descriptor.setEnd(event.getEnd());
@@ -40,7 +42,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code eventName} of the {@code EditEventDescriptor} that we are building.
+     * Sets the {@code EventName} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withEventName(String eventName) {
         descriptor.setEventName(new EventName(eventName));
@@ -56,10 +58,34 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code LocalDateTime} start of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withStart(String start) {
+        try {
+            descriptor.setStart(ParserUtil.parseDate(start));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid date format: " + start);
+        }
+        return this;
+    }
+
+    /**
      * Sets the {@code end} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withEnd(LocalDateTime end) {
         descriptor.setEnd(end);
+        return this;
+    }
+
+    /**
+     * Sets the {@code LocalDateTime} end of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withEnd(String end) {
+        try {
+            descriptor.setEnd(ParserUtil.parseDate(end));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid date format: " + end);
+        }
         return this;
     }
 
@@ -71,8 +97,7 @@ public class EditEventDescriptorBuilder {
         return this;
     }
 
-
-    public EditEventCommand.EditEventDescriptor build() {
+    public EditEventDescriptor build() {
         return descriptor;
     }
 }
