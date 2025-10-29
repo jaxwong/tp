@@ -59,7 +59,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         try {
             Event event = new Event(name, alias, start, end, argMultimap.getValue(PREFIX_DESC).get());
             return new AddEventCommand(event);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }
     }
