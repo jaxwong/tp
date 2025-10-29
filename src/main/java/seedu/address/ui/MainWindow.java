@@ -47,6 +47,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane eventListPanelPlaceholder;
+
+    @FXML
+    private StackPane todoListPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -113,10 +119,13 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
         todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
-        // Initially show person list
-        showPersonList();
+        todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -173,30 +182,6 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Shows the person list in the main content area.
-     */
-    public void showPersonList() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-    }
-
-    /**
-     * Shows the event list in the main content area.
-     */
-    public void showEventList() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
-    }
-
-    /**
-     * Shows the todo list in the main content area.
-     */
-    public void showTodoList() {
-        personListPanelPlaceholder.getChildren().clear();
-        personListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
-    }
-
-    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -207,16 +192,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // Handle content switching based on command
-            DisplayList displayedList = commandResult.getDisplayList();
-            switch (displayedList) {
-            case NO_CHANGE -> {
-            }
-            case PERSON -> showPersonList();
-            case EVENT -> showEventList();
-            case TODO -> showTodoList();
-            default -> throw new CommandException("Failed to display " + displayedList + " list.");
-            }
+            // No need to handle content switching anymore - all lists are always visible
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
