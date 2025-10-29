@@ -514,8 +514,8 @@ Use case ends.
 **Use case: UC19 - Mark a todo as incomplete**
 
 **MSS**
-1. User requests to mark a todo as complete
-2. Overbooked marks the contact as complete in the database
+1. User requests to mark a todo as incomplete
+2. Overbooked marks the contact as incomplete in the database
 3. Overbooked updates the list to reflect the marking
 
 Use case ends.
