@@ -80,17 +80,16 @@ public class Todo {
     }
 
     /**
-     * Returns true if both todo have the same todoName, todoDescription, contactName and isCompleted
-     * For consistency with other models, even though Todo has no unique identifier
+     * Returns true if both todo have the same todoName, todoDescription.
      * @param otherTodo The todo to compare with this todo.
-     * @return true if the other todo has the same todoName, todoDescription, contactName and isCompleted
+     * @return true if the other todo has the same todoName, todoDescription
      */
     public boolean isSameTodo(Todo otherTodo) {
         if (otherTodo == this) {
             return true;
         }
 
-        return this.equals(otherTodo);
+        return this.todoName.equals(otherTodo.todoName) && this.todoDescription.equals(otherTodo.todoDescription);
     }
 
     /**
