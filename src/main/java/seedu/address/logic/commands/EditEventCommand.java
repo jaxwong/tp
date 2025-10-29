@@ -68,6 +68,7 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         List<Event> eventList = model.getFilteredEventList();
 
         Event eventToEdit = eventList.stream()
@@ -75,18 +76,11 @@ public class EditEventCommand extends Command {
                 .findFirst()
                 .orElseThrow(() -> new CommandException(MESSAGE_EVENT_NOT_FOUND));
 
-        if (!editEventDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
-        }
-
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        }
+        assert eventToEdit.isSameEvent(editedEvent);
 
         model.setEvent(eventToEdit, editedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
 
