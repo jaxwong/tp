@@ -407,8 +407,65 @@ Use case resumes from step 3.
 
 **Use case: UC7 - Link contacts to an event**
 
+**MSS**
+
+1. User requests to link one or more contacts to an event using their displayed index and event alias
+2. OverBooked links the contact(s) to the specified event
+3. Overbooked updates the contact list to show the linked event
+
+Use Case ends.
+
+** Extensions **
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. One or more index provided by user is invalid
+  1bOverBooked informs user that the contact index is invalid
+
+Use case ends.
+
+* 1c. User inputs a non-existent event alias
+    * 1c1. OverBooked informs the user that the event was not found
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user fo the error
+
+Use case ends.
 
 **Use case: UC8 - Unlink contacts from events**
+
+**MSS**
+
+1. User requests to unlink one or more contacts from their linked events using their displayed indexes
+2. OverBooked unlinks the contact(s) from their events
+3. OverBooked updates the contact list to show the contacts are no longer linked
+
+Use case ends
+
+** Extensions **
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. One or more index provided by user is invalid
+    * 1b1. OverBooked informs user that the contact index is invalid
+
+Use case ends.
+
+* 1c. One or more contacts are not linked to any event
+    * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts)
+
+Use case continues from step 4.
+
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user of the error
+
+Use case ends.
 
 
 **Use case: UC9 - List events**
@@ -475,6 +532,41 @@ Use case ends.
 
 
 **Use case: UC15 - Edit a todo**
+
+**MSS**
+
+1. User requests to edit a specific todo using its displayed index and provides the fields to update
+2. OverBook edits the todo with the new details
+3. OverBooked updates the todo list to show the edited todo
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses invalid format or parameters
+    * 1a1. OverBooked informs the user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. User provides an invalid index
+    * 1b1. OverBooked informs the user that the todo index is invalid
+
+Use case ends.
+
+* 1c. User does not provide any fields to edit
+    * 1c1. OverBooked informs the user that at least one field must be provided
+
+Use case ends.
+
+* 1d. User provides a contact name that does not exist
+    * 1d1. OverBooked informs the user that the contact was not found
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the updated todo list
+    * 2a1. OverBooked informs the user of the error
+
+Use case ends.
 
 
 **Use case: UC16 - Delete a todo**
