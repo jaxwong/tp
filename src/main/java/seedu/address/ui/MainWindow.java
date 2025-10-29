@@ -192,8 +192,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            // No need to handle content switching anymore - all lists are always visible
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
