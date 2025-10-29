@@ -38,4 +38,16 @@ public class FindContactByEventCommand extends Command {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
                 DisplayList.PERSON);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof FindContactByEventCommand)) {
+            return false;
+        }
+        FindContactByEventCommand otherCommand = (FindContactByEventCommand) other;
+        return predicate.equals(otherCommand.predicate);
+    }
 }

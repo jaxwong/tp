@@ -88,7 +88,8 @@ public class EditEventCommand extends Command {
      * Creates and returns an {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)
+            throws CommandException {
         assert eventToEdit != null;
 
         EventName updatedName = editEventDescriptor.getEventName().orElse(eventToEdit.getEventName());
@@ -96,7 +97,11 @@ public class EditEventCommand extends Command {
         LocalDateTime updatedEnd = editEventDescriptor.getEnd().orElse(eventToEdit.getEnd());
         String updatedDescription = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
 
-        return new Event(updatedName, eventToEdit.getEventAlias(), updatedStart, updatedEnd, updatedDescription);
+        try {
+            return new Event(updatedName, eventToEdit.getEventAlias(), updatedStart, updatedEnd, updatedDescription);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override
