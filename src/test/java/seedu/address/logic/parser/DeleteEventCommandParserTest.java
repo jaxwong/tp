@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.DeleteEventCommand;
 import seedu.address.model.event.EventAlias;
 
@@ -35,8 +36,7 @@ public class DeleteEventCommandParserTest {
 
     @Test
     public void parse_invalidEventAlias_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE);
-        assertParseFailure(parser, INVALID_EVENT_ALIAS_DESC, expectedMessage);
+        assertParseFailure(parser, INVALID_EVENT_ALIAS_DESC, EventAlias.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -70,11 +70,10 @@ public class DeleteEventCommandParserTest {
     }
 
     @Test
-    public void parse_duplicateEventAlias_success() {
-        // DeleteEventCommandParser doesn't validate for duplicate prefixes, so this should succeed
-        // It will just use the last occurrence of the prefix
+    public void parse_duplicateEventAlias_failure() {
+        // DeleteEventCommandParser validates for duplicate prefixes and should reject them
         String duplicateAliasDesc = " " + PREFIX_EVENT_ALIAS + "OTHER2025";
-        DeleteEventCommand expectedCommand = new DeleteEventCommand(new EventAlias("OTHER2025"));
-        assertParseSuccess(parser, EVENT_ALIAS_DESC + duplicateAliasDesc, expectedCommand);
+        String expectedMessage = Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENT_ALIAS);
+        assertParseFailure(parser, EVENT_ALIAS_DESC + duplicateAliasDesc, expectedMessage);
     }
 }

@@ -2,6 +2,9 @@ package seedu.address.testutil;
 
 import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
 import seedu.address.logic.parser.ParserUtil;
+import java.time.LocalDateTime;
+
+import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 
@@ -17,7 +20,18 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details
+     * Returns an {@code EditEventDescriptor} that is a copy of the given {@code descriptor}.
+     */
+    public EditEventDescriptorBuilder(EditEventCommand.EditEventDescriptor descriptor) {
+        this.descriptor = new EditEventCommand.EditEventDescriptor();
+        this.descriptor.setEventName(descriptor.getEventName().orElse(null));
+        this.descriptor.setStart(descriptor.getStart().orElse(null));
+        this.descriptor.setEnd(descriptor.getEnd().orElse(null));
+        this.descriptor.setDescription(descriptor.getDescription().orElse(null));
+    }
+
+    /**
+     * Returns an {@code EditEventDescriptor} with fields containing {@code event}'s details.
      */
     public EditEventDescriptorBuilder(Event event) {
         descriptor = new EditEventDescriptor();
@@ -36,6 +50,14 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code start} of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withStart(LocalDateTime start) {
+        descriptor.setStart(start);
+        return this;
+    }
+
+    /**
      * Sets the {@code LocalDateTime} start of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withStart(String start) {
@@ -44,6 +66,14 @@ public class EditEventDescriptorBuilder {
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid date format: " + start);
         }
+        return this;
+    }
+
+    /**
+     * Sets the {@code end} of the {@code EditEventDescriptor} that we are building.
+     */
+    public EditEventDescriptorBuilder withEnd(LocalDateTime end) {
+        descriptor.setEnd(end);
         return this;
     }
 
@@ -60,7 +90,7 @@ public class EditEventDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code String} description of the {@code EditEventDescriptor} that we are building.
+     * Sets the {@code description} of the {@code EditEventDescriptor} that we are building.
      */
     public EditEventDescriptorBuilder withDescription(String description) {
         descriptor.setDescription(description);
