@@ -122,17 +122,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), as well as `Event` objects (which are contained in a `UniqueEventList`) and `Todo` objects (which are contained in a UniqueTodoList).
+* stores the currently 'selected' `Person` and `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` and `ObservableList<Event>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -443,27 +436,27 @@ Use case ends.
 **MSS**
 
 1. User requests to delete an event by specifying its index in the event list.
-2. Event Planner verifies that the index is valid.
-3. Event Planner deletes the specified event.
-4. Event Planner removes all references to the event from the associated contacts.
-5. Event Planner updates and displays the new event list.
+2. OverBooked verifies that the index is valid.
+3. OverBooked deletes the specified event.
+4. OverBooked removes all references to the event from the associated contacts.
+5. OverBooked updates and displays the new event list.
 
 Use case ends.
 
 **Extensions**
 
 * 2a. The given index is not a valid positive integer
-    * 2a1. Event Planner shows an error message: “Invalid command format. Delete event: Deletes the event identified by the index number used in the event list. Parameters: INDEX(must be a positive integer).”
+    * 2a1. OverBooked shows an error message
 
 Use case ends.
 
 * 2b. The given index is greater than the number of displayed events.
-    * 2b1. Event Planner shows an error message: “The event index [INDEX] provided is invalid.”
+    * 2b1. OverBooked shows an error message
 
 Use case ends.
 
 * 3a. Database update fails.
-    * 3a1. Event Planner shows error message: “Failed to save deletion changes. Please restart the app and try again.”
+    * 3a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -473,6 +466,20 @@ Use case ends.
 
 **Use case: UC14 - Add a todo**
 
+**MSS**
+1. User requests to add a todo with the required details.
+2. OverBooked adds the todo
+3. OverBooked updates the list
+
+Use case ends.
+* 1a. User uses the invalid format or parameters
+    * 1a1. OverBooked informs the user of the error and displays the correct format
+
+Use case ends.
+
+* 2a. Overbooked is unable to save the new todo
+    * 2a1. OverBooked informs the user of the error
+Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
 
