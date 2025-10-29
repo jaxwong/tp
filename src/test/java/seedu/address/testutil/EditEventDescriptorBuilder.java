@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
-import seedu.address.logic.parser.ParserUtil;
 import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditEventCommand.EditEventDescriptor;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventName;
 
