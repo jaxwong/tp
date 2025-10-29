@@ -15,7 +15,7 @@ public class EventAliasTest {
 
     @Test
     public void constructor_invalidAlias_throwsIllegalArgumentException() {
-        String invalidAlias = "";
+        String invalidAlias = "    ";
         assertThrows(IllegalArgumentException.class, () -> new EventAlias(invalidAlias));
     }
 
@@ -25,11 +25,14 @@ public class EventAliasTest {
         assertFalse(EventAlias.isValidAlias("")); // empty string
         assertFalse(EventAlias.isValidAlias(" ")); // spaces only
         assertFalse(EventAlias.isValidAlias("Taylor Swift")); // alias with space
+        assertFalse(EventAlias.isValidAlias("Taylor*Swift")); // alias with disallowed symbol
+        assertFalse(EventAlias.isValidAlias("a".repeat(21))); // exceeds character limit
 
         // valid alias
         assertTrue(EventAlias.isValidAlias("peter-jack")); // alphabets only
         assertTrue(EventAlias.isValidAlias("12345")); // numbers only
         assertTrue(EventAlias.isValidAlias("peter-the_2nd")); // alphanumeric characters
+        assertTrue(EventAlias.isValidAlias("a".repeat(20))); // just within character limit
 
     }
 

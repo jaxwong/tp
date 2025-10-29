@@ -39,8 +39,6 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
         }
 
-        EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
-
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_EVENT_NAME,
                 PREFIX_EVENT_ALIAS,
@@ -48,6 +46,8 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
                 PREFIX_END,
                 PREFIX_DESC
         );
+
+        EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 
         EditEventCommand.EditEventDescriptor editEventDescriptor = new EditEventCommand.EditEventDescriptor();
 

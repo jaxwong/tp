@@ -46,7 +46,6 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
     public static final String MESSAGE_EVENT_NOT_FOUND = "Event not found.";
 
     private final EventAlias eventAlias;
@@ -68,22 +67,16 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Event> eventList = model.getFilteredEventList();
+        List<Event> eventList = model.getEventList();
 
         Event eventToEdit = eventList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
                 .findFirst()
                 .orElseThrow(() -> new CommandException(MESSAGE_EVENT_NOT_FOUND));
 
-        if (!editEventDescriptor.isAnyFieldEdited()) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
-        }
-
         Event editedEvent = createEditedEvent(eventToEdit, editEventDescriptor);
 
-        if (!eventToEdit.isSameEvent(editedEvent) && model.hasEvent(editedEvent)) {
-            throw new CommandException(MESSAGE_DUPLICATE_EVENT);
-        }
+        assert eventToEdit.isSameEvent(editedEvent);
 
         model.setEvent(eventToEdit, editedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
@@ -94,7 +87,8 @@ public class EditEventCommand extends Command {
      * Creates and returns an {@code Event} with the details of {@code eventToEdit}
      * edited with {@code editEventDescriptor}.
      */
-    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
+    private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)
+            throws CommandException {
         assert eventToEdit != null;
 
         EventName updatedName = editEventDescriptor.getEventName().orElse(eventToEdit.getEventName());
@@ -102,7 +96,11 @@ public class EditEventCommand extends Command {
         LocalDateTime updatedEnd = editEventDescriptor.getEnd().orElse(eventToEdit.getEnd());
         String updatedDescription = editEventDescriptor.getDescription().orElse(eventToEdit.getDescription());
 
-        return new Event(updatedName, eventToEdit.getEventAlias(), updatedStart, updatedEnd, updatedDescription);
+        try {
+            return new Event(updatedName, eventToEdit.getEventAlias(), updatedStart, updatedEnd, updatedDescription);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override
