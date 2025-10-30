@@ -142,14 +142,24 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+**Enhanced Data Model Support:**
+- The storage system has been extended beyond the original AB3 implementation to support a comprehensive event management system.
+- `JsonSerializableAddressBook` now handles three distinct data types:
+  - **Persons**: Contact information (original AB3 functionality)
+  - **Events**: Event details with date/time information
+  - **Todos**: Task management items
+- Each data type has its own `JsonAdapted` class (`JsonAdaptedPerson`, `JsonAdaptedEvent`, `JsonAdaptedTodo`) for proper JSON serialization/deserialization.
+- The storage maintains data integrity by checking for duplicates across all three data types during loading.
 
 ### Common classes
 
@@ -289,7 +299,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user                                      | access the contacts saved from my previous event    | quickly and efficiently add these contacts to my next event |
 | `* * *` | user                                      | add upcoming appointment                            | deconflict clashes while scheduling other appointments      |
 | `* *` | user                                      | filter my contacts by event                         | find all the people involved in that specific event         |
-
 
 ### Use cases
 
