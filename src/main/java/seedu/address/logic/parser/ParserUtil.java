@@ -187,7 +187,8 @@ public class ParserUtil {
         return new TodoName(trimmedName);
     }
 
-    /** Parses a {@code String description} and make sures it is valid.
+    /**
+     * Parses a {@code String description} and make sures it is valid.
      * Leading and trailing whitespaces will be trimmed.
      * @throws ParseException if the given {@code description} is invalid.
      */
