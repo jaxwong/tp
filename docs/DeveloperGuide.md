@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ## Add-Event Feature
 
-The Add-Event mechanism is facilitated by the `AddEventCOmmand` class. It allows users to create and store new events in 
+The Add-Event mechanism is facilitated by the `AddEventCommand` class. It allows users to create and store new events in 
 the address book with complete details including name, alias, start time, end time, and description. 
 
 The `EventAlias` serves as a unique identifier for each event
@@ -169,6 +169,10 @@ The command implements the following key operations through the `Model` interfac
 These operations are backed by the `AddreessBook` which maintains a `UniqueEventList` to ensure no duplicate events exist.
 
 Given below is an example usage scenario and how the add-event mechanism behaves at each step.
+
+The following sequence diagram shows how an add-event operation goes through the `Logic` component:
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram-Logic.png)
 
 Step 1. The user launches the application. The `AddressBook` is initialised with its saved state, which may contain zero
 or more existing events stored in a `UniqueEventList`
@@ -194,6 +198,10 @@ passed on to the `AddEventCommand`
 Step 6. When `AddEventCommand#execute(Model)` is called, it first checks for duplicates using `Model#hasEvent(Event)`, which
 compares and considers two events to be the same if their `EventAlias` is the same (case-insensitive). 
 
+The following sequence diagram shows how an add-event operation goes through the `Model` component:
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram-Model.png)
+
 Step 7. If no duplicate is found, `Model#addEvent(Event)` is then called. This method;
 
 1. Calls `AddressBook#addEvent(Event)` to add the event to the `UniqueEventList`
@@ -204,7 +212,6 @@ The `UniqueEventList` maintains the internal observable list that JavaFx uses to
 Step 8. After successful addition, a CommandResult is returend with a success message: "New Event added:[formatted event details]". 
 The UI automatically reflects the new event in the event list panel.
 
-The following sequence diagram shows how an add-event operation goes through the `Logic` component:
 
 ### \[Proposed\] Undo/redo feature
 
