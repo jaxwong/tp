@@ -195,10 +195,8 @@ public class ParserUtil {
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (trimmedDescription.isEmpty()
-                || trimmedDescription.length() > 50
-                || trimmedDescription.contains("/")) {
-            throw new ParseException("Description must be non-empty, up to 50 characters, and cannot contain '/'.");
+        if (trimmedDescription.isEmpty() || trimmedDescription.length() > 50) {
+            throw new ParseException("Description must be non-empty and up to 50 characters.");
         }
         return trimmedDescription;
     }
