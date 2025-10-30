@@ -182,7 +182,7 @@ to add a new event. The input string is passed to `LogicManager`, which passes i
 
 Step 3. `AddressBookParser` identifies the command word `add-event` and delegates to `AddEventCommandParser`. The parser performs the following steps:
 
-1. Tokenization: The parser uses `Argument.Tokenizer.tokenize()` to seperate the input into an `ArgumentMultimap` containing:
+1. Tokenization: The parser uses `ArgumentTokenizer.tokenize()` to seperate the input into an `ArgumentMultimap` containing:
 2. Validation: The parser then checks that
     - All five required prefixes are present
     - The preamble is empty (no text before first prefix)
