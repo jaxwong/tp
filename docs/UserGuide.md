@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 ## Introduction
 
 OverBooked is a desktop app for managing **contacts, events, and todos** — all from a single, efficient interface.
@@ -9,11 +10,12 @@ OverBooked is a desktop app for managing **contacts, events, and todos** — all
 Designed for **event planners** who prefer **keyboard efficiency** over clicking through menus, OverBooked combines the **speed of a Command Line Interface (CLI)** with the **convenience of a modern GUI**.
 
 ### 📖 Table of Contents
+
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Contacts](#contacts)
-    - [Events](#events)
-    - [Todos](#todos)
+  - [Contacts](#contacts)
+  - [Events](#events)
+  - [Todos](#todos)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
@@ -25,20 +27,25 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 Follow these steps to get started with Overbooked in under 2 minutes:
 
 1. **Install Java `17`**
-    - Verify with `java -version` in your own device's terminal
-    - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+
+   - Verify with `java -version` in your own device's terminal
+   - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. **Download the App**
-    - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
+
+   - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
 
 3. **Set up your workspace**
-    - Move the `.jar` file into a folder of your choice — this will be your *OverBooked home folder*.
+
+   - Move the `.jar` file into a folder of your choice — this will be your _OverBooked home folder_.
 
 4. **Run the app**
-    ```bash
-    cd path/to/folder
+
+   ```bash
+   cd path/to/folder
    java -jar OverBooked.jar
-    ```
+   ```
+
    You should see a window like this:
    <br>
    ![listContacts](images/listContacts.png)
@@ -48,13 +55,12 @@ Follow these steps to get started with Overbooked in under 2 minutes:
    - `help` : Open the help window.
 
    - `list-contacts` : Lists all contacts.
-   
+
    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    - `clear` : clears all Entries in the book
 
    - `exit` : Exits the app.
-
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -173,7 +179,8 @@ Examples:
 - `list-contacts` followed by `delete-contact 2` deletes the 2nd person in the address book.
 - `find-contact n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
 
---- 
+---
+
 ## 🎫 Events
 
 ![listEvents](images/listEvents.png)
@@ -185,22 +192,29 @@ Adds an event to the address book.
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`
 
 Examples:
+
 - `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Swift Eras tour`
 
 ### Linking an event: `link-event`
 
 Links a given contact (by index) to an event (by alias)
 
-Format: `link-event INDEX ea/EVENT_ALIAS`
+Format: `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`
 
-Examples: 
+Examples:
+
 - `link-event 1 ea/TSC2025`
+- `link-event 1 2 ea/OL2028`
 
 ### Unlinking an event: `unlink-event`
 
 Unlink a given contact (by index) from an event
 
-Format: `unlink-event INDEX`
+Format: `unlink-event INDEX [MORE_INDEXES]`
+
+Examples:
+
+- `unlink-event 1 2 ea/TSC2025`
 
 ### Listing all events : `list-events`
 
@@ -248,6 +262,7 @@ Deletes an event from the address book.
 Format: `delete-event ea/EVENT_ALIAS`
 
 Examples:
+
 - `delete-event ea/TSC2025`
 
 ### Finding a contact by event: `find-by-event`
@@ -257,9 +272,11 @@ Finds and displays all contacts that are linked to a specific event.
 Format: `find-by-event ea/EVENT_ALIAS`
 
 Examples:
+
 - `find-by-event ea/TSC2025`
 
 ---
+
 ## 📝 Todos
 
 ![listTodos](images/listTodos.png)
@@ -271,6 +288,7 @@ Adds a todo to the address book.
 Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
 
 Examples:
+
 - `add-todo tn/Call Alex td/Find out event requirements n/Alex Yeoh`
 
 ### Editing a todo: `edit-todo`
@@ -280,8 +298,9 @@ Edits an existing todo in the address book.
 Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
 
 Examples:
-- `edit-todo tn/Call John n/John Doe`
-- `edit-todo n/<blank>` unlinks the person from the todo task.
+
+- `edit-todo 1 tn/Call John n/John Doe`
+- `edit-todo 1 n/<blank>` unlinks the person from the first todo task.
 
 ### Deleting a todo: `delete-todo`
 
@@ -290,6 +309,7 @@ Deletes a todo from the address book.
 Format: `delete-todo INDEX`
 
 Examples:
+
 - `delete-todo 1`
 
 ### Listing all todos : `list-todos`
@@ -311,7 +331,6 @@ Format: `mark-todo INDEX`
 Examples:
 
 - `list-todos` followed by `mark-todo 2` marks the 2nd todo in the address book as completed.
-
 
 ### Marking a todo as incomplete : `unmark-todo`
 
@@ -376,7 +395,7 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`            |
 | **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                              |
 | **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                |
-| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |                                                                                                                                                                |
+| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |     |
 | **list-contacts**  | `list-contacts`                                                                                                                                                                                  |
 | **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                |
 | 🎫 **Events**      |                                                                                                                                                                                                  |
@@ -397,5 +416,28 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 | 💻 **System**      |                                                                                                                                                                                                  |
 | **help**           | `help`                                                                                                                                                                                           |
 | **clear**          | `clear`                                                                                                                                                                                          |
-| **exit**           | `exit`                                                                                                                                                                                           |                                                                                                                                                                                              |
+| **exit**           | `exit`                                                                                                                                                                                           |     |
 
+## Prefix Constraint Summary
+
+| Prefix                | Constraint(s)                                                                                                                                                                                       |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n/` (Name)           | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.<br>[Regex: `[\p{Alnum}][\p{Alnum} ]*`]                                                                           |
+| `p/` (Phone)          | Numbers only, at least 3 digits.<br>[Regex: `\d{3,}`]                                                                                                                                               |
+| `e/` (Email)          | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
+| `a/` (Address)        | Any value; cannot be blank or start with whitespace.<br>[Regex: `[^\s].*`]                                                                                                                          |
+| `t/` (Tag)            | Alphanumeric only, minimum 1 character.<br>[Regex: `\p{Alnum}+`]                                                                                                                                    |
+| `en/` (Event Name)    | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.<br>[Regex: `^[A-Za-z0-9'&,\- ]{1,100}$`]                                                  |
+| `ea/` (Event Alias)   | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.<br>[Regex: `^[A-Za-z0-9_-]{1,20}$`]                                                                                        |
+| `s/`, `e/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
+| `d/` (Event Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
+| `tn/` (Todo Name)     | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.<br>[Regex: `^[A-Za-z0-9'&,\- ]{1,50}$`]                                                    |
+| `td/` (Todo Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
+| `INDEX`               | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
+
+**Notes:**
+
+- Multiple entries permitted for tags (`[t/TAG]…​`).
+- Optional prefixes can be left blank only where allowed (e.g., `n/<blank>` for unlinking a name from a todo).
+- For all string fields, leading/trailing whitespace is trimmed.
+- Date/time values must strictly follow the indicated format.
