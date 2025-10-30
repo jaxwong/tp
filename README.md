@@ -1,4 +1,4 @@
-# Overbooked
+# OverBooked
 
 [![Java CI](https://github.com/AY2526S1-CS2103T-T10-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T10-2/tp/actions/workflows/gradle.yml)
 

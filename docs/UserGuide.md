@@ -22,7 +22,7 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 
 ## Quick start
 
-Follow these steps to get started with Overbooked in under 2 minutes:
+Follow these steps to get started with OverBooked in under 2 minutes:
 
 1. **Install Java `17`**
     - Verify with `java -version` in your own device's terminal
@@ -41,7 +41,7 @@ Follow these steps to get started with Overbooked in under 2 minutes:
     ```
    You should see a window like this:
    <br>
-   ![listContacts](images/listContacts.png)
+![UserInterface](images/Ui.png)
 
 5. **Try these Commands**
 
@@ -97,8 +97,6 @@ Format: `help`
 ---
 
 ## 👤 Contacts
-
-![listContacts](images/listContacts.png)
 
 ### Adding a person: `add-contact`
 
@@ -156,7 +154,6 @@ Examples:
 
 - `find-contact n/John` returns `john` and `John Doe`
 - `find-contact n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 ### Deleting a person : `delete-contact`
 
@@ -175,8 +172,6 @@ Examples:
 
 --- 
 ## 🎫 Events
-
-![listEvents](images/listEvents.png)
 
 ### Adding an event: `add-event`
 
@@ -262,7 +257,6 @@ Examples:
 ---
 ## 📝 Todos
 
-![listTodos](images/listTodos.png)
 
 ### Adding a todo: `add-todo`
 
