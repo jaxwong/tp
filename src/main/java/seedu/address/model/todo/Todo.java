@@ -89,7 +89,7 @@ public class Todo {
             return true;
         }
 
-        return this.todoName.equals(otherTodo.todoName) && this.todoDescription.equals(otherTodo.todoDescription);
+        return this.todoName.equals(otherTodo.todoName) && this.todoDescription.equalsIgnoreCase(otherTodo.todoDescription);
     }
 
     /**
@@ -131,7 +131,7 @@ public class Todo {
         }
         Todo otherTodo = (Todo) other;
         return this.todoName.equals(otherTodo.todoName)
-                && this.todoDescription.equals(otherTodo.todoDescription)
+                && this.todoDescription.equalsIgnoreCase(otherTodo.todoDescription)
                 && java.util.Objects.equals(contactName, otherTodo.contactName)
                 && this.isCompleted == otherTodo.isCompleted;
     }
