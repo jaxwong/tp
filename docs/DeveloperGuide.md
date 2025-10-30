@@ -436,7 +436,7 @@ Use case ends.
 
 **MSS**
 
-1. User requests to edit an event with the specified alias and provides details of the parameters that should be edited.
+1. User requests to edit an event and provides details of the parameters that should be edited.
 2. OverBooked informs the user that the edit was successful.
 3. OverBooked displays the updated event list.
 
@@ -444,7 +444,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User uses the invalid format, invalid parameters or does not provide an alias.
+* 1a. User uses the invalid format or parameters.
   * 1a1. OverBooked displays the correct format to the user.
 
 Use case ends.
@@ -465,19 +465,19 @@ Use case ends.
 Use case ends.
 
 
-**Use case: UC11 - Find events by alias**
+**Use case: UC11 - Find events**
 
 **MSS**
 
-1. User requests to find an event with the specified alias(es).
-2. OverBooked displays all events that start with any of the given aliases.
+1. User requests to find an event with the specified keywords.
+2. OverBooked displays all events that match the given keywords.
 3. OverBooked informs the user the number of events found.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User uses the invalid format or does not specify any alias.
+* 1a. User uses the invalid format or does not specify any keywords.
   * 1a1. OverBooked displays the correct format to the user.
 
 Use case ends.
