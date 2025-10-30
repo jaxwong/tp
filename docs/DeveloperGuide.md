@@ -415,7 +415,7 @@ Use case resumes from step 3.
 **MSS**
 
 1. User requests to view the list of events.
-2. Overbooked shows the list of events.
+2. Overbooked shows the full list of events.
 
 Use case ends.
 
