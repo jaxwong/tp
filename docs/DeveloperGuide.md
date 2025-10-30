@@ -647,28 +647,61 @@ Use case ends.
 
 **Use case: UC17 - List todos**
 
+**MSS**
+1. User requests to view the lists of todos.
+2. OverBooked shows the list of todos.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. OverBooked is unable to get the list of todos.
+    * 1a1. OverBooked shows an error message.
+
+Use case ends.
 
 **Use case: UC18 - Mark a todo as complete**
 
+**MSS**
+1. User requests to mark a todo as complete.
+2. OverBooked marks the todo as complete.
+3. OverBooked updates the list to reflect the marking.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
+
+Use case ends.
 
 **Use case: UC19 - Mark a todo as incomplete**
 
+**MSS**
+1. User requests to mark a todo as incomplete.
+2. OverBooked marks the contact as incomplete.
+3. OverBooked updates the list to reflect the marking.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
+
+Use case ends.
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Commands should be case-insensitive.
-5. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
-6. The GUI should update in real-time when contacts/events are added, listed or deleted.
-7. Placeholder messages must be shown for empty lists so that users do not think the app is unresponsive.
-8. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
-9. Duplicate contacts are determined strictly by name and must be rejected.
-10. The system must reject invalid command formats, duplicate entries and malformed data consistently.
-11. Events with overlapping time intervals must be rejected.
-12. All saved data must survive application restarts.
-13. Input validation must prevent injection of malicious characters into saved files (e.g. disallow scripts in event names).
+1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
+2. Should be able to hold up to 1000 persons, 1000 events and 1000 todos without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
+5. The GUI should update in real-time when contacts/events are added, listed or deleted.
+6. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
+7. The system must reject invalid command formats, duplicate entries and malformed data consistently.
+8. All saved data must survive application restarts.
 
 *{More to be added}*
 
@@ -677,26 +710,9 @@ Use case ends.
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI(Command Line Interface)**: A text-based interface where the user types commands to interact with the application.
-* **GUI(Graphical User Interface)**: The visual interface of the app (buttons, panels, windows) built using JavaFX.
-* **Parser**: A component that interprets raw user input strings (e.g., delete 1) and converts them into structured command objects.
-* **Command Pattern**: A design pattern where each action (add, delete, list) is encapsulated in its own command class.
-* **Event-driven architecture**: A programming paradigm where components react to events (e.g., UI updates when the model changes).
-* **ObservableList**: A JavaFX collection type that notifies observers (e.g., UI) automatically when the list changes.
-* **Lifeline(in sequence diagrams)**: A vertical dashed line representing the existence of an object during an interaction.
-* **Destroy Marker (X)**: Symbol at the end of a lifeline in UML indicating the object termination. 
-* **Activity Diagram**: A UML diagram that models workflows or processes, show decision points 
-  and actions.
-* **State Pointer**:  In undo/redo implementation, refers to the index marking the current state in the version history.
-* **AddressBookParser**: A central parser class that delegates parsing to specific command parsers (e.g., AddCommandParser).
-* **VersionedAddressBook**: An extension of AddressBook that maintains a history of states to support undo/redo.
-* **Upstream Repository**: The original repository from which a project is forked.
-* **Origin**: The default name Git assigns to the remote repository from which you cloned your local repo.
-* **Force Push**: A Git operation (git push --force) that overwrites the remote branch history 
-  with your local history.
-* **Detached HEAD**: A Git state where you’ve checked out a specific commit rather than a branch, so new commits don’t belong to any branch.
-* **Non-Functional Requirement(NFR)**: A requirement describing how the system should behave (e.g., performance, usability), not what it should do.
-* **Exploratory Testing**: Testing approach where testers actively explore the app without a strict script, often to uncover edge cases.
-* **PlantUML**: A tool used to write text-based UML diagrams that can be rendered into images.
+* **GUI(Graphical User Interface)**: The visual interface of the app (panels, windows) built using JavaFX.
+* **Contact**: Any person in `Overbooked`. This term is used interchangeably with the term "person".
+* **Todo**: A task that the event planner needs to do.
 
 
 
