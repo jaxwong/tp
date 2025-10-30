@@ -77,6 +77,10 @@ public class JsonAdaptedEvent {
         LocalDateTime modelStart = LocalDateTime.parse(start);
         LocalDateTime modelEnd = LocalDateTime.parse(end);
 
-        return new Event(modelName, modelAlias, modelStart, modelEnd, description);
+        try {
+            return new Event(modelName, modelAlias, modelStart, modelEnd, description);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
+        }
     }
 }

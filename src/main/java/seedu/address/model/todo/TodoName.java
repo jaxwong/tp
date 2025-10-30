@@ -11,10 +11,11 @@ public class TodoName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Todo names should be 1-50 characters long and may only contain"
-                    + " letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&) and commas (,). "
+                    + " letters, numbers, spaces, apostrophes ('), hyphens (-), "
+                    + "ampersands (&), commas (,) and slashes (/). "
                     + "Extra whitespace is trimmed.";
 
-    public static final String VALIDATION_REGEX = "^[A-Za-z0-9'&,\\- ]{1,50}$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9'&,/\\- ]{1,50}$";
 
     public final String todoName;
 

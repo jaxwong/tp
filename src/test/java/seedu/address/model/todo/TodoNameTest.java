@@ -28,7 +28,6 @@ public class TodoNameTest {
         assertFalse(TodoName.isValidTodoName(""));
         assertFalse(TodoName.isValidTodoName(" "));
         assertFalse(TodoName.isValidTodoName("@todo"));
-        assertFalse(TodoName.isValidTodoName("slash/"));
         assertFalse(TodoName.isValidTodoName("colon:"));
         assertFalse(TodoName.isValidTodoName("a".repeat(51)));
 
@@ -37,6 +36,7 @@ public class TodoNameTest {
         assertTrue(TodoName.isValidTodoName("Lunch - team"));
         assertTrue(TodoName.isValidTodoName("Manager's review & notes"));
         assertTrue(TodoName.isValidTodoName("12345"));
+        assertTrue(TodoName.isValidTodoName("Meet AC/DC band"));
         assertTrue(TodoName.isValidTodoName("a".repeat(50)));
         assertTrue(TodoName.isValidTodoName("  Trim me  "));
     }
