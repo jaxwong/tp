@@ -414,19 +414,19 @@ Use case resumes from step 3.
 
 **MSS**
 
-1. User requests to view the list of events
-2. Overbooked shows the list of events
+1. User requests to view the list of events.
+2. Overbooked shows the list of events.
 
 Use case ends.
 
 **Extensions**
-* 1a. Overbooked is unable to get the list of events
-    * 1a1. Overbooked shows an error message
+* 1a. Overbooked is unable to get the list of events.
+    * 1a1. Overbooked shows an error message.
 
 Use case ends.
 
-* 1b. Overbooked has no events saved
-    * 1b1. Overbooked informs the user that there are no events
+* 1b. Overbooked has no events saved.
+    * 1b1. Overbooked informs the user that there are no events.
 
 Use case ends.
 
@@ -442,27 +442,20 @@ Use case ends.
 **MSS**
 
 1. User requests to delete an event.
-2. OverBooked verifies that the index provided is valid.
-3. OverBooked deletes the specified event.
-4. OverBooked removes all references to the event from the associated contacts.
-5. OverBooked updates and displays the new event list.
+2. OverBooked deletes the specified event.
+3. OverBooked updates and displays the new event list.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The given index is not a valid positive integer
-    * 2a1. OverBooked shows an error message
-
-Use case ends.
-
-* 2b. The given index is greater than the number of displayed events.
-    * 2b1. OverBooked shows an error message
+* 1a. The event could not be found. 
+    * 1a1. OverBooked shows an error message.
 
 Use case ends.
 
 * 3a. Database update fails.
-    * 3a1. OverBooked informs the user of the error
+    * 3a1. OverBooked informs the user of the error.
 
 Use case ends.
 
@@ -474,17 +467,17 @@ Use case ends.
 
 **MSS**
 1. User requests to add a todo with the required details.
-2. OverBooked adds the todo
-3. OverBooked updates the list
+2. OverBooked adds the todo.
+3. OverBooked updates the todo list.
 
 Use case ends.
-* 1a. User uses the invalid format or parameters
-    * 1a1. OverBooked informs the user of the error and displays the correct format
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
-* 2a. Overbooked is unable to save the new todo
-    * 2a1. OverBooked informs the user of the error
+* 2a. OverBooked is unable to save the new todo.
+    * 2a1. OverBooked informs the user of the error.
 Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
@@ -492,6 +485,19 @@ Use case resumes from step 3.
 
 **Use case: UC16 - Delete a todo**
 
+**MSS** 
+1. User requests to delete a todo.
+2. OverBooked deletes the specified todo.
+3. OverBooked updates the todo list.
+
+Use case ends
+* 1a. User provides an invalid index.
+    * 1a1. OverBooked informs the user of the error.
+
+Use case ends.
+
+* 3a. Database update fails.
+    * 3a1. OverBooked informs the user of the error.
 
 **Use case: UC17 - List todos**
 
