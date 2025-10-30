@@ -36,7 +36,7 @@ public class AddTodoCommandParser implements Parser<AddTodoCommand> {
         argMultiMap.verifyNoDuplicatePrefixesFor(PREFIX_TODO_NAME, PREFIX_TODO_DESCRIPTION, PREFIX_NAME);
 
         TodoName todoName = ParserUtil.parseTodoName(argMultiMap.getValue(PREFIX_TODO_NAME).get());
-        String todoDescription = argMultiMap.getValue(PREFIX_TODO_DESCRIPTION).get();
+        String todoDescription = ParserUtil.parseDescription(argMultiMap.getValue(PREFIX_TODO_DESCRIPTION).get());
         Name contactName = argMultiMap.getValue(PREFIX_NAME).isPresent()
                 ? ParserUtil.parseName(argMultiMap.getValue(PREFIX_NAME).get())
                 : null;

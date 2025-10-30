@@ -65,9 +65,7 @@ public class DeleteTodoCommandTest {
         DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(DeleteTodoCommand.MESSAGE_DELETE_TODO_SUCCESS, Messages.format(first));
 
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
-        // replicate the filtered state (single item), then delete it
-        expectedModel.addTodo(first);
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deleteTodo(first);
         showNoTodo(expectedModel);
 
