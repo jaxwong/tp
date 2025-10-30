@@ -52,7 +52,7 @@ public class SampleDataUtil {
                 "Taylor swift eras tour"),
             new Event(new EventName("Olympics 2028"), new EventAlias("ol2028"),
                 LocalDateTime.of(2025, 1, 20, 23, 59),
-                LocalDateTime.of(2025, 1, 20, 23, 59),
+                LocalDateTime.of(2025, 1, 21, 0, 59),
                 "Summer Olympics hosted in SG")
         };
     }

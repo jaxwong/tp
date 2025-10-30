@@ -110,6 +110,11 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     @Override
+    public int hashCode() {
+        return internalList.hashCode();
+    }
+
+    @Override
     public String toString() {
         return internalList.toString();
     }

@@ -18,6 +18,11 @@ public class ListTodosCommand extends Command {
     /** Success message displayed when todos are listed. */
     public static final String MESSAGE_SUCCESS = "Listed all todos";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all todos in the system.\n"
+            + "Parameters: " + " none\n"
+            + "Example: " + COMMAND_WORD;
+
     /**
      * Executes the list-todos command.
      *

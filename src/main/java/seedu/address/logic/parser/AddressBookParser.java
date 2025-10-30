@@ -83,6 +83,9 @@ public class AddressBookParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
+            if (!arguments.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+            }
             return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
@@ -107,9 +110,16 @@ public class AddressBookParser {
             return new EditEventCommandParser().parse(arguments);
 
         case ListEventsCommand.COMMAND_WORD:
+            if (!arguments.trim().isEmpty()) {
+                throw new ParseException(String.format(
+                        MESSAGE_INVALID_COMMAND_FORMAT, ListEventsCommand.MESSAGE_USAGE));
+            }
             return new ListEventsCommand();
 
         case ListTodosCommand.COMMAND_WORD:
+            if (!arguments.trim().isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListTodosCommand.MESSAGE_USAGE));
+            }
             return new ListTodosCommand();
 
         case AddTodoCommand.COMMAND_WORD:
