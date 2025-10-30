@@ -142,14 +142,24 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+**Enhanced Data Model Support:**
+- The storage system has been extended beyond the original AB3 implementation to support a comprehensive event management system.
+- `JsonSerializableAddressBook` now handles three distinct data types:
+  - **Persons**: Contact information (original AB3 functionality)
+  - **Events**: Event details with date/time information
+  - **Todos**: Task management items
+- Each data type has its own `JsonAdapted` class (`JsonAdaptedPerson`, `JsonAdaptedEvent`, `JsonAdaptedTodo`) for proper JSON serialization/deserialization.
+- The storage maintains data integrity by checking for duplicates across all three data types during loading.
 
 ### Common classes
 
@@ -290,7 +300,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | user                                      | add upcoming appointment                            | deconflict clashes while scheduling other appointments      |
 | `* *` | user                                      | filter my contacts by event                         | find all the people involved in that specific event         |
 
-
 ### Use cases
 
 (For all use cases below, the **System** is `Overbooked` and the **Actor** is the `user`, unless specified otherwise)
@@ -413,8 +422,65 @@ Use case resumes from step 3.
 
 **Use case: UC7 - Link contacts to an event**
 
+**MSS**
+
+1. User requests to link one or more contacts to an event using their displayed index and event alias
+2. OverBooked links the contact(s) to the specified event
+3. Overbooked updates the contact list to show the linked event
+
+Use Case ends.
+
+** Extensions **
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. One or more index provided by user is invalid
+  1bOverBooked informs user that the contact index is invalid
+
+Use case ends.
+
+* 1c. User inputs a non-existent event alias
+    * 1c1. OverBooked informs the user that the event was not found
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user fo the error
+
+Use case ends.
 
 **Use case: UC8 - Unlink contacts from events**
+
+**MSS**
+
+1. User requests to unlink one or more contacts from their linked events using their displayed indexes
+2. OverBooked unlinks the contact(s) from their events
+3. OverBooked updates the contact list to show the contacts are no longer linked
+
+Use case ends
+
+** Extensions **
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. One or more index provided by user is invalid
+    * 1b1. OverBooked informs user that the contact index is invalid
+
+Use case ends.
+
+* 1c. One or more contacts are not linked to any event
+    * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts)
+
+Use case continues from step 4.
+
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user of the error
+
+Use case ends.
 
 
 **Use case: UC9 - List events**
@@ -440,8 +506,53 @@ Use case ends.
 
 **Use case: UC10 - Edit an event**
 
+**MSS**
 
-**Use case: UC11 - Find events by alias**
+1. User requests to edit an event and provides details of the parameters that should be edited.
+2. OverBooked informs the user that the edit was successful.
+3. OverBooked displays the updated event list.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or parameters.
+  * 1a1. OverBooked displays the correct format to the user.
+
+Use case ends.
+
+* 1b. The event with the specified alias does not exist. 
+  * 1b1. OverBooked informs user that the event could not be found.
+  
+Use case ends.
+
+* 1c. User does not provide any parameters to edit.
+  * 1c1. OverBooked informs user that they need to provide at least 1 parameter.
+
+Use case ends.
+
+* 1d. Start time of the edited event is the same or after its end time.
+  * 1d1. OverBooked informs user that the start time has to be before the end time.
+  
+Use case ends.
+
+
+**Use case: UC11 - Find events**
+
+**MSS**
+
+1. User requests to find an event with the specified keywords.
+2. OverBooked displays all events that match the given keywords.
+3. OverBooked informs the user the number of events found.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or does not specify any keywords.
+  * 1a1. OverBooked displays the correct format to the user.
+
+Use case ends.
 
 
 **Use case: UC12 - Delete an event**
@@ -481,6 +592,41 @@ Use case ends.
 
 
 **Use case: UC15 - Edit a todo**
+
+**MSS**
+
+1. User requests to edit a specific todo using its displayed index and provides the fields to update
+2. OverBook edits the todo with the new details
+3. OverBooked updates the todo list to show the edited todo
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses invalid format or parameters
+    * 1a1. OverBooked informs the user of the error and displays the correct format
+
+Use case ends.
+
+* 1b. User provides an invalid index
+    * 1b1. OverBooked informs the user that the todo index is invalid
+
+Use case ends.
+
+* 1c. User does not provide any fields to edit
+    * 1c1. OverBooked informs the user that at least one field must be provided
+
+Use case ends.
+
+* 1d. User provides a contact name that does not exist
+    * 1d1. OverBooked informs the user that the contact was not found
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the updated todo list
+    * 2a1. OverBooked informs the user of the error
+
+Use case ends.
 
 
 **Use case: UC16 - Delete a todo**
