@@ -30,12 +30,14 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
             }
 
+            argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
+
             EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
             return new DeleteEventCommand(eventAlias);
 
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), pe);
+                    String.format(pe.getMessage(), DeleteEventCommand.MESSAGE_USAGE), pe);
         }
     }
 }
