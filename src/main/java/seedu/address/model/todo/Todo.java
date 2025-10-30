@@ -89,7 +89,8 @@ public class Todo {
             return true;
         }
 
-        return this.todoName.equals(otherTodo.todoName) && this.todoDescription.equalsIgnoreCase(otherTodo.todoDescription);
+        return this.todoName.equals(otherTodo.todoName)
+                && this.todoDescription.equalsIgnoreCase(otherTodo.todoDescription);
     }
 
     /**
