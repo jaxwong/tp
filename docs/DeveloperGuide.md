@@ -497,8 +497,53 @@ Use case ends.
 
 **Use case: UC10 - Edit an event**
 
+**MSS**
 
-**Use case: UC11 - Find events by alias**
+1. User requests to edit an event and provides details of the parameters that should be edited.
+2. OverBooked informs the user that the edit was successful.
+3. OverBooked displays the updated event list.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or parameters.
+  * 1a1. OverBooked displays the correct format to the user.
+
+Use case ends.
+
+* 1b. The event with the specified alias does not exist. 
+  * 1b1. OverBooked informs user that the event could not be found.
+  
+Use case ends.
+
+* 1c. User does not provide any parameters to edit.
+  * 1c1. OverBooked informs user that they need to provide at least 1 parameter.
+
+Use case ends.
+
+* 1d. Start time of the edited event is the same or after its end time.
+  * 1d1. OverBooked informs user that the start time has to be before the end time.
+  
+Use case ends.
+
+
+**Use case: UC11 - Find events**
+
+**MSS**
+
+1. User requests to find an event with the specified keywords.
+2. OverBooked displays all events that match the given keywords.
+3. OverBooked informs the user the number of events found.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or does not specify any keywords.
+  * 1a1. OverBooked displays the correct format to the user.
+
+Use case ends.
 
 
 **Use case: UC12 - Delete an event**
