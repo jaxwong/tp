@@ -86,7 +86,7 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String date_constraints = "Invalid date format. Expected format: yyyy-MM-dd HH:mm";
+        String dateConstraints = "Invalid date format. Expected format: yyyy-MM-dd HH:mm";
         // invalid alias
         String userInput1 = " en/" + VALID_NAME + " ea/" + INVALID_ALIAS
                 + " s/" + VALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
@@ -100,12 +100,12 @@ public class AddEventCommandParserTest {
         // invalid start datetime
         String userInput3 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS
                 + " s/" + INVALID_START + " e/" + VALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput3, date_constraints);
+        assertParseFailure(parser, userInput3, dateConstraints);
 
         // invalid end datetime
         String userInput4 = " en/" + VALID_NAME + " ea/" + VALID_ALIAS
                 + " s/" + VALID_START + " e/" + INVALID_END + " d/" + VALID_DESC;
-        assertParseFailure(parser, userInput4, date_constraints);
+        assertParseFailure(parser, userInput4, dateConstraints);
     }
 }
 
