@@ -18,22 +18,26 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="0.5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="todoName" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="todoName" text="\$first" styleClass="cell_big_label" wrapText="true"/>
       </HBox>
-      <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
+      <Label fx:id="description" styleClass="cell_small_label" text="\$description" wrapText="true"/>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label text="Contact: " styleClass="cell_small_label" />
-        <Label fx:id="contactName" styleClass="contact-tag" text="\$contact" />
+        <Label text="Contact: " styleClass="cell_small_label">
+          <minWidth>
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="contactName" styleClass="contact-tag" text="\$contact" wrapText="true"/>
       </HBox>
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label text="Status: " styleClass="cell_small_label" />
-        <Label fx:id="status" styleClass="status-tag" text="\$status" />
+        <Label fx:id="status" styleClass="status-tag" text="\$status" wrapText="true" />
       </HBox>
     </VBox>
   </GridPane>
