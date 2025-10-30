@@ -30,8 +30,6 @@ public class ParserUtil {
     public static final String MESSAGE_INTEGER_OVERFLOW = "This index is too large!";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    private static final String DESCRIPTION_VALIDATION_REGEX = "^[A-Za-z0-9 ,.'-/&]{1,50}$";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -206,7 +204,7 @@ public class ParserUtil {
     public static String parseDescription(String description) throws ParseException {
         requireNonNull(description);
         String trimmedDescription = description.trim();
-        if (!trimmedDescription.matches(DESCRIPTION_VALIDATION_REGEX)) {
+        if (trimmedDescription.isEmpty() || trimmedDescription.length() > 50) {
             throw new ParseException("Description must be non-empty and up to 50 characters.");
         }
         return trimmedDescription;

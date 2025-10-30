@@ -52,7 +52,7 @@
             <!-- Main Portion Person and Event List display -->
             <HBox VBox.vgrow="ALWAYS" styleClass="pane-with-border">
               <!-- Person List -->
-              <VBox fx:id="personList" styleClass="pane-with-border" minWidth="500" prefWidth="600" HBox.hgrow="ALWAYS">
+              <VBox fx:id="personList" styleClass="pane-with-border" minWidth="200" prefWidth="600" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
@@ -61,7 +61,7 @@
               </VBox>
 
               <!-- Event List -->
-              <VBox fx:id="eventList" styleClass="pane-with-border" minWidth="340" prefWidth="400" HBox.hgrow="SOMETIMES">
+              <VBox fx:id="eventList" styleClass="pane-with-border" minWidth="150" prefWidth="400" HBox.hgrow="NEVER">
                 <padding>
                   <Insets top="10" right="10" bottom="10" left="10" />
                 </padding>
@@ -72,7 +72,7 @@
           </VBox>
 
           <!-- Todo List -->
-          <VBox fx:id="todoList" styleClass="todo-sidebar" minWidth="280" prefWidth="320" maxWidth="350">
+          <VBox fx:id="todoList" styleClass="todo-sidebar" minWidth="150" prefWidth="320" maxWidth="350">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
