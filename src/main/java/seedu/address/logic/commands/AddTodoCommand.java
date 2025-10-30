@@ -23,7 +23,7 @@ public class AddTodoCommand extends Command {
             + "Parameters: "
             + PREFIX_TODO_NAME + "TODO NAME "
             + PREFIX_TODO_DESCRIPTION + "DESCRIPTION "
-            + "[" + PREFIX_NAME + "NAME (of contact)] "
+            + "[" + PREFIX_NAME + "NAME (of contact)] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TODO_NAME + "Call for TSC2025 "
             + PREFIX_TODO_DESCRIPTION + "Call Taylor Swift's manager "

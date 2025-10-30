@@ -19,6 +19,11 @@ public class ListEventsCommand extends Command {
     /** Success message displayed when events are listed. */
     public static final String MESSAGE_SUCCESS = "Listed all events";
 
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Lists all events in the system.\n"
+            + "Parameters: " + " none\n"
+            + "Example: " + COMMAND_WORD;
+
     /**
      * Executes the list-events command.
      *
