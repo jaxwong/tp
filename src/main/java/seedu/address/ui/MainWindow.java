@@ -68,6 +68,8 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+        primaryStage.setMaximized(true);
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
