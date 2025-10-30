@@ -15,8 +15,8 @@ public class CliSyntax {
     // for events
     public static final Prefix PREFIX_EVENT_NAME = new Prefix("en/");
     public static final Prefix PREFIX_EVENT_ALIAS = new Prefix("ea/");
-    public static final Prefix PREFIX_START = new Prefix("s/");
-    public static final Prefix PREFIX_END = new Prefix("e/");
+    public static final Prefix PREFIX_START = new Prefix("st/");
+    public static final Prefix PREFIX_END = new Prefix("et/");
     public static final Prefix PREFIX_DESC = new Prefix("d/");
     // for todos
     public static final Prefix PREFIX_TODO_NAME = new Prefix("tn/");
