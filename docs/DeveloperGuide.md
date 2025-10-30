@@ -166,7 +166,7 @@ The command implements the following key operations through the `Model` interfac
 - Model#hasEvent(Event) — Checks if an event with the same alias already exists in the address book
 - Model#addEvent(Event) — Adds a new event to the address book's event list and updates the filtered event list
 
-These operations are backed by the `AddreessBook` which maintains a `UniqueEventList` to ensure no duplicate events exist.
+These operations are backed by the `AddressBook` which maintains a `UniqueEventList` to ensure no duplicate events exist.
 
 Given below is an example usage scenario and how the add-event mechanism behaves at each step.
 
@@ -177,7 +177,7 @@ The following sequence diagram shows how an add-event operation goes through the
 Step 1. The user launches the application. The `AddressBook` is initialised with its saved state, which may contain zero
 or more existing events stored in a `UniqueEventList`
 
-Step 2. The user executes `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Eras Tour`
+Step 2. The user executes `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/Taylor's Eras Tour`
 to add a new event. The input string is passed to `LogicManager`, which passes it to `AddressBookParser` for parsing.
 
 Step 3. `AddressBookParser` identifies the command word `add-event` and delegates to `AddEventCommandParser`. The parser performs the following steps:
@@ -209,7 +209,7 @@ Step 7. If no duplicate is found, `Model#addEvent(Event)` is then called. This m
 
 The `UniqueEventList` maintains the internal observable list that JavaFx uses to update the UI automatically
 
-Step 8. After successful addition, a CommandResult is returend with a success message: "New Event added:[formatted event details]". 
+Step 8. After successful addition, a CommandResult is returned with a success message: "New Event added:[formatted event details]". 
 The UI automatically reflects the new event in the event list panel.
 
 
@@ -254,7 +254,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/AddEventSequenceDiagram-Logic.png)
+![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 

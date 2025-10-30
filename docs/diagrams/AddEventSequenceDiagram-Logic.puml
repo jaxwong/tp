@@ -5,29 +5,41 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
 participant "a:AddEventCommand" as AddEventCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
+
 [-> LogicManager : execute("add-event...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add-event...)
+LogicManager -> AddressBookParser : parseCommand("add-event...")
 activate AddressBookParser
 
+create AddEventCommandParser
+AddressBookParser -> AddEventCommandParser
+activate AddEventCommandParser
+
+AddressBookParser -> AddEventCommandParser : parse(arguments)
+
 create AddEventCommand
-AddressBookParser -> AddEventCommand
+AddEventCommandParser -> AddEventCommand
 activate AddEventCommand
 
-AddEventCommand --> AddressBookParser : a
+AddEventCommand --> AddEventCommandParser : a
 deactivate AddEventCommand
+
+AddEventCommandParser --> AddressBookParser : a
+deactivate AddEventCommandParser
+destroy AddEventCommandParser
 
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 
-LogicManager -> AddEventCommand : execute()
+LogicManager -> AddEventCommand : execute(model)
 activate AddEventCommand
 
 AddEventCommand -> Model : addEvent(toAdd)
