@@ -441,8 +441,8 @@ Use case ends.
 
 **MSS**
 
-1. User requests to delete an event by specifying its index in the event list.
-2. OverBooked verifies that the index is valid.
+1. User requests to delete an event.
+2. OverBooked verifies that the index provided is valid.
 3. OverBooked deletes the specified event.
 4. OverBooked removes all references to the event from the associated contacts.
 5. OverBooked updates and displays the new event list.
