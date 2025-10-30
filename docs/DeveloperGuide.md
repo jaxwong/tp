@@ -290,6 +290,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | event planner | unlink a contact from an event | remove incorrect or old associations                               |
 | `* * *`  | event planner | find contacts by event         | view all people associated with a specific event                   |
 | `* * *`  | event planner | find events by alias           | quickly locate an event without going through the entire list      |
+| `* * *`  | event planner | clear all data                 | manage my events from blank slate                                  |
 | `* *`    | event planner | add a todo                     | store information about tasks to be done                           |
 | `* *`    | event planner | view all todos                 | view all the tasks on my plate                                     |
 | `* *`    | event planner | delete a todo                  | remove completed or irrelevant tasks                               |
@@ -301,32 +302,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Overbooked` and the **Actor** is the `event planner`, unless specified otherwise)
+(For all use cases below, the **System** is `OverBooked` and the **Actor** is the `event planner`, unless specified otherwise)
 
 **Use case: UC1 - Add a contact**
 
 **MSS**
 
 1. User requests to add a contact with the required details
-2. Overbooked adds the contact
-3. Overbooked updates the list and displays success message
+2. OverBooked adds the contact
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User uses the invalid format or parameters
-    * 1a1. Overbooked informs the user of the error and displays the correct format
+    * 1a1. OverBooked informs the user of the error and displays the correct format
 
 Use case ends.
 
 * 1b. User tries to add a contact with the same name
-    * 1b1. Overbooked informs the user that the contact already exists
+    * 1b1. OverBooked informs the user that the contact already exists
 
 Use case ends.
 
-* 2a. Overbooked is unable to save the new contact list
-    * 2a1. Overbooked informs the user of the error
+* 2a. OverBooked is unable to save the new contact list
+    * 2a1. OverBooked informs the user of the error
 
 Use case resumes from step 3.
 
@@ -336,14 +337,14 @@ Use case resumes from step 3.
 **MSS**
 
 1. User requests to view the list of contacts
-2. Overbooked shows the list of contacts
+2. OverBooked shows the list of contacts
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Overbooked is unable to get the list of contacts
-    * 1a1. Overbooked shows an error message
+* 1a. OverBooked is unable to get the list of contacts
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
 
@@ -353,20 +354,20 @@ Use case ends.
 **MSS**
 
 1. User requests to edit a particular contact with the updated details.
-2. Overbooked updates the contact.
-3. Overbooked updates the list and displays success message.
+2. OverBooked updates the contact.
+3. OverBooked updates the list.
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User uses the invalid format or parameters.
-    * 1a1. Overbooked informs the user of the error and displays the correct format.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
 * 1b. The new contact name is already used by another existing contact.
-    * 1b1. Overbooked informs the user that contact already exists.
+    * 1b1. OverBooked informs the user that contact already exists.
 
 Use case ends.
 
@@ -376,14 +377,14 @@ Use case ends.
 **MSS**
 
 1. User types in keywords to search for contacts
-2. Overbooked shows a list of contacts with matching keywords
+2. OverBooked shows a list of contacts with matching keywords
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Overbooked did not find any contacts with matching keywords
-    * 1a1. Overbooked shows user a message saying no matching keywords
+* 1a. OverBooked did not find any contacts with matching keywords
+    * 1a1. OverBooked shows user a message saying no matching keywords
 
 Use case ends.
 
@@ -393,20 +394,20 @@ Use case ends.
 **MSS**
 
 1. User deletes a contact
-2. Overbooked removes the contact from the database
-3. Overbooked updates the list
+2. OverBooked removes the contact from the database
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User tries to delete a contact that does not exist in the database
-    * 1a1. Overbooked shows an error message to the user
+    * 1a1. OverBooked shows an error message to the user
 
 Use case ends.
 
-* 2a. Overbooked is unable to save the new events list
-    * 2a1. Overbooked informs the user of the error
+* 2a. OverBooked is unable to save the new contacts list
+    * 2a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -417,7 +418,7 @@ Use case ends.
 
 1. User requests to add an event with the required details.
 2. OverBooked adds the event.
-3. OverBooked updates the list and displays success message.
+3. OverBooked updates the list.
 
 Use case ends.
 
@@ -445,18 +446,18 @@ Use case resumes from step 3.
 **MSS**
 
 1. User requests to view the list of events
-2. Overbooked shows the list of events
+2. OverBooked shows the list of events
 
 Use case ends.
 
 **Extensions**
-* 1a. Overbooked is unable to get the list of events
-    * 1a1. Overbooked shows an error message
+* 1a. OverBooked is unable to get the list of events
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
 
-* 1b. Overbooked has no events saved
-    * 1b1. Overbooked informs the user that there are no events
+* 1b. OverBooked has no events saved
+    * 1b1. OverBooked informs the user that there are no events
 
 Use case ends.
 
@@ -502,14 +503,14 @@ Use case ends.
 **MSS**
 
 1. User requests to find contacts associated with the event.
-2. Overbooked shows a list of contacts that are associated with the event.
+2. OverBooked shows a list of contacts that are associated with the event.
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User uses the invalid format or parameters.
-    * 1a1. Overbooked informs the user of the error and displays the correct format.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
@@ -537,11 +538,12 @@ Use case ends.
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2. Should be able to hold up to 1000 persons, 1000 events and 1000 todos without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
-5. The GUI should update in real-time when contacts/events are added, listed or deleted.
-6. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
-7. The system must reject invalid command formats, duplicate entries and malformed data consistently.
-8. All saved data must survive application restarts.
+4. Commands should be case-insensitive.
+5. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
+6. The GUI should update in real-time when contacts/events/todos are added, listed or deleted.
+7. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
+8. The system must reject invalid command formats, duplicate entries and malformed data consistently.
+9. All saved data must survive application restarts.
 
 
 ### Glossary
@@ -550,7 +552,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI(Command Line Interface)**: A text-based interface where the user types commands to interact with the application.
 * **GUI(Graphical User Interface)**: The visual interface of the app (panels, windows) built using JavaFX.
-* **Contact**: Any person in `Overbooked`. This term is used interchangeably with the term "person".
+* **Contact**: Any person in `OverBooked`. This term is used interchangeably with the term "person".
 * **Todo**: A task that the event planner needs to do.
 
 
@@ -574,8 +576,8 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Open a terminal and navigate to that folder using the cd command
+   3. Run the application by typing java -jar OverBooked.jar
 
 1. Saving window preferences
 
