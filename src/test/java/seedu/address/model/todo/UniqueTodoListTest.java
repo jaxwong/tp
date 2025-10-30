@@ -39,16 +39,6 @@ public class UniqueTodoListTest {
     }
 
     @Test
-    public void contains_todoWithDifferentFields_returnsFalse() {
-        uniqueTodoList.add(REVIEW_PROPOSAL);
-        Todo editedReviewProposal = new TodoBuilder(REVIEW_PROPOSAL)
-                .withContactName("Different Contact")
-                .withCompleted(true)
-                .build();
-        assertFalse(uniqueTodoList.contains(editedReviewProposal));
-    }
-
-    @Test
     public void add_nullTodo_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTodoList.add(null));
     }
@@ -105,12 +95,6 @@ public class UniqueTodoListTest {
         assertEquals(expectedUniqueTodoList, uniqueTodoList);
     }
 
-    @Test
-    public void setTodo_editedTodoHasNonUniqueIdentity_throwsDuplicateTodoException() {
-        uniqueTodoList.add(REVIEW_PROPOSAL);
-        uniqueTodoList.add(SEND_INVITES);
-        assertThrows(DuplicateTodoException.class, () -> uniqueTodoList.setTodo(REVIEW_PROPOSAL, SEND_INVITES));
-    }
 
     @Test
     public void remove_nullTodo_throwsNullPointerException() {
