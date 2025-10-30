@@ -10,7 +10,7 @@ import seedu.address.model.event.AliasContainsKeywordsPredicate;
 import seedu.address.ui.DisplayList;
 
 /**
- * Finds and lists all events in address book whose alias contains any of the argument keywords.
+ * Finds and lists all events in address book whose alias starts with any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindEventCommand extends Command {
