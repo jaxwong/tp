@@ -34,11 +34,10 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
                         PREFIX_DESC
                 );
 
-        if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()) {
+        if (!argMultimap.getValue(PREFIX_EVENT_ALIAS).isPresent()
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditEventCommand.MESSAGE_USAGE));
         }
-
-        EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 
         argMultimap.verifyNoDuplicatePrefixesFor(
                 PREFIX_EVENT_NAME,
@@ -47,6 +46,8 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
                 PREFIX_END,
                 PREFIX_DESC
         );
+
+        EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 
         EditEventCommand.EditEventDescriptor editEventDescriptor = new EditEventCommand.EditEventDescriptor();
 
@@ -60,7 +61,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             editEventDescriptor.setEnd(ParserUtil.parseDate(argMultimap.getValue(PREFIX_END).get()));
         }
         if (argMultimap.getValue(PREFIX_DESC).isPresent()) {
-            editEventDescriptor.setDescription(argMultimap.getValue(PREFIX_DESC).get());
+            editEventDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESC).get()));
         }
 
         if (!editEventDescriptor.isAnyFieldEdited()) {

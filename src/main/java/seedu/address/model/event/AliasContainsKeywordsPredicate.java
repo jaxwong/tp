@@ -7,7 +7,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Events}'s {@code EventAlias} matches any of the keywords given.
+ * Tests that a {@code Events}'s {@code EventAlias} starts with any of the keywords given.
  */
 public class AliasContainsKeywordsPredicate implements Predicate<Event> {
     private final List<String> keywords;

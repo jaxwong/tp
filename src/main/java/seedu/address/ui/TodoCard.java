@@ -49,9 +49,9 @@ public class TodoCard extends UiPart<Region> {
         // Set status checkbox
         if (todo.getIsCompleted()) {
             status.setText("☑ Completed"); // Checked box with X
-            status.getStyleClass().add("status-checkbox");
+            status.getStyleClass().add("completed");
         } else {
-            status.setText("☐ In Progress"); // Empty box
+            status.setText("☐ Not Done"); // Empty box
             status.getStyleClass().add("status-checkbox");
             status.getStyleClass().add("incomplete");
         }

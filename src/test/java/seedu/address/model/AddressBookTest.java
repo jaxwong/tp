@@ -91,6 +91,63 @@ public class AddressBookTest {
         assertEquals(expected, addressBook.toString());
     }
 
+    @Test
+    public void equals() {
+        // same values -> returns true
+        AddressBook addressBookCopy = new AddressBook();
+        assertTrue(addressBook.equals(addressBookCopy));
+
+        // same object -> returns true
+        assertTrue(addressBook.equals(addressBook));
+
+        // null -> returns false
+        assertFalse(addressBook.equals(null));
+
+        // different type -> returns false
+        assertFalse(addressBook.equals(5));
+
+        // different persons -> returns false
+        AddressBook differentAddressBook = new AddressBook();
+        differentAddressBook.addPerson(ALICE);
+        assertFalse(addressBook.equals(differentAddressBook));
+
+        // different events -> returns false
+        AddressBook addressBookWithEvents = new AddressBook();
+        addressBookWithEvents.addEvent(seedu.address.testutil.TypicalEvents.CONCERT);
+        assertFalse(addressBook.equals(addressBookWithEvents));
+
+        // different todos -> returns false
+        AddressBook addressBookWithTodos = new AddressBook();
+        addressBookWithTodos.addTodo(seedu.address.testutil.TypicalTodos.REVIEW_PROPOSAL);
+        assertFalse(addressBook.equals(addressBookWithTodos));
+
+        // same persons, events, and todos -> returns true
+        AddressBook completeAddressBook1 = new AddressBook();
+        completeAddressBook1.addPerson(ALICE);
+        completeAddressBook1.addEvent(seedu.address.testutil.TypicalEvents.CONCERT);
+        completeAddressBook1.addTodo(seedu.address.testutil.TypicalTodos.REVIEW_PROPOSAL);
+
+        AddressBook completeAddressBook2 = new AddressBook();
+        completeAddressBook2.addPerson(ALICE);
+        completeAddressBook2.addEvent(seedu.address.testutil.TypicalEvents.CONCERT);
+        completeAddressBook2.addTodo(seedu.address.testutil.TypicalTodos.REVIEW_PROPOSAL);
+
+        assertTrue(completeAddressBook1.equals(completeAddressBook2));
+
+        // same persons but different events -> returns false
+        AddressBook addressBookWithDifferentEvents = new AddressBook();
+        addressBookWithDifferentEvents.addPerson(ALICE);
+        addressBookWithDifferentEvents.addEvent(seedu.address.testutil.TypicalEvents.MEETING);
+        assertFalse(completeAddressBook1.equals(addressBookWithDifferentEvents));
+
+        // same persons and events but different todos -> returns false
+        AddressBook addressBookWithDifferentTodos = new AddressBook();
+        addressBookWithDifferentTodos.addPerson(ALICE);
+        addressBookWithDifferentTodos.addEvent(seedu.address.testutil.TypicalEvents.CONCERT);
+        addressBookWithDifferentTodos.addTodo(seedu.address.testutil.TypicalTodos.SEND_INVITES);
+        assertFalse(completeAddressBook1.equals(addressBookWithDifferentTodos));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
