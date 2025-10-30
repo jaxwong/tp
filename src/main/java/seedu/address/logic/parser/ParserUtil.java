@@ -27,6 +27,7 @@ import seedu.address.model.todo.TodoName;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INTEGER_OVERFLOW = "This index is too large!";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
@@ -39,7 +40,15 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+
+        int indexValue;
+        try {
+            indexValue = Integer.parseInt(trimmedIndex);
+        } catch (NumberFormatException e) {
+            throw new ParseException(MESSAGE_INTEGER_OVERFLOW);
+        }
+
+        return Index.fromOneBased(indexValue);
     }
 
     /**

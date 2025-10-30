@@ -420,20 +420,20 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## Prefix Constraint Summary
 
-| Prefix                | Constraint(s)                                                                                                                                                                                       |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `n/` (Name)           | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.<br>[Regex: `[\p{Alnum}][\p{Alnum} ]*`]                                                                           |
-| `p/` (Phone)          | Numbers only, at least 3 digits.<br>[Regex: `\d{3,}`]                                                                                                                                               |
+| Prefix                | Constraint(s)                                                                                                                                                                                     |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n/` (Name)           | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
+| `p/` (Phone)          | Numbers only, at least 3 digits.                                                                                                                                            |
 | `e/` (Email)          | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)        | Any value; cannot be blank or start with whitespace.<br>[Regex: `[^\s].*`]                                                                                                                          |
-| `t/` (Tag)            | Alphanumeric only, minimum 1 character.<br>[Regex: `\p{Alnum}+`]                                                                                                                                    |
-| `en/` (Event Name)    | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.<br>[Regex: `^[A-Za-z0-9'&,\- ]{1,100}$`]                                                  |
-| `ea/` (Event Alias)   | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.<br>[Regex: `^[A-Za-z0-9_-]{1,20}$`]                                                                                        |
-| `s/`, `e/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
-| `d/` (Event Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
-| `tn/` (Todo Name)     | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.<br>[Regex: `^[A-Za-z0-9'&,\- ]{1,50}$`]                                                    |
-| `td/` (Todo Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
-| `INDEX`               | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
+| `a/` (Address)        | Any value; cannot be blank or start with whitespace.                                                                                                                        |
+| `t/` (Tag)            | Alphanumeric only, minimum 1 character.                                                                                                                                  |
+| `en/` (Event Name)    | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
+| `ea/` (Event Alias)   | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
+| `s/`, `e/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
+| `d/` (Event Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `tn/` (Todo Name)     | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
+| `td/` (Todo Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `INDEX`               | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
 
 **Notes:**
 

@@ -128,8 +128,8 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object), as well as `Event` objects (which are contained in a `UniqueEventList`) and `Todo` objects (which are contained in a `UniqueTodoList`).
+* stores the currently 'selected' `Person` and `Event` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Event>` and `ObservableList<Todo>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -170,6 +170,66 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+## Add-Event Feature
+
+The Add-Event mechanism is facilitated by the `AddEventCommand` class. It allows users to create and store new events in 
+the address book with complete details including name, alias, start time, end time, and description. 
+
+The `EventAlias` serves as a unique identifier for each event
+
+The command implements the following key operations through the `Model` interface:
+- Model#hasEvent(Event) — Checks if an event with the same alias already exists in the address book
+- Model#addEvent(Event) — Adds a new event to the address book's event list and updates the filtered event list
+
+These operations are backed by the `AddressBook` which maintains a `UniqueEventList` to ensure no duplicate events exist.
+
+Given below is an example usage scenario and how the add-event mechanism behaves at each step.
+
+The following sequence diagram shows how an add-event operation goes through the `Logic` component:
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram-Logic.png)
+
+Step 1. The user launches the application. The `AddressBook` is initialised with its saved state, which may contain zero
+or more existing events stored in a `UniqueEventList`
+
+Step 2. The user executes `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/Taylor's Eras Tour`
+to add a new event. The input string is passed to `LogicManager`, which passes it to `AddressBookParser` for parsing.
+
+Step 3. `AddressBookParser` identifies the command word `add-event` and delegates to `AddEventCommandParser`. The parser performs the following steps:
+
+1. Tokenization: The parser uses `ArgumentTokenizer.tokenize()` to seperate the input into an `ArgumentMultimap` containing the
+EventName, EventAlias, start time, end time and description.
+
+2. Validation: The parser then checks that
+    - All five required prefixes are present
+    - The preamble is empty (no text before first prefix)
+    - No duplicate prefixes exists (via `verifyNoDuplicatePrefixesFor()`)
+
+If any of the validation fails, a `ParseException` is thrown with the appropriate usage message.
+
+Step 4. The parser uses `ParserUtil` to convert string values into strongly-typed objects
+
+Step 5. A new `Event` object will thus be constructed with these parsed values via its constructor. which will then be
+passed on to the `AddEventCommand`
+
+Step 6. When `AddEventCommand#execute(Model)` is called, it first checks for duplicates using `Model#hasEvent(Event)`, which
+compares and considers two events to be the same if their `EventAlias` is the same (case-insensitive). 
+
+The following sequence diagram shows how an add-event operation goes through the `Model` component:
+
+![AddEventSequenceDiagram](images/AddEventSequenceDiagram-Model.png)
+
+Step 7. If no duplicate is found, `Model#addEvent(Event)` is then called. This method;
+
+1. Calls `AddressBook#addEvent(Event)` to add the event to the `UniqueEventList`
+2. Calls `updateFilteredEventLIst(PREDICATE_SHOW_ALL_EVENTS)` to refresh the filtered view
+
+The `UniqueEventList` maintains the internal observable list that JavaFx uses to update the UI automatically
+
+Step 8. After successful addition, a CommandResult is returned with a success message: "New Event added:[formatted event details]". 
+The UI automatically reflects the new event in the event list panel.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -212,7 +272,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how an undo operation goes through the `Logic` component:
 
-![UndoSequenceDiagram](images/AddEventSequenceDiagram-Logic.png)
+![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -278,7 +338,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* Sports hub events planner who has to operate and liaise with various stakeholders to host sports events
+* Events planner who has to operate and liaise with various stakeholders to host events
 * Has to juggle multiple events
 * Has tight deadlines
 * Value time and efficiency
@@ -291,43 +351,58 @@ Provides event planners with a single, organized hub for managing all contacts r
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I want to …​                                        | So that I can…​                                             |
-|-------|-------------------------------------------|-----------------------------------------------------|-------------------------------------------------------------|
-| `* * *` | user                                      | search contacts by name                             | easily obtain their contact details                         |
-| `* * *` | user                                      | modify my contact list                              | add and delete relevant contacts accordingly                |
-| `* * *` | user                                      | view all information regarding a particular contact | easily contact the person                                   |
-| `* * *` | user                                      | access the contacts saved from my previous event    | quickly and efficiently add these contacts to my next event |
-| `* * *` | user                                      | add upcoming appointment                            | deconflict clashes while scheduling other appointments      |
-| `* *` | user                                      | filter my contacts by event                         | find all the people involved in that specific event         |
+| Priority | As a …​       | I want to …​                   | So that I can…​                                                    |
+|----------|---------------|--------------------------------|--------------------------------------------------------------------|
+| `* * *`  | event planner | add a contact                  | store contact information                                          |
+| `* * *`  | event planner | view all contacts              | quickly obtain information to contact anyone involved in my events |
+| `* * *`  | event planner | edit a contact                 | keep contacts' information accurate and updated                    |
+| `* * *`  | event planner | delete a contact               | remove irrelevant people                                           |
+| `* * *`  | event planner | find contacts by name          | quickly locate someone specific without going through entire list  |
+| `* * *`  | event planner | add an event                   | store events to plan for                                           |
+| `* * *`  | event planner | view all events                | view all the upcoming events                                       |
+| `* * *`  | event planner | edit an event                  | update event details when details change                           |
+| `* * *`  | event planner | delete an event                | remove canceled or past events                                     |
+| `* * *`  | event planner | link a contact to an event     | know which event a contact is involved in                          |
+| `* * *`  | event planner | unlink a contact from an event | remove incorrect or old associations                               |
+| `* * *`  | event planner | find contacts by event         | view all people associated with a specific event                   |
+| `* * *`  | event planner | find events by alias           | quickly locate an event without going through the entire list      |
+| `* * *`  | event planner | clear all data                 | manage my events from blank slate                                  |
+| `* *`    | event planner | add a todo                     | store information about tasks to be done                           |
+| `* *`    | event planner | view all todos                 | view all the tasks on my plate                                     |
+| `* *`    | event planner | delete a todo                  | remove completed or irrelevant tasks                               |
+| `* `     | event planner | mark a todo as completed       | keep track of what I have already done                             |
+| `* `     | event planner | unmark a todo as incomplete    | reopen tasks when needed                                           |
+| `*`      | event planner | edit a todo                    | update a task’s information when details change                    |
+
 
 ### Use cases
 
-(For all use cases below, the **System** is `Overbooked` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `OverBooked` and the **Actor** is the `event planner`, unless specified otherwise)
 
 **Use case: UC1 - Add a contact**
 
 **MSS**
 
 1. User requests to add a contact with the required details
-2. Overbooked adds the contact
-3. Overbooked updates the list
+2. OverBooked adds the contact
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User uses the invalid format or parameters
-    * 1a1. Overbooked informs the user of the error and displays the correct format
+    * 1a1. OverBooked informs the user of the error and displays the correct format
 
 Use case ends.
 
 * 1b. User tries to add a contact with the same name
-    * 1b1. Overbooked informs the user that the contact already exists
+    * 1b1. OverBooked informs the user that the contact already exists
 
 Use case ends.
 
-* 2a. Overbooked is unable to save the new contact list
-    * 2a1. Overbooked informs the user of the error
+* 2a. OverBooked is unable to save the new contact list
+    * 2a1. OverBooked informs the user of the error
 
 Use case resumes from step 3.
 
@@ -337,24 +412,39 @@ Use case resumes from step 3.
 **MSS**
 
 1. User requests to view the list of contacts
-2. Overbooked shows the list of contacts
+2. OverBooked shows the list of contacts
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Overbooked is unable to get the list of contacts
-    * 1a1. Overbooked shows an error message
-
-Use case ends.
-
-* 1b. Overbooked has no contacts saved
-    * 1b1. Overbooked informs the user that there are no contacts
+* 1a. OverBooked is unable to get the list of contacts
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
 
 
 **Use case: UC3 - Edit a contact**
+
+**MSS**
+
+1. User requests to edit a particular contact with the updated details.
+2. OverBooked updates the contact.
+3. OverBooked updates the list.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
+
+Use case ends.
+
+* 1b. The new contact name is already used by another existing contact.
+    * 1b1. OverBooked informs the user that contact already exists.
+
+Use case ends.
 
 
 **Use case: UC4 - Find contact by contact name**
@@ -362,14 +452,14 @@ Use case ends.
 **MSS**
 
 1. User types in keywords to search for contacts
-2. Overbooked shows a list of contacts with matching keywords
+2. OverBooked shows a list of contacts with matching keywords
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Overbooked did not find any contacts with matching keywords
-    * 1a1. Overbooked shows user a message saying no matching keywords
+* 1a. OverBooked did not find any contacts with matching keywords
+    * 1a1. OverBooked shows user a message saying no matching keywords
 
 Use case ends.
 
@@ -379,20 +469,20 @@ Use case ends.
 **MSS**
 
 1. User deletes a contact
-2. Overbooked removes the contact from the database
-3. Overbooked updates the list
+2. OverBooked removes the contact from the database
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
 * 1a. User tries to delete a contact that does not exist in the database
-    * 1a1. Overbooked shows an error message to the user
+    * 1a1. OverBooked shows an error message to the user
 
 Use case ends.
 
-* 2a. Overbooked faced some errors in saving the contact list
-    * 2a1. Overbooked informs the user of the error
+* 2a. OverBooked is unable to save the new contacts list
+    * 2a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -401,21 +491,21 @@ Use case ends.
 
 **MSS**
 
-1. User requests to add an event with the required details
-2. OverBooked adds the event
-3. OverBooked updates the list
+1. User requests to add an event with the required details.
+2. OverBooked adds the event.
+3. OverBooked updates the list.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User provides an unacceptable value for the argument
-    * 1a1. OverBooked informs the user of the acceptable values
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the new event
-    * 2a1. OverBooked informs the user of the error
+* 2a. OverBooked is unable to save the new event.
+    * 2a1. OverBooked informs the user of the error.
 
 Use case resumes from step 3.
 
@@ -488,18 +578,18 @@ Use case ends.
 **MSS**
 
 1. User requests to view the list of events
-2. Overbooked shows the list of events
+2. OverBooked shows the list of events
 
 Use case ends.
 
 **Extensions**
-* 1a. Overbooked is unable to get the list of events
-    * 1a1. Overbooked shows an error message
+* 1a. OverBooked is unable to get the list of events
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
 
-* 1b. Overbooked has no events saved
-    * 1b1. Overbooked informs the user that there are no events
+* 1b. OverBooked has no events saved
+    * 1b1. OverBooked informs the user that there are no events
 
 Use case ends.
 
@@ -559,37 +649,58 @@ Use case ends.
 
 **MSS**
 
-1. User requests to delete an event by specifying its index in the event list.
-2. Event Planner verifies that the index is valid.
-3. Event Planner deletes the specified event.
-4. Event Planner removes all references to the event from the associated contacts.
-5. Event Planner updates and displays the new event list.
+1. User requests to delete an event.
+2. OverBooked deletes the specified event.
+3. OverBooked updates and displays the new event list.
 
 Use case ends.
 
 **Extensions**
 
-* 2a. The given index is not a valid positive integer
-    * 2a1. Event Planner shows an error message: “Invalid command format. Delete event: Deletes the event identified by the index number used in the event list. Parameters: INDEX(must be a positive integer).”
-
-Use case ends.
-
-* 2b. The given index is greater than the number of displayed events.
-    * 2b1. Event Planner shows an error message: “The event index [INDEX] provided is invalid.”
+* 1a. The event could not be found. 
+    * 1a1. OverBooked shows an error message.
 
 Use case ends.
 
 * 3a. Database update fails.
-    * 3a1. Event Planner shows error message: “Failed to save deletion changes. Please restart the app and try again.”
+    * 3a1. OverBooked informs the user of the error.
 
 Use case ends.
 
 
-**Use case: UC13 - Find contacts by event alias**
+**Use case: UC13 - Find contacts by event**
+
+**MSS**
+
+1. User requests to find contacts associated with the event.
+2. OverBooked shows a list of contacts that are associated with the event.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
+
+Use case ends.
 
 
 **Use case: UC14 - Add a todo**
 
+**MSS**
+1. User requests to add a todo with the required details.
+2. OverBooked adds the todo.
+3. OverBooked updates the todo list.
+
+Use case ends.
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the new todo.
+    * 2a1. OverBooked informs the user of the error.
+Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
 
@@ -631,6 +742,19 @@ Use case ends.
 
 **Use case: UC16 - Delete a todo**
 
+**MSS** 
+1. User requests to delete a todo.
+2. OverBooked deletes the specified todo.
+3. OverBooked updates the todo list.
+
+Use case ends
+* 1a. User provides an invalid index.
+    * 1a1. OverBooked informs the user of the error.
+
+Use case ends.
+
+* 3a. Database update fails.
+    * 3a1. OverBooked informs the user of the error.
 
 **Use case: UC17 - List todos**
 
@@ -651,7 +775,7 @@ Use case ends.
 
 **MSS**
 1. User requests to mark a todo as complete.
-2. OverBooked marks the contact as complete.
+2. OverBooked marks the todo as complete.
 3. OverBooked updates the list to reflect the marking.
 
 Use case ends.
@@ -666,8 +790,8 @@ Use case ends.
 **Use case: UC19 - Mark a todo as incomplete**
 
 **MSS**
-1. User requests to mark a todo as complete
-2. OverBooked marks the todo as complete.
+1. User requests to mark a todo as incomplete.
+2. OverBooked marks the contact as incomplete.
 3. OverBooked updates the list to reflect the marking.
 
 Use case ends.
@@ -675,7 +799,7 @@ Use case ends.
 **Extensions**
 
 * 1a. User provides an unacceptable value for the argument.
-    * 1a1. Overbooked informs the user of the acceptable values.
+    * 1a1. OverBooked informs the user of the acceptable values.
 
 Use case ends.
 
@@ -684,11 +808,12 @@ Use case ends.
 1. Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
 2. Should be able to hold up to 1000 persons, 1000 events and 1000 todos without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
-5. The GUI should update in real-time when contacts/events are added, listed or deleted.
-6. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
-7. The system must reject invalid command formats, duplicate entries and malformed data consistently.
-8. All saved data must survive application restarts.
+4. Commands should be case-insensitive.
+5. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
+6. The GUI should update in real-time when contacts/events/todos are added, listed or deleted.
+7. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
+8. The system must reject invalid command formats, duplicate entries and malformed data consistently.
+9. All saved data must survive application restarts.
 
 *{More to be added}*
 
@@ -698,7 +823,7 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI(Command Line Interface)**: A text-based interface where the user types commands to interact with the application.
 * **GUI(Graphical User Interface)**: The visual interface of the app (panels, windows) built using JavaFX.
-* **Contact**: Any person in `Overbooked`. This term is used interchangeably with the term "person".
+* **Contact**: Any person in `OverBooked`. This term is used interchangeably with the term "person".
 * **Todo**: A task that the event planner needs to do.
 
 
@@ -722,8 +847,8 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Open a terminal and navigate to that folder using the cd command
+   3. Run the application by typing java -jar OverBooked.jar
 
 1. Saving window preferences
 
@@ -738,15 +863,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list-contacts` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete-contact 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete-contact 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete-contact x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -755,6 +880,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * If the application cannot find the data file (addressbook.json), it automatically creates a new file upon startup.
+   * If the data file is corrupted or unreadable, the application creates a new empty file to replace it.
 
 1. _{ more test cases …​ }_
