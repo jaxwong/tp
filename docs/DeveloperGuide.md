@@ -306,11 +306,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -513,7 +510,7 @@ Use case resumes from step 3.
 
 Use Case ends.
 
-** Extensions **
+**Extensions**
 * 1a. User inputs invalid format or parameters
     * 1a1. OverBooked informs user of the error and displays the correct format
 
@@ -544,7 +541,7 @@ Use case ends.
 
 Use case ends
 
-** Extensions **
+**Extensions**
 * 1a. User inputs invalid format or parameters
     * 1a1. OverBooked informs user of the error and displays the correct format
 
@@ -686,6 +683,9 @@ Use case ends.
 3. OverBooked updates the todo list.
 
 Use case ends.
+
+**Extensions**
+
 * 1a. User uses the invalid format or parameters.
     * 1a1. OverBooked informs the user of the error and displays the correct format.
 
@@ -693,6 +693,7 @@ Use case ends.
 
 * 2a. OverBooked is unable to save the new todo.
     * 2a1. OverBooked informs the user of the error.
+
 Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
@@ -741,6 +742,8 @@ Use case ends.
 3. OverBooked updates the todo list.
 
 Use case ends
+
+**Extensions**
 * 1a. User provides an invalid index.
     * 1a1. OverBooked informs the user of the error.
 
@@ -748,6 +751,8 @@ Use case ends.
 
 * 3a. Database update fails.
     * 3a1. OverBooked informs the user of the error.
+
+Use case ends.
 
 **Use case: UC17 - List todos**
 
