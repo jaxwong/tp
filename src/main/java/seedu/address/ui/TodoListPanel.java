@@ -42,6 +42,7 @@ public class TodoListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 setGraphic(new TodoCard(todo, getIndex() + 1).getRoot());
+                getStyleClass().add("todo-card");
             }
         }
     }

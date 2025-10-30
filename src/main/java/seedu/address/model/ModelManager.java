@@ -182,7 +182,12 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    //=========== Filtered Event List Accessors =============================================================
+    //=========== Event List Accessors =======================================================================
+
+    @Override
+    public ObservableList<Event> getEventList() {
+        return addressBook.getEventList();
+    }
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
@@ -231,7 +236,9 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredEvents.equals(otherModelManager.filteredEvents)
+                && filteredTodos.equals(otherModelManager.filteredTodos);
     }
 
 }

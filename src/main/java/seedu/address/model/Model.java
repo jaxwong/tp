@@ -116,6 +116,11 @@ public interface Model {
      */
     void deleteEvent(Event event);
 
+    /**
+     * Returns an unmodifiable view of the event list
+     */
+    ObservableList<Event> getEventList();
+
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
