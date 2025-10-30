@@ -27,7 +27,7 @@ public class UniqueTodoList implements Iterable<Todo> {
      */
     public boolean contains(Todo toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameTodo);
     }
 
     /**
@@ -74,7 +74,7 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new TodoNotFoundException();
         }
 
-        if (!target.equals(editedTodo) && contains(editedTodo)) {
+        if (!target.isSameTodo(editedTodo) && contains(editedTodo)) {
             throw new DuplicateTodoException();
         }
         internalList.set(index, editedTodo);
@@ -121,5 +121,25 @@ public class UniqueTodoList implements Iterable<Todo> {
     @Override
     public Iterator<Todo> iterator() {
         return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof UniqueTodoList)) {
+            return false;
+        }
+
+        UniqueTodoList otherUniqueTodoList = (UniqueTodoList) other;
+        return internalList.equals(otherUniqueTodoList.internalList);
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
     }
 }

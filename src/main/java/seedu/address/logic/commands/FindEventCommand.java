@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_ALIAS;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -10,7 +11,7 @@ import seedu.address.ui.DisplayList;
 
 /**
  * Finds and lists all events in address book whose alias contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindEventCommand extends Command {
 
@@ -18,8 +19,8 @@ public class FindEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose aliases have any of "
             + "the specified keywords (case-insensitive) as a prefix and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " tsc bts 2025";
+            + "Parameters: " + PREFIX_EVENT_ALIAS + " KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_EVENT_ALIAS + "tsc";
 
     private final AliasContainsKeywordsPredicate predicate;
 

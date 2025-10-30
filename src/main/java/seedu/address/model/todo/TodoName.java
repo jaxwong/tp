@@ -53,6 +53,6 @@ public class TodoName {
             return false;
         }
         TodoName otherTodoName = (TodoName) other;
-        return todoName.equals(otherTodoName.todoName);
+        return todoName.equalsIgnoreCase(otherTodoName.todoName);
     }
 }

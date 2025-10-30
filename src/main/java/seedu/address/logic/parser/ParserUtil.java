@@ -196,4 +196,18 @@ public class ParserUtil {
         return new TodoName(trimmedName);
     }
 
+    /**
+     * Parses a {@code String description} and make sures it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static String parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (trimmedDescription.isEmpty() || trimmedDescription.length() > 50) {
+            throw new ParseException("Description must be non-empty and up to 50 characters.");
+        }
+        return trimmedDescription;
+    }
+
 }

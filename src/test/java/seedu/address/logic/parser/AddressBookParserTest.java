@@ -27,6 +27,7 @@ import seedu.address.logic.commands.FindEventCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListEventsCommand;
+import seedu.address.logic.commands.ListTodosCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
 import seedu.address.logic.commands.UnmarkTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -98,13 +99,35 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_listWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand(
+                        ListCommand.COMMAND_WORD + " 3"));
+
     }
 
     @Test
     public void parseCommand_listEvents() throws Exception {
         assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD) instanceof ListEventsCommand);
-        assertTrue(parser.parseCommand(ListEventsCommand.COMMAND_WORD + " 3") instanceof ListEventsCommand);
+    }
+
+    @Test
+    public void parseCommand_listEventsWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand(
+                ListEventsCommand.COMMAND_WORD + " whicbwbwivwbovwoqo"));
+    }
+
+    @Test
+    public void parseCommand_listTodos() throws Exception {
+        assertTrue(parser.parseCommand(ListTodosCommand.COMMAND_WORD) instanceof ListTodosCommand);
+    }
+
+    @Test
+    public void parseCommand_listTodosWithArguments_throwsParseException() {
+        assertThrows(ParseException.class, () -> parser.parseCommand(ListTodosCommand.COMMAND_WORD
+                        + " svcwugeuvwbviwebciwbcweiu"));
     }
 
     @Test
@@ -120,7 +143,8 @@ public class AddressBookParserTest {
     public void parseCommand_findEvent() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindEventCommand command = (FindEventCommand) parser.parseCommand(
-                FindEventCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindEventCommand.COMMAND_WORD + " " + PREFIX_EVENT_ALIAS + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindEventCommand(new AliasContainsKeywordsPredicate(keywords)), command);
     }
 

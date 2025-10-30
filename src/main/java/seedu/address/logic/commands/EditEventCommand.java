@@ -46,7 +46,6 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
     public static final String MESSAGE_EVENT_NOT_FOUND = "Event not found.";
 
     private final EventAlias eventAlias;
@@ -68,8 +67,7 @@ public class EditEventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
-        List<Event> eventList = model.getFilteredEventList();
+        List<Event> eventList = model.getEventList();
 
         Event eventToEdit = eventList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
@@ -81,6 +79,7 @@ public class EditEventCommand extends Command {
         assert eventToEdit.isSameEvent(editedEvent);
 
         model.setEvent(eventToEdit, editedEvent);
+        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, Messages.format(editedEvent)));
     }
 
