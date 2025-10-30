@@ -74,7 +74,7 @@ public class UniqueTodoList implements Iterable<Todo> {
             throw new TodoNotFoundException();
         }
 
-        if (!target.equals(editedTodo) && contains(editedTodo)) {
+        if (!target.isSameTodo(editedTodo) && contains(editedTodo)) {
             throw new DuplicateTodoException();
         }
         internalList.set(index, editedTodo);
