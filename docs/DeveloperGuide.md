@@ -815,8 +815,6 @@ Use case ends.
 8. The system must reject invalid command formats, duplicate entries and malformed data consistently.
 9. All saved data must survive application restarts.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS

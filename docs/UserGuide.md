@@ -389,51 +389,51 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                 |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 👤 **Contacts**    |                                                                                                                                                                                                  |
-| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`            |
-| **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                              |
-| **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                |
-| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                     |     |
-| **list-contacts**  | `list-contacts`                                                                                                                                                                                  |
-| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                |
-| 🎫 **Events**      |                                                                                                                                                                                                  |
-| **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
-| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                       |
-| **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                  |
-| **list-events**    | `list-events`                                                                                                                                                                                    |
-| **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                              |
-| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                            |
-| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                    |
-| 📝 **Todos**       |                                                                                                                                                                                                  |
-| **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                |
-| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                    |
-| **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                     |
-| **list-todos**     | `list-todos`                                                                                                                                                                                     |
-| **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                          |
-| **unmark-todo**    | `unmark-todo INDEX` <br> e.g.`unmark-todo 1`                                                                                                                                                     |
-| 💻 **System**      |                                                                                                                                                                                                  |
-| **help**           | `help`                                                                                                                                                                                           |
-| **clear**          | `clear`                                                                                                                                                                                          |
-| **exit**           | `exit`                                                                                                                                                                                           |     |
+| Action             | Format, Examples                                                                                                                                                                                   |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 👤 **Contacts**    |                                                                                                                                                                                                    |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`              |
+| **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                                |
+| **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                  |
+| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                       |     |
+| **list-contacts**  | `list-contacts`                                                                                                                                                                                    |
+| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                  |
+| 🎫 **Events**      |                                                                                                                                                                                                    |
+| **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                         |
+| **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                    |
+| **list-events**    | `list-events`                                                                                                                                                                                      |
+| **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                |
+| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                              |
+| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                      |
+| 📝 **Todos**       |                                                                                                                                                                                                    |
+| **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                  |
+| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                      |
+| **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                       |
+| **list-todos**     | `list-todos`                                                                                                                                                                                       |
+| **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                            |
+| **unmark-todo**    | `unmark-todo INDEX` <br> e.g.`unmark-todo 1`                                                                                                                                                       |
+| 💻 **System**      |                                                                                                                                                                                                    |
+| **help**           | `help`                                                                                                                                                                                             |
+| **clear**          | `clear`                                                                                                                                                                                            |
+| **exit**           | `exit`                                                                                                                                                                                             |     |
 
 ## Prefix Constraint Summary
 
-| Prefix                | Constraint(s)                                                                                                                                                                                     |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `n/` (Name)           | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
-| `p/` (Phone)          | Numbers only, at least 3 digits.                                                                                                                                            |
-| `e/` (Email)          | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)        | Any value; cannot be blank or start with whitespace.                                                                                                                        |
-| `t/` (Tag)            | Alphanumeric only, minimum 1 character.                                                                                                                                  |
-| `en/` (Event Name)    | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
-| `ea/` (Event Alias)   | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
-| `s/`, `e/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
-| `d/` (Event Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `tn/` (Todo Name)     | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
-| `td/` (Todo Desc)     | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `INDEX`               | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
+| Prefix                  | Constraint(s)                                                                                                                                                                                     |
+|-------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n/` (Name)             | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                            |
+| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
+| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                        |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                  |
+| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
+| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
+| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
 
 **Notes:**
 
