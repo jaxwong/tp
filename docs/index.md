@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Overbooked
+title: OverBooked
 ---
 
 [![Java CI](https://github.com/AY2526S1-CS2103T-T10-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2526S1-CS2103T-T10-2/tp/actions/workflows/gradle.yml)
@@ -8,10 +8,10 @@ title: Overbooked
 
 ![Ui](images/Ui.png)
 
-**Overbooked is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+**OverBooked is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using Overbooked, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing Overbooked, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using OverBooked, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing OverBooked, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
