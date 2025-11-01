@@ -121,6 +121,11 @@ public interface Model {
      */
     ObservableList<Event> getEventList();
 
+    /**
+     * Returns an unmodifiable view of the person list
+     */
+    ObservableList<Person> getPersonList();
+
     /** Returns an unmodifiable view of the filtered event list */
     ObservableList<Event> getFilteredEventList();
 
