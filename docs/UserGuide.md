@@ -210,7 +210,7 @@ Examples:
 Adds an event to the address book.
 
 <div markdown="block" class="alert alert-info">
-❗The event alias is enforced to be unique, meaning 
+❗The event alias is enforced to be unique, meaning you can't repeat existing event alises
 </div>
 
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
