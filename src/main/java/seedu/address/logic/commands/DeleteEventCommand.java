@@ -37,7 +37,7 @@ public class DeleteEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Event> eventList = model.getEventList();
-        List<Person> personList = model.getPersonList();
+        List<Person> personList = model.getFilteredPersonList();
 
         Event eventToDelete = eventList.stream()
                 .filter(e -> e.getAlias().equalsIgnoreCase(eventAlias.toString()))
@@ -61,8 +61,6 @@ public class DeleteEventCommand extends Command {
 
 
         model.deleteEvent(eventToDelete);
-
-//        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, Messages.format(eventToDelete)));
     }

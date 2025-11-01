@@ -335,7 +335,7 @@ Edits an existing todo in the address book.
 ❗of course, while editing a todo, we would require at least one field!
 </div>
 
-Format: `edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]`
+Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
 
 Examples:
 
