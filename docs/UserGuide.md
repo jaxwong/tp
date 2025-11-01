@@ -16,6 +16,7 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
   - [Contacts](#contacts)
   - [Events](#events)
   - [Todos](#todos)
+  - [Miscellaneous](#miscellaneous)
 - [FAQ](#faq)
 - [Known Issues](#known-issues)
 - [Command Summary](#command-summary)
@@ -119,8 +120,7 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 ---
-
-## 👤 Contacts
+## Contacts
 
 ### Adding a person: `add-contact`
 
@@ -139,7 +139,7 @@ Examples:
 
 ### Listing all persons : `list-contacts`
 
-Shows a list of all persons in the address book.
+Shows a list of all persons in the address book. This removes any filters currently in the contact list.
 
 Format: `list-contacts`
 
@@ -148,7 +148,7 @@ Format: `list-contacts`
 Edits an existing person in the address book.
 
 <div markdown="block" class="alert alert-info">
-❗of course, while editing a perons, we would require at least one field!
+❗of course, while editing a person, we would require at least one field!
 </div>
 
 
@@ -201,7 +201,7 @@ Examples:
 
 ---
 
-## 🎫 Events
+## Events
 
 ### Adding an event: `add-event`
 
@@ -219,12 +219,13 @@ Examples:
 
 ### Linking an event: `link-event`
 
+Links a given contact (by index based on displayed list) to an event (by alias)
+
 <div markdown="block" class="alert alert-info">
-❗Each contact can only link to **one** specific event
+❗Each contact can only link to **one** specific event  
+
 ❗Linking an event to a contact that already has an event linked, will just update and replace it
 </div>
-
-Links a given contact (by index) to an event (by alias)
 
 Format: `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`
 
@@ -235,7 +236,7 @@ Examples:
 
 ### Unlinking an event: `unlink-event`
 
-Unlink a given contact (by index) from an event
+Unlink any given contact (by index based on displayed list) from an event
 
 Format: `unlink-event INDEX [MORE_INDEXES]`
 
@@ -245,7 +246,7 @@ Examples:
 
 ### Listing all events : `list-events`
 
-Shows a list of all events in the address book.
+Shows a list of **all** events in the address book. This removes any filters currently in the event list.
 
 Format: `list-events`
 
@@ -259,6 +260,7 @@ Edits an existing event in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 an EventAlias cannot be edited in order to enforce uniqueness
+The event alias field included in the field is to identify which specific event you want to ammend.
 </div>
 
 Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`
@@ -308,7 +310,7 @@ Examples:
 
 ---
 
-## 📝 Todos
+## Todos
 
 <div markdown="block" class="alert alert-info">
 ❗Each Todo cannot have the same todoname and description
@@ -330,7 +332,7 @@ Examples:
 Edits an existing todo in the address book.
 
 <div markdown="block" class="alert alert-info">
-❗of course, while editing an event, we would require at least one field!
+❗of course, while editing a todo, we would require at least one field!
 </div>
 
 Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
@@ -383,6 +385,10 @@ Format: `unmark-todo INDEX`
 Examples:
 
 - `list-todos` followed by `unmark-todo 2` marks the 2nd todo in the address book as incomplete.
+
+---
+
+## Miscellaneous
 
 ### Clearing all entries : `clear`
 
@@ -443,8 +449,8 @@ home folder.
 | **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                      |
 | **list-events**    | `list-events`                                                                                                                                                                                        |
 | **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                  |
-| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                                |
-| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                        |
+| **link-event**     | `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`<br>e.g. `link-event 1 2 ea/TSC2025`                                                                                                                 |
+| **unlink-event**   | `unlink-event INDEX [MORE_INDEXES]`<br>e.g. `unlink-event 1 2`                                                                                                                                       |
 | 📝 **Todos**       |                                                                                                                                                                                                      |
 | **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                    |
 | **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                        |
