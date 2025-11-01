@@ -36,12 +36,12 @@ public class TypicalPersons {
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
+            .withLinkedEventAlias("MEET24").withEmail("werner@example.com").withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
+            .withLinkedEventAlias("MEET24").withEmail("lydia@example.com").withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").build();
-    public static final Person JOHN = new PersonBuilder().withName("John Smith").withLinkedEventAlias("LA2026")
+    public static final Person JOHN = new PersonBuilder().withName("John Smith").withLinkedEventAlias("TSC2025")
             .withPhone("9472442").withEmail("john@example.com").withAddress("4th street").build();
 
     // Manually added

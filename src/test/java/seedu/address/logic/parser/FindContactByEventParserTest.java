@@ -22,8 +22,9 @@ public class FindContactByEventParserTest {
 
     @Test
     public void parse_validArgs_returnsFindContactByEventCommand() {
+        EventAlias alias = new EventAlias("bp2026");
         FindContactByEventCommand expectedCommand =
-                new FindContactByEventCommand(new EventAliasMatchesPredicate(new EventAlias("bp2026")));
+                new FindContactByEventCommand(new EventAliasMatchesPredicate(alias), alias);
         assertParseSuccess(parser, " ea/bp2026", expectedCommand);
     }
 }

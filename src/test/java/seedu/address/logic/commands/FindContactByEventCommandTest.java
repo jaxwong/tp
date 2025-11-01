@@ -6,13 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.AddressBookBuilder.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.JOHN;
 
 import java.util.Arrays;
@@ -38,14 +33,17 @@ public class FindContactByEventCommandTest {
         EventAliasMatchesPredicate secondPredicate =
                 new EventAliasMatchesPredicate(new EventAlias("second"));
 
-        FindContactByEventCommand findFirstCommand = new FindContactByEventCommand(firstPredicate);
-        FindContactByEventCommand findSecondCommand = new FindContactByEventCommand(secondPredicate);
+        EventAlias firstAlias = new EventAlias("first");
+        EventAlias secondAlias = new EventAlias("second");
+
+        FindContactByEventCommand findFirstCommand = new FindContactByEventCommand(firstPredicate, firstAlias);
+        FindContactByEventCommand findSecondCommand = new FindContactByEventCommand(secondPredicate, secondAlias);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindContactByEventCommand findFirstCommandCopy = new FindContactByEventCommand(firstPredicate);
+        FindContactByEventCommand findFirstCommandCopy = new FindContactByEventCommand(firstPredicate, firstAlias);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -61,8 +59,8 @@ public class FindContactByEventCommandTest {
     @Test
     public void execute_noMatch_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        EventAliasMatchesPredicate predicate = preparePredicate("no-match");
-        FindContactByEventCommand command = new FindContactByEventCommand(predicate);
+        EventAliasMatchesPredicate predicate = preparePredicate("TECHCONF24");
+        FindContactByEventCommand command = new FindContactByEventCommand(predicate, new EventAlias("TECHCONF24"));
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, DisplayList.PERSON);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -71,8 +69,8 @@ public class FindContactByEventCommandTest {
     @Test
     public void execute_match_singlePersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        EventAliasMatchesPredicate predicate = preparePredicate("LA2026");
-        FindContactByEventCommand command = new FindContactByEventCommand(predicate);
+        EventAliasMatchesPredicate predicate = preparePredicate("TSC2025");
+        FindContactByEventCommand command = new FindContactByEventCommand(predicate, new EventAlias("TSC2025"));
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, DisplayList.PERSON);
         assertEquals(Collections.singletonList(JOHN), model.getFilteredPersonList());
@@ -81,12 +79,12 @@ public class FindContactByEventCommandTest {
 
     @Test
     public void execute_match_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        EventAliasMatchesPredicate predicate = preparePredicate("BP2026");
-        FindContactByEventCommand command = new FindContactByEventCommand(predicate);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        EventAliasMatchesPredicate predicate = preparePredicate("MEET24");
+        FindContactByEventCommand command = new FindContactByEventCommand(predicate, new EventAlias("MEET24"));
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel, DisplayList.PERSON);
-        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(ELLE, FIONA), model.getFilteredPersonList());
     }
 
 

@@ -165,8 +165,11 @@ public class ModelManager implements Model {
         addressBook.setTodo(target, editedTodo);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Person List Accessors =============================================================
 
+    public ObservableList<Person> getPersonList() {
+        return addressBook.getPersonList();
+    }
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
