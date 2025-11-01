@@ -68,6 +68,24 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
+### Introduction to Prefixes
+
+| Prefix                  | Constraint(s)                                                                                                                                                                                     |
+|-------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `n/` (Name)             | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                            |
+| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
+| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                        |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                  |
+| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
+| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
+| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
+
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -129,6 +147,11 @@ Format: `list-contacts`
 
 Edits an existing person in the address book.
 
+<div markdown="block" class="alert alert-info">
+❗of course, while editing a perons, we would require at least one field!
+</div>
+
+
 Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 - Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
@@ -143,11 +166,11 @@ Examples:
 - `edit-contact 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `edit-contact 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Finding persons by name: `find-contact`
+### Finding persons by name: `find-contacts`
 
 Finds persons whose names contain any of the given keywords.
 
-Format: `find-contact n/KEYWORD [MORE_KEYWORDS]`
+Format: `find-contacts n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -158,8 +181,8 @@ Format: `find-contact n/KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-- `find-contact n/John` returns `john` and `John Doe`
-- `find-contact n/alex david` returns `Alex Yeoh`, `David Li`<br>
+- `find-contacts n/John` returns `john` and `John Doe`
+- `find-contacts n/alex david` returns `Alex Yeoh`, `David Li`<br>
 
 ### Deleting a person : `delete-contact`
 
@@ -174,7 +197,7 @@ Format: `delete-contact INDEX`
 Examples:
 
 - `list-contacts` followed by `delete-contact 2` deletes the 2nd person in the address book.
-- `find-contact n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
+- `find-contacts n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
 
 ---
 
@@ -184,13 +207,22 @@ Examples:
 
 Adds an event to the address book.
 
-Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS s/START_DATETIME e/END_DATETIME d/DESCRIPTION`
+<div markdown="block" class="alert alert-info">
+❗The event alias is enforced to be unique, meaning 
+</div>
+
+Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
 
 Examples:
 
-- `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/Taylor's Swift Eras tour`
+- `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/Taylor's Swift Eras tour`
 
 ### Linking an event: `link-event`
+
+<div markdown="block" class="alert alert-info">
+❗Each contact can only link to **one** specific event
+❗Linking an event to a contact that already has an event linked, will just update and replace it
+</div>
 
 Links a given contact (by index) to an event (by alias)
 
@@ -209,7 +241,7 @@ Format: `unlink-event INDEX [MORE_INDEXES]`
 
 Examples:
 
-- `unlink-event 1 2 ea/TSC2025`
+- `unlink-event 1 2`
 
 ### Listing all events : `list-events`
 
@@ -221,18 +253,22 @@ Format: `list-events`
 
 Edits an existing event in the address book.
 
+<div markdown="block" class="alert alert-info">
+❗of course, while editing an event, we would require at least one field!
+</div>
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 an EventAlias cannot be edited in order to enforce uniqueness
 </div>
 
-Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START_DATETIME] [e/END_DATETIME] [d/DESCRIPTION]`
+Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`
 
 At least one of the optional fields must be provided.
 Existing values will be updated to the input values.
 
 Example:
 
-- `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30` Edits the event name and start datetime of the event with alias `TSC2025` to be `Taylor Swift’s Concert` and `2025-09-19 18:30` respectively.
+- `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30` Edits the event name and start datetime of the event with alias `TSC2025` to be `Taylor Swift’s Concert` and `2025-09-19 18:30` respectively.
 
 ### Finding events by alias: `find-event`
 
@@ -274,6 +310,10 @@ Examples:
 
 ## 📝 Todos
 
+<div markdown="block" class="alert alert-info">
+❗Each Todo cannot have the same todoname and description
+</div>
+
 
 ### Adding a todo: `add-todo`
 
@@ -288,6 +328,10 @@ Examples:
 ### Editing a todo: `edit-todo`
 
 Edits an existing todo in the address book.
+
+<div markdown="block" class="alert alert-info">
+❗of course, while editing an event, we would require at least one field!
+</div>
 
 Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
 
@@ -354,15 +398,15 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+OverBooked data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-Furthermore, certain edits can cause the AddressBook to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+If your changes to the data file makes its format invalid, OverBooked will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ---
@@ -370,7 +414,8 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous OverBooked
+home folder.
 
 ---
 
@@ -383,51 +428,35 @@ Furthermore, certain edits can cause the AddressBook to behave in unexpected way
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                                                   |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 👤 **Contacts**    |                                                                                                                                                                                                    |
-| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`              |
-| **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                                |
-| **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                  |
-| **find-contact**   | `find-contact n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contact n/James Jake`                                                                                                                       |     |
-| **list-contacts**  | `list-contacts`                                                                                                                                                                                    |
-| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                  |
-| 🎫 **Events**      |                                                                                                                                                                                                    |
-| **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 s/2025-09-19 19:30 e/2025-09-19 23:30 d/World Tour` |
-| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [s/START] [e/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert s/2025-09-19 18:30`                                         |
-| **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                    |
-| **list-events**    | `list-events`                                                                                                                                                                                      |
-| **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                |
-| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                              |
-| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                      |
-| 📝 **Todos**       |                                                                                                                                                                                                    |
-| **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                  |
-| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                      |
-| **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                       |
-| **list-todos**     | `list-todos`                                                                                                                                                                                       |
-| **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                            |
-| **unmark-todo**    | `unmark-todo INDEX` <br> e.g.`unmark-todo 1`                                                                                                                                                       |
-| 💻 **System**      |                                                                                                                                                                                                    |
-| **help**           | `help`                                                                                                                                                                                             |
-| **clear**          | `clear`                                                                                                                                                                                            |
-| **exit**           | `exit`                                                                                                                                                                                             |     |
+| Action             | Format, Examples                                                                                                                                                                                     |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 👤 **Contacts**    |                                                                                                                                                                                                      |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                |
+| **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                                  |
+| **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                    |
+| **find-contacts**  | `find-contacts n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contacts n/James Jake`                                                                                                                       |     |
+| **list-contacts**  | `list-contacts`                                                                                                                                                                                      |
+| **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                    |
+| 🎫 **Events**      |                                                                                                                                                                                                      |
+| **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/World Tour` |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START] [et/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30`                                        |
+| **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                      |
+| **list-events**    | `list-events`                                                                                                                                                                                        |
+| **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                  |
+| **link-event**     | `link-event INDEX ea/[EVENT_ALIAS]`<br>e.g. `link-event 1 ea/TSC2025`                                                                                                                                |
+| **unlink-event**   | `unlink-event INDEX`<br>e.g. `unlink-event 1`                                                                                                                                                        |
+| 📝 **Todos**       |                                                                                                                                                                                                      |
+| **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                    |
+| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                        |
+| **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                         |
+| **list-todos**     | `list-todos`                                                                                                                                                                                         |
+| **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                              |
+| **unmark-todo**    | `unmark-todo INDEX` <br> e.g.`unmark-todo 1`                                                                                                                                                         |
+| 💻 **System**      |                                                                                                                                                                                                      |
+| **help**           | `help`                                                                                                                                                                                               |
+| **clear**          | `clear`                                                                                                                                                                                              |
+| **exit**           | `exit`                                                                                                                                                                                               |     |
 
-## Prefix Constraint Summary
-
-| Prefix                  | Constraint(s)                                                                                                                                                                                     |
-|-------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `n/` (Name)             | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                            |
-| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                        |
-| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                  |
-| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
-| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
-| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
 
 **Notes:**
 
