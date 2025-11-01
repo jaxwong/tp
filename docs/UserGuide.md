@@ -91,6 +91,8 @@ Refer to the [Features](#features) below for details of each command.
 
 **:information_source: Notes about the command format:**<br>
 
+- All fields will be automatically trimmed (no spacing before or after each paramters) when input inside the command
+
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add-contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
@@ -148,7 +150,7 @@ Format: `list-contacts`
 Edits an existing person in the address book.
 
 <div markdown="block" class="alert alert-info">
-❗of course, while editing a person, we would require at least one field!
+❗While editing a person, we would require at least one field!
 </div>
 
 
@@ -255,7 +257,7 @@ Format: `list-events`
 Edits an existing event in the address book.
 
 <div markdown="block" class="alert alert-info">
-❗of course, while editing an event, we would require at least one field!
+❗While editing an event, we would require at least one field!
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -332,7 +334,7 @@ Examples:
 Edits an existing todo in the address book.
 
 <div markdown="block" class="alert alert-info">
-❗of course, while editing a todo, we would require at least one field!
+❗While editing a todo, we would require at least one field!
 </div>
 
 Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
