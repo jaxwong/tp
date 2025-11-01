@@ -113,6 +113,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public ObservableList<Person> getPersonList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Event> getEventList() {
         throw new AssertionError("This method should not be called.");
     }

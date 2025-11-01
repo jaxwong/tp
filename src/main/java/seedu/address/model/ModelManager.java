@@ -172,6 +172,11 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
+    public ObservableList<Person> getPersonList() {
+        return addressBook.getPersonList();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }

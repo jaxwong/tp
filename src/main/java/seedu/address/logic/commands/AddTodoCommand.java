@@ -75,7 +75,7 @@ public class AddTodoCommand extends Command {
      * Returns null if no matching contact is found.
      */
     private Name findContactName(Model model, Name inputName) {
-        return model.getAddressBook().getPersonList().stream()
+        return model.getPersonList().stream()
                 .map(Person::getName)
                 .filter(name -> name.equals(inputName))
                 .findFirst()
