@@ -93,6 +93,11 @@ public class DeleteEventCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getPersonList() {
+            return personsObservable;
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             return personsObservable;
         }
