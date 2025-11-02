@@ -797,7 +797,7 @@ Team size: 5
 5. **Allow prefixes within data field values using quotation marks**  
    Commands currently fail when a data field (e.g., description) contains a prefix keyword. The parser will be enhanced to support quoted values (e.g., `d/"Discuss n/next steps"`), enabling users to include prefixes safely within input text.
 
-6. **Improve UI scaling for event list display**  
+6. **Improve UI scaling for displaying of lists**  
    When the application window width is reduced, longer details are currently cut-off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
 
 7. **Enable vertical scaling for command output panel**  
