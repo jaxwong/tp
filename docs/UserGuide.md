@@ -87,12 +87,12 @@ Refer to the [Features](#features) below for details of each command.
 
 | Prefix                  | Constraint(s)                                                                                                                                                                                       |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` (Name)             | Alphanumeric characters, slashes and spaces only. Cannot be blank or start with whitespace.                                                                                                         |
+| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                         |
 | `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
 | `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                                                |
-| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                           |
-| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                           |
+| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                         |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
+| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                            |
 | `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                                            |
 | `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
 | `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
@@ -320,7 +320,7 @@ Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 The search is case-insensitive. e.g `tsc` will match `TSC`
 The order of the keywords does not matter.
 Only the alias is searched.
-Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return 
+Events whose aliases start with at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return 
 `TSC2024`, `TSC2025`. In short, the search does not require the full alias to match the searched 
 prefix.
 
@@ -526,7 +526,7 @@ home folder.
 
 **Notes:**
 
-- Multiple entries and case-insensitive is permitted for tags (`[t/TAG]…​`).
+- Multiple entries permitted for tags (`[t/TAG]…​`).
 - Optional prefixes can be left blank only where allowed (e.g., `n/<blank>` for unlinking a name from a todo).
 - For all string fields, leading/trailing whitespace is trimmed.
 - Date/time values must strictly follow the indicated format.
