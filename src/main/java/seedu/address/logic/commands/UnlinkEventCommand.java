@@ -17,8 +17,9 @@ import seedu.address.model.person.Person;
 public class UnlinkEventCommand extends Command {
     public static final String COMMAND_WORD = "unlink-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unlinks one or more person from their linked event. "
-            + "Parameters: INDEX [MORE INDEXES]...\n"
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Unlinks one or more persons from their linked event.\n"
+                    + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_SUCCESS = "Unlinked %1$d persons(s) from their events";

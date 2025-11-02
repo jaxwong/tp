@@ -34,11 +34,15 @@ public class LinkEventCommandParser implements Parser<LinkEventCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENT_ALIAS);
-
-        List<Index> indexes = parseIndexes(argMultimap.getPreamble());
         EventAlias eventAlias = ParserUtil.parseEventAlias(argMultimap.getValue(PREFIX_EVENT_ALIAS).get());
 
-        return new LinkEventCommand(indexes, eventAlias);
+        try {
+            List<Index> indexes = parseIndexes(argMultimap.getPreamble());
+            return new LinkEventCommand(indexes, eventAlias);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**

@@ -29,9 +29,13 @@ public class UnlinkEventCommandParser implements Parser<UnlinkEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkEventCommand.MESSAGE_USAGE));
         }
 
-        List<Index> indexes = parseIndexes(argMultimap.getPreamble());
-
-        return new UnlinkEventCommand(indexes);
+        try {
+            List<Index> indexes = parseIndexes(argMultimap.getPreamble());
+            return new UnlinkEventCommand(indexes);
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkEventCommand.MESSAGE_USAGE), pe);
+        }
     }
 
     /**

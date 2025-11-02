@@ -5,9 +5,9 @@ title: User Guide
 
 ## Introduction
 
-OverBooked is a desktop app for managing **contacts, events, and todos** — all from a single, efficient interface.
+OverBooked is a desktop, keyboard-first planner that unifies contacts, events, and todos in one fast, modern interface. 
 
-Designed for **event planners** who prefer **keyboard efficiency** over clicking through menus, OverBooked combines the **speed of a Command Line Interface (CLI)** with the **convenience of a modern GUI**.
+It solves slow, click-heavy planning by letting you type to act - add/find/update in seconds, filter instantly, and link people to events/todos while spotting schedule overlaps at a glance. The appeal: crisp speed, minimal friction, and a workflow built for event planners who want proficiency without fuss.
 
 ### 📖 Table of Contents
 
@@ -25,30 +25,44 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 
 ## Quick start
 
-Follow these steps to get started with OverBooked in under 2 minutes:
+Follow these steps to get started with OverBooked in under 10 minutes:
 
 1. **Install Java `17`**
 
-   - Verify with `java -version` in your own device's terminal
-   - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-
+     **For Windows users:**
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html). 
+   - To open **PowerShell** (**Windows** terminal), press the **Windows** key, type **PowerShell**, press **Enter**. 
+   - To verify that the installation was successful, close **PowerShell**, open it again, then run `java -version`. You should see something like `java version "17.x.x"`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html#switching-between-java-versions).
+   
+    **For macOS users:** 
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   - To open **Terminal** (macOS terminal), press **⌘ Space** (Spotlight), type **Terminal**, press **return**.
+   - To verify that the installation was successful, close **Terminal**, open it again, then run `java -version`. You should see the version information for `Java 17.0.14.fx-zulu`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html#switching-between-java-versions). (Commands are to be run inside **Terminal**)
 2. **Download the App**
 
-   - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
-
+   - Find the latest version of **OverBooked** from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases), and click on `OverBooked.jar` which should start the download automatically.
 3. **Set up your workspace**
 
-   - Move the `.jar` file into a folder of your choice — this will be your _OverBooked home folder_.
+   - Go to your **Downloads** folder to verify that `OverBooked.jar` has been downloaded into your PC.
+   - Drag and drop `OverBooked.jar` into a folder of your choice — this will be your _OverBooked home folder_. 
 
 4. **Run the app**
 
-   ```bash
-   cd path/to/folder
-   java -jar OverBooked.jar
-   ```
+    **For Windows users:**
+   - Open the folder containing `OverBooked.jar`.
+   - Double-click on `OverBooked.jar` to run the application. 
+   
+    **For macOS users:**
+   - In the **Terminal** window, type `cd` and press the **return** key.
+   - Go back to **Terminal** and type `cd` and press the **SpaceBar** key, do not press the **return** key yet. 
+   - Open your **Finder** and locate the **folder** that contains `OverBooked.jar`.
+   - Drag the **folder** that contains `OverBooked.jar` into the **Terminal**. This should paste some text into the **Terminal** window. Press the **return** key.
+   - In the **Terminal** window, paste `java -jar OverBooked.jar` and press the **return** key.
 
-   You should see a window like this:
-   <br>
+  You should see a window like this:
+  <br>
 ![UserInterface](images/Ui.png)
 
 5. **Try these Commands**
@@ -73,17 +87,17 @@ Refer to the [Features](#features) below for details of each command.
 
 | Prefix                  | Constraint(s)                                                                                                                                                                                       |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a whitespace or slash.                                                                                           |
+| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with whitespace or a slash.                                                                                           |
 | `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
 | `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                                                |
+| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                         |
 | `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
 | `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                            |
 | `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                                            |
 | `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
-| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                            |
-| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                       |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                               |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
 | `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
 
 
@@ -91,7 +105,7 @@ Refer to the [Features](#features) below for details of each command.
 
 **:information_source: Notes about the command format:**<br>
 
-- All fields will be automatically trimmed (no spacing before or after each paramters) when input inside the command
+- All fields will be automatically trimmed (no spacing before or after each parameter) when input inside the command
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add-contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -99,7 +113,7 @@ Refer to the [Features](#features) below for details of each command.
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Items with <blank> means that an empty field (i.e. " ") can be used to define nothing for supported commands
+- Items with `<blank>` means that an empty field (i.e. " ") can be used to define nothing for supported commands
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -107,7 +121,7 @@ Refer to the [Features](#features) below for details of each command.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for the commands `help`, `exit` and `clear` will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -124,9 +138,18 @@ Format: `help`
 ---
 ## Contacts
 
+<div markdown="block" class="alert alert-info">
+❗Each person cannot have the same name (case-insensitive).
+</div>
+
 ### Adding a person: `add-contact`
 
-Adds a person to the address book.
+Adds a person to the address book. A person is uniquely identified only by their name in 
+OverBooked; that is, that 2 contacts are considered different people as long as their names are 
+different in a case-insensitive comparison. This also means that 2 different people can have the 
+same phone number, address and email address.
+
+The command will remove any filters currently in the contact list after execution.
 
 Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -147,7 +170,7 @@ Format: `list-contacts`
 
 ### Editing a person : `edit-contact`
 
-Edits an existing person in the address book.
+Edits an existing person in the address book. This removes any filters currently in the contact list.
 
 <div markdown="block" class="alert alert-info">
 ❗While editing a person, we would require at least one field!
@@ -156,7 +179,9 @@ Edits an existing person in the address book.
 
 Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Edits the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -180,6 +205,10 @@ Format: `find-contacts n/KEYWORD [MORE_KEYWORDS]`
 - Only full words will be matched e.g. `Han` will not match `Hans`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-contacts can be used to remove the filter. add-contact and edit-contact will also remove the filter after its execution.
+</div>
 
 Examples:
 
@@ -207,10 +236,10 @@ Examples:
 
 ### Adding an event: `add-event`
 
-Adds an event to the address book.
+Adds an event to the address book. This removes any filters currently in the event list.
 
 <div markdown="block" class="alert alert-info">
-❗The event alias is enforced to be unique, meaning you can't repeat existing event alises
+❗The event alias is enforced to be unique, meaning you can't repeat existing event alises (case-insensitive)
 </div>
 
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
@@ -231,6 +260,9 @@ Links a given contact (by index based on displayed list) to an event (by alias)
 
 Format: `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`
 
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
 
 - `link-event 1 ea/TSC2025`
@@ -241,6 +273,9 @@ Examples:
 Unlink any given contact (by index based on displayed list) from an event
 
 Format: `unlink-event INDEX [MORE_INDEXES]`
+
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -254,7 +289,7 @@ Format: `list-events`
 
 ### Editing an event: `edit-event`
 
-Edits an existing event in the address book.
+Edits an existing event in the address book. This removes any filters currently in the event list.
 
 <div markdown="block" class="alert alert-info">
 ❗While editing an event, we would require at least one field!
@@ -262,7 +297,7 @@ Edits an existing event in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 an EventAlias cannot be edited in order to enforce uniqueness
-The event alias field included in the field is to identify which specific event you want to ammend.
+The event alias field included in the field is to identify which specific event you want to amend.
 </div>
 
 Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`
@@ -283,7 +318,13 @@ Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 The search is case-insensitive. e.g `tsc` will match `TSC`
 The order of the keywords does not matter.
 Only the alias is searched.
-Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return `TSC2024`, `TSC2025`
+Events whose aliases start with at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return 
+`TSC2024`, `TSC2025`. In short, the search does not require the full alias to match the searched 
+prefix.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-events can be used to remove the filter. add-event and edit-event will also remove the filter after its execution.
+</div>
 
 Examples:
 
@@ -306,6 +347,10 @@ Finds and displays all contacts that are linked to a specific event.
 
 Format: `find-by-event ea/EVENT_ALIAS`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-contacts can be used to remove the filter. add-contact and edit-contact will also remove the filter after its execution.
+</div>
+
 Examples:
 
 - `find-by-event ea/TSC2025`
@@ -315,7 +360,7 @@ Examples:
 ## Todos
 
 <div markdown="block" class="alert alert-info">
-❗Each Todo cannot have the same todoname and description
+❗Each Todo cannot have the same todoname and description (both case-insensitive)
 </div>
 
 
@@ -324,6 +369,8 @@ Examples:
 Adds a todo to the address book.
 
 Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
+
+- Only existing contacts can be linked to a todo (i.e. an existing contact must have the specified contact name).
 
 Examples:
 
@@ -337,7 +384,12 @@ Edits an existing todo in the address book.
 ❗While editing a todo, we would require at least one field!
 </div>
 
-Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
+Format: `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]`
+
+- Edits the todo at the specified `INDEX`.
+- The index refers to the index number shown in the displayed todo list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- Only existing contacts can be linked to a todo (i.e. an existing contact must have the specified contact name).
 
 Examples:
 
@@ -349,6 +401,10 @@ Examples:
 Deletes a todo from the address book.
 
 Format: `delete-todo INDEX`
+
+- Deletes the todo at the specified `INDEX`.
+- The index refers to the index number shown in the displayed todo list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -413,7 +469,7 @@ OverBooked data are saved in the hard disk automatically after any command that 
 OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, OverBooked will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. Hence, it is recommended to make a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
