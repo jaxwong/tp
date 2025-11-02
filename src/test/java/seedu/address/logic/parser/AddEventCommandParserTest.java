@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DATETIME;
 import static seedu.address.testutil.TypicalEvents.CONCERT;
 
 import java.time.format.DateTimeFormatter;
@@ -98,7 +99,7 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String dateConstraints = "Invalid date format. Expected format: yyyy-MM-dd HH:mm";
+        String dateConstraints = MESSAGE_INVALID_DATETIME;
         // invalid alias
         String userInput1 = EVENT_NAME_DESC + " " + PREFIX_EVENT_ALIAS + INVALID_ALIAS
                 + START_DATE_DESC + END_DATE_DESC + DESCRIPTION_DESC;

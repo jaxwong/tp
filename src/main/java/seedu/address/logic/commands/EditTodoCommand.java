@@ -39,7 +39,8 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TODO =
+            "A todo with the same name and description already exists in the address book";
 
     private final Index targetIndex;
     private final EditTodoDescriptor editTodoDescriptor;

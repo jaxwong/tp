@@ -33,7 +33,8 @@ public class AddEventCommand extends Command {
             + PREFIX_DESC + "Taylor’s Swift Eras tour";
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EVENT =
+            "An event with the same alias already exists in the address book";
 
     private final Event toAdd;
     /**
