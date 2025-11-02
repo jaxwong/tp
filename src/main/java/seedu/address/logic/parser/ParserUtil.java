@@ -28,6 +28,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INTEGER_OVERFLOW = "This index is too large!";
+    public static final String MESSAGE_INVALID_DATETIME =
+            "Invalid date or time and/or incorrect format.\nExpected format: yyyy-MM-dd HH:mm";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
@@ -177,7 +179,7 @@ public class ParserUtil {
         try {
             return LocalDateTime.parse(trimmed, FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException("Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+            throw new ParseException(MESSAGE_INVALID_DATETIME);
         }
     }
 

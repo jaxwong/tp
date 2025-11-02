@@ -29,7 +29,8 @@ public class AddTodoCommand extends Command {
             + PREFIX_TODO_DESCRIPTION + "Call Taylor Swift's manager "
             + PREFIX_NAME + "Alex Yeoh ";
     public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TODO =
+            "A todo with the same name and description already exists in the address book";
 
     private final Todo toAdd;
 
