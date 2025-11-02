@@ -19,7 +19,7 @@ public class FindContactByEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose linkedEventAlias "
             + "matches the given EventAlias and displays them as a list with index numbers.\n"
-            + "Parameters: EventAlias\n"
+            + "Parameters: ea/EVENT_ALIAS\n"
             + "Example: " + COMMAND_WORD + " ea/TaylorSwift";
     public static final String MESSAGE_EVENT_NOT_FOUND = "Event not found.";
 
