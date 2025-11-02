@@ -55,10 +55,10 @@ public class LinkEventCommandParserTest {
 
     @Test
     public void parse_missingIndex_failure() {
-        String expectedMesage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE);
 
         // if user inputs command without index but with alias only
-        assertParseFailure(parser, PREFIX_EVENT_ALIAS + "TSC2025", expectedMesage);
+        assertParseFailure(parser, PREFIX_EVENT_ALIAS + "TSC2025", expectedMessage);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class LinkEventCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        String expectedMessage = ParserUtil.MESSAGE_INVALID_INDEX;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, LinkEventCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "a " + PREFIX_EVENT_ALIAS + "TSC2025", expectedMessage);
         assertParseFailure(parser, "0 " + PREFIX_EVENT_ALIAS + "TSC2025", expectedMessage);

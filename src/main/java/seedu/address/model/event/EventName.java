@@ -10,13 +10,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EventName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Event names should be 1–100 characters long and may only contain letters, numbers, spaces, "
+            "Event names should be 1–50 characters long and may only contain letters, numbers, spaces, "
                     + "apostrophes ('), hyphens (-), ampersands (&), and commas (,). Extra whitespace is trimmed.";
 
     /*
-     * Length constraint ensures the name is between 1 and 100 characters.
+     * Length constraint ensures the name is between 1 and 50 characters.
      */
-    public static final String VALIDATION_REGEX = "^[A-Za-z0-9'&,\\- ]{1,100}$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z0-9'&,\\- ]{1,50}$";
 
 
     public final String fullName;
@@ -39,7 +39,7 @@ public class EventName {
     public static boolean isValidEventName(String test) {
         return test != null
                 && test.trim().length() >= 1
-                && test.trim().length() <= 100
+                && test.trim().length() <= 50
                 && test.trim().matches(VALIDATION_REGEX);
     }
 

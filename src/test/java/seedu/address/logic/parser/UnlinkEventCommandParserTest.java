@@ -49,7 +49,7 @@ public class UnlinkEventCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        String expectedMessage = ParserUtil.MESSAGE_INVALID_INDEX;
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlinkEventCommand.MESSAGE_USAGE);
 
         assertParseFailure(parser, "a", expectedMessage);
         assertParseFailure(parser, "0", expectedMessage);

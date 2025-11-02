@@ -5,9 +5,9 @@ title: User Guide
 
 ## Introduction
 
-OverBooked is a desktop app for managing **contacts, events, and todos** — all from a single, efficient interface.
+OverBooked is a desktop, keyboard-first planner that unifies contacts, events, and todos in one fast, modern interface. 
 
-Designed for **event planners** who prefer **keyboard efficiency** over clicking through menus, OverBooked combines the **speed of a Command Line Interface (CLI)** with the **convenience of a modern GUI**.
+It solves slow, click-heavy planning by letting you type to act - add/find/update in seconds, filter instantly, and link people to events/todos while spotting schedule overlaps at a glance. The appeal: crisp speed, minimal friction, and a workflow built for event planners who want proficiency without fuss.
 
 ### 📖 Table of Contents
 
@@ -25,30 +25,44 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 
 ## Quick start
 
-Follow these steps to get started with OverBooked in under 2 minutes:
+Follow these steps to get started with OverBooked in under 10 minutes:
 
 1. **Install Java `17`**
 
-   - Verify with `java -version` in your own device's terminal
-   - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-
+     **For Windows users:**
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html). 
+   - To open **PowerShell** (**Windows** terminal), press the **Windows** key, type **PowerShell**, press **Enter**. 
+   - To verify that the installation was successful, close **PowerShell**, open it again, then run `java -version`. You should see something like `java version "17.x.x"`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html#switching-between-java-versions).
+   
+    **For macOS users:** 
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   - To open **Terminal** (macOS terminal), press **⌘ Space** (Spotlight), type **Terminal**, press **return**.
+   - To verify that the installation was successful, close **Terminal**, open it again, then run `java -version`. You should see the version information for `Java 17.0.14.fx-zulu`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html#switching-between-java-versions). (Commands are to be run inside **Terminal**)
 2. **Download the App**
 
-   - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
-
+   - Find the latest version of **OverBooked** from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases), and click on `OverBooked.jar` which should start the download automatically.
 3. **Set up your workspace**
 
-   - Move the `.jar` file into a folder of your choice — this will be your _OverBooked home folder_.
+   - Go to your **Downloads** folder to verify that `OverBooked.jar` has been downloaded into your PC.
+   - Drag and drop `OverBooked.jar` into a folder of your choice — this will be your _OverBooked home folder_. 
 
 4. **Run the app**
 
-   ```bash
-   cd path/to/folder
-   java -jar OverBooked.jar
-   ```
+    **For Windows users:**
+   - Open the folder containing `OverBooked.jar`.
+   - Double-click on `OverBooked.jar` to run the application. 
+   
+    **For macOS users:**
+   - In the **Terminal** window, type `cd` and press the **return** key.
+   - Go back to **Terminal** and type `cd` and press the **SpaceBar** key, do not press the **return** key yet. 
+   - Open your **Finder** and locate the **folder** that contains `OverBooked.jar`.
+   - Drag the **folder** that contains `OverBooked.jar` into the **Terminal**. This should paste some text into the **Terminal** window. Press the **return** key.
+   - In the **Terminal** window, paste `java -jar OverBooked.jar` and press the **return** key.
 
-   You should see a window like this:
-   <br>
+  You should see a window like this:
+  <br>
 ![UserInterface](images/Ui.png)
 
 5. **Try these Commands**
@@ -71,20 +85,20 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Introduction to Prefixes
 
-| Prefix                  | Constraint(s)                                                                                                                                                                                     |
-|-------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `n/` (Name)             | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                            |
+| Prefix                  | Constraint(s)                                                                                                                                                                                       |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` (Name)             | Alphanumeric characters, slashes and spaces only. Cannot be blank or start with whitespace.                                                                                                         |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
 | `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                        |
-| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                  |
-| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
-| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
-| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
+| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                                                |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
+| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                           |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                                            |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                               |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
 
 
 <div markdown="block" class="alert alert-info">
@@ -99,7 +113,7 @@ Refer to the [Features](#features) below for details of each command.
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Items with <blank> means that an empty field (i.e. " ") can be used to define nothing for supported commands
+- Items with `<blank>` means that an empty field (i.e. " ") can be used to define nothing for supported commands
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -107,7 +121,7 @@ Refer to the [Features](#features) below for details of each command.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for the commands `help`, `exit` and `clear` will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -130,7 +144,12 @@ Format: `help`
 
 ### Adding a person: `add-contact`
 
-Adds a person to the address book. This removes any filters currently in the contact list.
+Adds a person to the address book. A person is uniquely identified only by their name in 
+OverBooked; that is, that 2 contacts are considered different people as long as their names are 
+different in a case-insensitive comparison. This also means that 2 different people can have the 
+same phone number, address and email address.
+
+The command will remove any filters currently in the contact list after execution.
 
 Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -299,7 +318,9 @@ Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 The search is case-insensitive. e.g `tsc` will match `TSC`
 The order of the keywords does not matter.
 Only the alias is searched.
-Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return `TSC2024`, `TSC2025`
+Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return 
+`TSC2024`, `TSC2025`. In short, the search does not require the full alias to match the searched 
+prefix.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 list-events can be used to remove the filter. add-event and edit-event will also remove the filter after its execution.
