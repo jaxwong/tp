@@ -19,7 +19,7 @@ public class FindEventCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose aliases have any of "
             + "the specified keywords (case-insensitive) as a prefix and displays them as a list with index numbers.\n"
-            + "Parameters: " + PREFIX_EVENT_ALIAS + " KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: " + PREFIX_EVENT_ALIAS + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_EVENT_ALIAS + "tsc";
 
     private final AliasContainsKeywordsPredicate predicate;
