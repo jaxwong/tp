@@ -42,7 +42,9 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         assertCommandFailure(new AddCommand(personInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+                AddCommand.MESSAGE_DUPLICATE_PERSON
+                        + "\n" + "Only a person with a different name from " + personInList.getName()
+                        + "(case-insensitive match) can be added!");
     }
 
 }

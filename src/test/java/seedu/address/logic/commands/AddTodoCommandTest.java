@@ -62,7 +62,11 @@ public class AddTodoCommandTest {
         ModelStub modelStub = new ModelStubWithTodo(validTodo);
 
         assertThrows(CommandException.class,
-                AddTodoCommand.MESSAGE_DUPLICATE_TODO, () -> addTodoCommand.execute(modelStub));
+                AddTodoCommand.MESSAGE_DUPLICATE_TODO
+                        + "\n Combination of case-insensitive tn/ and td/ must be unique!"
+                        + "\n Edit todo to have a different name from '" + validTodo.getTodoName()
+                        + "' or description from '" + validTodo.getTodoDescription() + "'", ()
+                        -> addTodoCommand.execute(modelStub));
     }
 
     @Test

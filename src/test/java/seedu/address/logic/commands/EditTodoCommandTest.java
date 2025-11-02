@@ -108,7 +108,10 @@ public class EditTodoCommandTest {
 
         EditTodoCommand command = new EditTodoCommand(Index.fromOneBased(2), descriptor);
 
-        assertCommandFailure(command, model, EditTodoCommand.MESSAGE_DUPLICATE_TODO);
+        assertCommandFailure(command, model, EditTodoCommand.MESSAGE_DUPLICATE_TODO
+                + "\n Combination of case-insensitive tn/ and td/ must be unique!"
+                + "\n Edit todo to have a different name from '" + firstTodo.getTodoName()
+                + "' or description from '" + firstTodo.getTodoDescription() + "'");
     }
 
     @Test

@@ -43,7 +43,9 @@ public class AddEventCommandTest {
         Event validEvent = new EventBuilder().build();
         AddEventCommand addEventCommand = new AddEventCommand(validEvent);
         ModelStub modelStub = new ModelStubWithEvent(validEvent);
-        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT, () ->
+        assertThrows(CommandException.class, AddEventCommand.MESSAGE_DUPLICATE_EVENT
+                + "\n Only events with alias different from " + validEvent.getAlias()
+                + "(case-insensitive match) is allowed", () ->
                 addEventCommand.execute(modelStub));
     }
 
