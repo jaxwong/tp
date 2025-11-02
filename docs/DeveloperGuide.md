@@ -798,7 +798,7 @@ Team size: 5
    Commands currently fail when a data field (e.g., description) contains a prefix keyword. The parser will be enhanced to support quoted values (e.g., `d/"Discuss n/next steps"`), enabling users to include prefixes safely within input text.
 
 6. **Improve UI scaling for event list display**  
-   When the application window width is reduced, longer event names and descriptions are currently cut-off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
+   When the application window width is reduced, longer details are currently cut-off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
 
 7. **Enable vertical scaling for command output panel**  
    The command output box currently requires horizontal scrolling for long messages. Enhancing it to support vertical scaling or text wrapping will improve readability and reduce user friction when there are long extended command outputs.
