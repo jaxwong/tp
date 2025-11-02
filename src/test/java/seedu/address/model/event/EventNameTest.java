@@ -26,14 +26,14 @@ public class EventNameTest {
         assertFalse(EventName.isValidEventName(" ")); // spaces only
         assertFalse(EventName.isValidEventName("^")); // only disallowed character
         assertFalse(EventName.isValidEventName("peter*")); // contains disallowed character
-        assertFalse(EventName.isValidEventName("a".repeat(101))); // exceeds character limit
+        assertFalse(EventName.isValidEventName("a".repeat(51))); // exceeds character limit
 
         // valid name
         assertTrue(EventName.isValidEventName("peter jack")); // alphabets only
         assertTrue(EventName.isValidEventName("12345")); // numbers only
         assertTrue(EventName.isValidEventName("peter-the&',2nd")); // contains allowed symbols
         assertTrue(EventName.isValidEventName("Capital Tan")); // with capital letters
-        assertTrue(EventName.isValidEventName("a".repeat(100))); // just within character limit
+        assertTrue(EventName.isValidEventName("a".repeat(50))); // just within character limit
     }
 
     @Test
