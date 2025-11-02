@@ -23,7 +23,11 @@ create AddEventCommandParser
 AddressBookParser -> AddEventCommandParser
 activate AddEventCommandParser
 
+AddEventCommandParser --> AddressBookParser
+deactivate AddEventCommandParser
+
 AddressBookParser -> AddEventCommandParser : parse(arguments)
+activate AddEventCommandParser
 
 create AddEventCommand
 AddEventCommandParser -> AddEventCommand
@@ -34,6 +38,8 @@ deactivate AddEventCommand
 
 AddEventCommandParser --> AddressBookParser : a
 deactivate AddEventCommandParser
+
+AddEventCommandParser -[hidden]-> AddressBookParser
 destroy AddEventCommandParser
 
 AddressBookParser --> LogicManager : a

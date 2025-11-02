@@ -487,6 +487,12 @@ Use case ends.
 
 Use case ends.
 
+* 1b. An existing event has the same alias.
+  * 1b1. OverBooked informs the user that the event already exists.
+
+Use case ends.
+
+
 
 **Use case: UC7 - Link contacts to an event**
 
@@ -505,7 +511,7 @@ Use Case ends.
 Use case ends.
 
 * 1b. One or more index provided by user is invalid.
-  1bOverBooked informs user that the contact index is invalid.
+    * 1b1. OverBooked informs user that the contact index is invalid.
 
 Use case ends.
 
@@ -535,6 +541,7 @@ Use case ends.
     * 1b1. OverBooked informs user that the contact index is invalid.
 
 Use case ends.
+
 
 
 **Use case: UC9 - List events**
@@ -660,6 +667,11 @@ Use case ends.
 
 Use case ends.
 
+* 1b. An existing todo has the same name and description.
+  * 1b1. OverBooked informs the user that the todo already exists.
+
+Use case ends.
+
 
 **Use case: UC15 - Edit a todo**
 
@@ -690,6 +702,11 @@ Use case ends.
 
 * 1d. User provides a contact name that does not exist.
     * 1d1. OverBooked informs the user that the contact was not found.
+
+Use case ends.
+
+* 1e. An existing todo has the same name and description.
+  * 1e1. OverBooked informs the user that the todo already exists.
 
 Use case ends.
 
