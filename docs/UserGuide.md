@@ -5,9 +5,9 @@ title: User Guide
 
 ## Introduction
 
-OverBooked is a desktop app for managing **contacts, events, and todos** — all from a single, efficient interface.
+OverBooked is a desktop, keyboard-first planner that unifies contacts, events, and todos in one fast, modern interface. 
 
-Designed for **event planners** who prefer **keyboard efficiency** over clicking through menus, OverBooked combines the **speed of a Command Line Interface (CLI)** with the **convenience of a modern GUI**.
+It solves slow, click-heavy planning by letting you type to act - add/find/update in seconds, filter instantly, and link people to events/todos while spotting schedule overlaps at a glance. The appeal: crisp speed, minimal friction, and a workflow built for event planners who want proficiency without fuss.
 
 ### 📖 Table of Contents
 
@@ -52,9 +52,7 @@ Follow these steps to get started with OverBooked in under 10 minutes:
 
     **For Windows users:**
    - Open the folder containing `OverBooked.jar`.
-   - Right-click on empty space **within that folder**.
-   - Click on **Open in Terminal**. (If you don’t see it, hold Shift and right-click)
-   - In the window that opens, paste `java -jar OverBooked.jar` and press **Enter**.
+   - Double-click on `OverBooked.jar` to run the application. 
    
     **For macOS users:**
    - In the **Terminal** window, type `cd` and press the **return** key.
