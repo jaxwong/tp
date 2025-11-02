@@ -25,30 +25,46 @@ Designed for **event planners** who prefer **keyboard efficiency** over clicking
 
 ## Quick start
 
-Follow these steps to get started with OverBooked in under 2 minutes:
+Follow these steps to get started with OverBooked in under 10 minutes:
 
 1. **Install Java `17`**
 
-   - Verify with `java -version` in your own device's terminal
-   - **Mac users:** Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
-
+     **For Windows users:**
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html). 
+   - To open **PowerShell** (**Windows** terminal), press the **Windows** key, type **PowerShell**, press **Enter**. 
+   - To verify that the installation was successful, close **PowerShell**, open it again, then run `java -version`. You should see something like `java version "17.x.x"`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationWindows.html#switching-between-java-versions).
+   
+    **For macOS users:** 
+   - Follow the [Java Installation Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html).
+   - To open **Terminal** (macOS terminal), press **⌘ Space** (Spotlight), type **Terminal**, press **return**.
+   - To verify that the installation was successful, close **Terminal**, open it again, then run `java -version`. You should see the version information for `Java 17.0.14.fx-zulu`.
+   - If you have multiple versions of `Java` installed, refer to this [Switching between Java versions Guide](https://se-education.org/guides/tutorials/javaInstallationMac.html#switching-between-java-versions). (Commands are to be run inside **Terminal**)
 2. **Download the App**
 
-   - Grab the latest `.jar` file from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases).
-
+   - Find the latest version of **OverBooked** from our [Releases Page](https://github.com/AY2526S1-CS2103T-T10-2/tp/releases), and click on `OverBooked.jar` which should start the download automatically.
 3. **Set up your workspace**
 
-   - Move the `.jar` file into a folder of your choice — this will be your _OverBooked home folder_.
+   - Go to your **Downloads** folder to verify that `OverBooked.jar` has been downloaded into your PC.
+   - Drag and drop `OverBooked.jar` into a folder of your choice — this will be your _OverBooked home folder_. 
 
 4. **Run the app**
 
-   ```bash
-   cd path/to/folder
-   java -jar OverBooked.jar
-   ```
+    **For Windows users:**
+   - Open the folder containing `OverBooked.jar`.
+   - Right-click on empty space **within that folder**.
+   - Click on **Open in Terminal**. (If you don’t see it, hold Shift and right-click)
+   - In the window that opens, paste `java -jar OverBooked.jar` and press **Enter**.
+   
+    **For macOS users:**
+   - In the **Terminal** window, type `cd` and press the **return** key.
+   - Go back to **Terminal** and type `cd` and press the **SpaceBar** key, do not press the **return** key yet. 
+   - Open your **Finder** and locate the **folder** that contains `OverBooked.jar`.
+   - Drag the **folder** that contains `OverBooked.jar` into the **Terminal**. This should paste some text into the **Terminal** window. Press the **return** key.
+   - In the **Terminal** window, paste `java -jar OverBooked.jar` and press the **return** key.
 
-   You should see a window like this:
-   <br>
+  You should see a window like this:
+  <br>
 ![UserInterface](images/Ui.png)
 
 5. **Try these Commands**
