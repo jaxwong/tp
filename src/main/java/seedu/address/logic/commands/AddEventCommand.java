@@ -50,7 +50,7 @@ public class AddEventCommand extends Command {
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT
-            + "\n Only events with alias different from " + toAdd.getAlias()
+                    + "\n Only events with alias different from " + toAdd.getAlias()
                     + "(case-insensitive match) is allowed");
         }
 
