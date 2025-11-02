@@ -20,9 +20,9 @@ import seedu.address.model.person.Person;
 public class LinkEventCommand extends Command {
     public static final String COMMAND_WORD = "link-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links one or more persons to an event by its alias. "
-            + "Parameters: INDEX " + PREFIX_EVENT_ALIAS + "EVENT_ALIAS\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Links one or more persons to an event by its alias.\n"
+            + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer) " + PREFIX_EVENT_ALIAS + "EVENT_ALIAS\n"
+            + "Example: " + COMMAND_WORD + " 1 2 "
             + PREFIX_EVENT_ALIAS + "TSC2025";
 
     public static final String MESSAGE_SUCCESS = "Linked %1$d person(s) to event: %2$s";
