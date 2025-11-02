@@ -155,6 +155,7 @@ Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
+Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
 </div>
 
 Examples:
@@ -185,6 +186,7 @@ Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+- Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
 - You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
