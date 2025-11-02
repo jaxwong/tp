@@ -469,7 +469,7 @@ OverBooked data are saved in the hard disk automatically after any command that 
 OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. Hence, it is recommended to take a backup of the file before editing it.<br>
+If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. Hence, it is recommended to make a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
