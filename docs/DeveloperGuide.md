@@ -497,6 +497,11 @@ Use case ends.
 
 Use case ends.
 
+* 1b. An existing event has the same alias.
+  * 1b1. OverBooked informs the user that the event already exists.
+
+Use case ends.
+
 * 2a. OverBooked is unable to save the new event.
     * 2a1. OverBooked informs the user of the error.
 
@@ -694,6 +699,11 @@ Use case ends.
 
 Use case ends.
 
+* 1b. An existing todo has the same name and description.
+  * 1b1. OverBooked informs the user that the todo already exists.
+
+Use case ends.
+
 * 2a. OverBooked is unable to save the new todo.
     * 2a1. OverBooked informs the user of the error.
 
@@ -728,6 +738,11 @@ Use case ends.
 
 * 1d. User provides a contact name that does not exist
     * 1d1. OverBooked informs the user that the contact was not found
+
+Use case ends.
+
+* 1e. An existing todo has the same name and description.
+  * 1e1. OverBooked informs the user that the todo already exists.
 
 Use case ends.
 
