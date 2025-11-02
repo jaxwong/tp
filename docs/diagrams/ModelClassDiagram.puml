@@ -88,28 +88,28 @@ AddressBook *--> "1" UniqueEventList
 AddressBook *--> "1" UniqueTodoList
 
 ' === UNIQUE LISTS TO ENTITIES ===
-UniquePersonList --> "* all" Person
-UniqueEventList --> "* all" Event
-UniqueTodoList --> "* all" Todo
+UniquePersonList --> "*" Person
+UniqueEventList --> "*" Event
+UniqueTodoList --> "*" Todo
 
 ' === MODELMANAGER FILTERED LISTS ===
-ModelManager --> "* filtered" Person
-ModelManager --> "* filtered" Event
-ModelManager --> "* filtered" Todo
+ModelManager --> "*" Person : filteredPersons
+ModelManager --> "*" Event : filteredEvents
+ModelManager --> "*" Todo : filteredTodos
 
 ' === PERSON FIELD RELATIONSHIPS ===
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
+Person *--> "1" Address
 Person *--> "*" Tag
-Person *--> "0..1" EventAlias
+Person --> "0..1" EventAlias
 
 ' === EVENT FIELD RELATIONSHIPS ===
-Event *--> EventName
-Event *--> EventAlias
+Event *--> "1" EventName
+Event *--> "1" EventAlias
 
 ' === TODO FIELD RELATIONSHIPS ===
-Todo *--> TodoName
-Todo *--> "0..1" Name
+Todo *--> "1" TodoName
+Todo --> "0..1" Name
 @enduml
