@@ -155,7 +155,7 @@ Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
-Tags are case-sensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
+Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
 </div>
 
 Examples:
@@ -186,7 +186,7 @@ Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…�
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-- Tags are case-sensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
+- Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
 - You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 
@@ -526,7 +526,7 @@ home folder.
 
 **Notes:**
 
-- Multiple entries and case sensitive is permitted for tags (`[t/TAG]…​`).
+- Multiple entries and case-insensitive is permitted for tags (`[t/TAG]…​`).
 - Optional prefixes can be left blank only where allowed (e.g., `n/<blank>` for unlinking a name from a todo).
 - For all string fields, leading/trailing whitespace is trimmed.
 - Date/time values must strictly follow the indicated format.
