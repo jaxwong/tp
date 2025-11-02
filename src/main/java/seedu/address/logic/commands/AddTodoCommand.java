@@ -46,7 +46,10 @@ public class AddTodoCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTodo(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TODO);
+            throw new CommandException(MESSAGE_DUPLICATE_TODO
+                    + "\n Combination of case-insensitive tn/ and td/ must be unique!"
+                    + "\n Edit todo to have a different name from '" + toAdd.getTodoName()
+                    + "' or description from '" + toAdd.getTodoDescription() + "'");
         }
 
         final Name contactName = toAdd.getContactName();

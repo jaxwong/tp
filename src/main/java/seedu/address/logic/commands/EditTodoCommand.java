@@ -75,7 +75,10 @@ public class EditTodoCommand extends Command {
         Todo editedTodo = createEditedTodo(todoToEdit, editTodoDescriptor);
 
         if (!todoToEdit.isSameTodo(editedTodo) && model.hasTodo(editedTodo)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TODO);
+            throw new CommandException(MESSAGE_DUPLICATE_TODO
+                    + "\n Combination of case-insensitive tn/ and td/ must be unique!"
+                    + "\n Edit todo to have a different name from '" + editedTodo.getTodoName()
+                    + "' or description from '" + editedTodo.getTodoDescription() + "'");
         }
 
         Name updatedContact = editedTodo.getContactName();

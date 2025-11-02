@@ -53,7 +53,9 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON
+                    + "\n" + "Only a person with a different name from " + toAdd.getName()
+                    + "(case-insensitive match) can be added!");
         }
 
         model.addPerson(toAdd);

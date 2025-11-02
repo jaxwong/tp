@@ -80,7 +80,9 @@ public class EditCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON
+                    + "\n" + "Only a person with a different name from " + editedPerson.getName()
+                    + "(case-insensitive match) can be added!");
         }
 
         model.setPerson(personToEdit, editedPerson);
