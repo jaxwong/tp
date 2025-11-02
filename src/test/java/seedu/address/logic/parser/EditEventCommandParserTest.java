@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_DATETIME;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +83,7 @@ public class EditEventCommandParserTest {
                         + INVALID_START_DATE_DESC
                         + END_DATE_DESC
                         + DESCRIPTION_DESC,
-                "Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+                MESSAGE_INVALID_DATETIME);
     }
 
     @Test
@@ -93,7 +94,7 @@ public class EditEventCommandParserTest {
                         + START_DATE_DESC
                         + INVALID_END_DATE_DESC
                         + DESCRIPTION_DESC,
-                "Invalid date format. Expected format: yyyy-MM-dd HH:mm");
+                MESSAGE_INVALID_DATETIME);
     }
 
     @Test

@@ -39,7 +39,8 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_TODO =
+            "A todo with the same name and description already exists in the address book";
 
     private final Index targetIndex;
     private final EditTodoDescriptor editTodoDescriptor;
@@ -79,8 +80,18 @@ public class EditTodoCommand extends Command {
         }
 
         Name updatedContact = editedTodo.getContactName();
-        if (updatedContact != null && !hasContactName(model, updatedContact)) {
-            throw new CommandException("Contact not found: " + updatedContact.fullName);
+        if (updatedContact != null) {
+            Name actualContactName = findContactName(model, updatedContact);
+            if (actualContactName == null) {
+                throw new CommandException("Contact not found: " + updatedContact.fullName);
+            }
+            // Create a new Todo with the actual contact name from the database
+            editedTodo = new Todo(
+                    editedTodo.getTodoName(),
+                    editedTodo.getTodoDescription(),
+                    actualContactName,
+                    editedTodo.getIsCompleted()
+            );
         }
 
         model.setTodo(todoToEdit, editedTodo);
@@ -90,12 +101,15 @@ public class EditTodoCommand extends Command {
     }
 
     /**
-     * Checks if the input contact name exists in the current PersonList
+     * Finds the actual contact name from the database that matches the input name (case-insensitive).
+     * Returns null if no matching contact is found.
      */
-    private boolean hasContactName(Model model, Name name) {
-        return model.getAddressBook().getPersonList().stream()
+    private Name findContactName(Model model, Name inputName) {
+        return model.getPersonList().stream()
                 .map(Person::getName)
-                .anyMatch(name::equals);
+                .filter(name -> name.equals(inputName))
+                .findFirst()
+                .orElse(null);
     }
 
     /**

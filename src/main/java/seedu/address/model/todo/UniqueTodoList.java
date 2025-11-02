@@ -88,9 +88,6 @@ public class UniqueTodoList implements Iterable<Todo> {
         requireAllNonNull(target, editedPerson);
 
         Name targetName = requireNonNull(target.getName());
-        if (targetName.equals(editedPerson.getName())) {
-            return;
-        }
 
         for (Todo todo : this) {
             if (targetName.equals(todo.getContactName())) {

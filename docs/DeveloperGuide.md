@@ -68,7 +68,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -99,7 +99,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete-contact 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -116,7 +116,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 <img src="images/ParserClasses.png" width="600"/>
 
-How the parsing works (for commands which require parsing):
+How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -172,7 +172,7 @@ This section describes some noteworthy details on how certain features are imple
 The Add-Event mechanism is facilitated by the `AddEventCommand` class. It allows users to create and store new events in 
 the address book with complete details including name, alias, start time, end time, and description. 
 
-The `EventAlias` serves as a unique identifier for each event.
+The `EventAlias` serves as a unique identifier for each event
 
 The command implements the following key operations through the `Model` interface:
 - Model#hasEvent(Event) — Checks if an event with the same alias already exists in the address book
@@ -245,11 +245,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete-contact 5` command to delete the 5th person in the address book. The `delete-contact` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete-contact 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add-contact n/David …​` to add a new person. The `add-contact` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -284,7 +284,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list-contacts`. Commands that do not modify the address book, such as `list-contacts`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
@@ -306,7 +306,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete-contact`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -331,7 +331,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* Event planner who has to operate and liaise with various stakeholders to host events
+* Events planner who has to operate and liaise with various stakeholders to host events
 * Has to juggle multiple events
 * Has tight deadlines
 * Value time and efficiency
@@ -354,7 +354,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | event planner | add an event                   | store events to plan for                                           |
 | `* * *`  | event planner | view all events                | view all the upcoming events                                       |
 | `* * *`  | event planner | edit an event                  | update event details when details change                           |
-| `* * *`  | event planner | delete an event                | remove cancelled or past events                                    |
+| `* * *`  | event planner | delete an event                | remove canceled or past events                                     |
 | `* * *`  | event planner | link a contact to an event     | know which event a contact is involved in                          |
 | `* * *`  | event planner | unlink a contact from an event | remove incorrect or old associations                               |
 | `* * *`  | event planner | find contacts by event         | view all people associated with a specific event                   |
@@ -376,26 +376,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a contact with the required details.
-2. OverBooked adds the contact.
-3. OverBooked updates the list.
+1. User requests to add a contact with the required details
+2. OverBooked adds the contact
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
-    * 1a1. OverBooked informs the user of the error and displays the correct format.
+* 1a. User uses the invalid format or parameters
+    * 1a1. OverBooked informs the user of the error and displays the correct format
 
 Use case ends.
 
-* 1b. User tries to add a contact with the same name.
-    * 1b1. OverBooked informs the user that the contact already exists.
+* 1b. User tries to add a contact with the same name
+    * 1b1. OverBooked informs the user that the contact already exists
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the new contact list.
-    * 2a1. OverBooked informs the user of the error.
+* 2a. OverBooked is unable to save the new contact list
+    * 2a1. OverBooked informs the user of the error
 
 Use case resumes from step 3.
 
@@ -404,15 +404,15 @@ Use case resumes from step 3.
 
 **MSS**
 
-1. User requests to view the list of contacts.
-2. OverBooked shows the list of contacts.
+1. User requests to view the list of contacts
+2. OverBooked shows the list of contacts
 
 Use case ends.
 
 **Extensions**
 
-* 1a. OverBooked is unable to get the list of contacts.
-    * 1a1. OverBooked shows an error message.
+* 1a. OverBooked is unable to get the list of contacts
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
 
@@ -429,7 +429,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
+* 1a. User uses the invalid format or parameters.
     * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
@@ -444,15 +444,15 @@ Use case ends.
 
 **MSS**
 
-1. User enters keywords to search for contacts.
-2. OverBooked shows a list of contacts with matching keywords.
+1. User types in keywords to search for contacts
+2. OverBooked shows a list of contacts with matching keywords
 
 Use case ends.
 
 **Extensions**
 
-* 1a. OverBooked did not find any contacts with matching keywords.
-    * 1a1. OverBooked shows user a message saying no matching contacts.
+* 1a. OverBooked did not find any contacts with matching keywords
+    * 1a1. OverBooked shows user a message saying no matching keywords
 
 Use case ends.
 
@@ -461,16 +461,21 @@ Use case ends.
 
 **MSS**
 
-1. User requests to delete a contact.
-2. OverBooked removes the contact.
-3. OverBooked updates the list.
+1. User deletes a contact
+2. OverBooked removes the contact from the database
+3. OverBooked updates the list
 
 Use case ends.
 
 **Extensions**
 
-* 2a. OverBooked is unable to save the new contacts list.
-    * 2a1. OverBooked informs the user of the error.
+* 1a. User tries to delete a contact that does not exist in the database
+    * 1a1. OverBooked shows an error message to the user
+
+Use case ends.
+
+* 2a. OverBooked is unable to save the new contacts list
+    * 2a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -487,45 +492,45 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
-    * 1a1. OverBooked informs the user of the error and displays the correct format.
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
 
 Use case ends.
 
 * 2a. OverBooked is unable to save the new event.
     * 2a1. OverBooked informs the user of the error.
 
-Use case ends.
+Use case resumes from step 3.
 
 
 **Use case: UC7 - Link contacts to an event**
 
 **MSS**
 
-1. User requests to link one or more contacts to an event using their displayed index and event alias.
-2. OverBooked links the contact(s) to the specified event.
-3. Overbooked updates the contact list to show the linked event.
+1. User requests to link one or more contacts to an event using their displayed index and event alias
+2. OverBooked links the contact(s) to the specified event
+3. Overbooked updates the contact list to show the linked event
 
 Use Case ends.
 
 **Extensions**
-* 1a. User enters an invalid format or parameter.
-    * 1a1. OverBooked informs user of the error and displays the correct format.
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
 
 Use case ends.
 
 * 1b. One or more index provided by user is invalid
-  * 1b1. OverBooked informs user that the contact index is invalid.
+  1bOverBooked informs user that the contact index is invalid
 
 Use case ends.
 
-* 1c. User inputs a non-existent event alias.
-    * 1c1. OverBooked informs the user that the event was not found.
+* 1c. User inputs a non-existent event alias
+    * 1c1. OverBooked informs the user that the event was not found
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the updated contact list.
-    * 2a1. OverBooked informs the user of the error.
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user fo the error
 
 Use case ends.
 
@@ -533,30 +538,30 @@ Use case ends.
 
 **MSS**
 
-1. User requests to unlink one or more contacts from their linked events using their displayed indexes.
-2. OverBooked unlinks the contact(s) from their events.
-3. OverBooked updates the contact list to show the contacts are no longer linked.
+1. User requests to unlink one or more contacts from their linked events using their displayed indexes
+2. OverBooked unlinks the contact(s) from their events
+3. OverBooked updates the contact list to show the contacts are no longer linked
 
-Use case ends.
+Use case ends
 
 **Extensions**
-* 1a. User enters an invalid format or parameter.
-    * 1a1. OverBooked informs user of the error and displays the correct format.
+* 1a. User inputs invalid format or parameters
+    * 1a1. OverBooked informs user of the error and displays the correct format
 
 Use case ends.
 
-* 1b. One or more index provided by user is invalid.
-    * 1b1. OverBooked informs user that the contact index is invalid.
+* 1b. One or more index provided by user is invalid
+    * 1b1. OverBooked informs user that the contact index is invalid
 
 Use case ends.
 
-* 1c. One or more contacts are not linked to any event.
-    * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts).
+* 1c. One or more contacts are not linked to any event
+    * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts)
 
-Use case ends.
+Use case continues from step 4.
 
-* 2a. OverBooked is unable to save the updated contact list.
-    * 2a1. OverBooked informs the user of the error.
+* 2a. OverBooked is unable to save the updated contact list
+    * 2a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -565,16 +570,22 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view the list of events.
-2. OverBooked shows the list of events.
+1. User requests to view the list of events
+2. OverBooked shows the list of events
 
 Use case ends.
 
 **Extensions**
-* 1a. OverBooked is unable to get the list of events.
-    * 1a1. OverBooked shows an error message.
+* 1a. OverBooked is unable to get the list of events
+    * 1a1. OverBooked shows an error message
 
 Use case ends.
+
+* 1b. OverBooked has no events saved
+    * 1b1. OverBooked informs the user that there are no events
+
+Use case ends.
+
 
 **Use case: UC10 - Edit an event**
 
@@ -588,7 +599,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
+* 1a. User uses the invalid format or parameters.
   * 1a1. OverBooked displays the correct format to the user.
 
 Use case ends.
@@ -621,7 +632,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or does not specify any keywords.
+* 1a. User uses the invalid format or does not specify any keywords.
   * 1a1. OverBooked displays the correct format to the user.
 
 Use case ends.
@@ -644,8 +655,8 @@ Use case ends.
 
 Use case ends.
 
-* 2a. Database update fails.
-    * 2a1. OverBooked informs the user of the error.
+* 3a. Database update fails.
+    * 3a1. OverBooked informs the user of the error.
 
 Use case ends.
 
@@ -661,7 +672,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
+* 1a. User uses the invalid format or parameters.
     * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
@@ -678,7 +689,7 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
+* 1a. User uses the invalid format or parameters.
     * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
@@ -686,42 +697,42 @@ Use case ends.
 * 2a. OverBooked is unable to save the new todo.
     * 2a1. OverBooked informs the user of the error.
 
-Use case ends.
+Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
 
 **MSS**
 
-1. User requests to edit a specific todo using its displayed index and provides the fields to update.
-2. OverBook edits the todo with the new details.
-3. OverBooked updates the todo list to show the edited todo.
+1. User requests to edit a specific todo using its displayed index and provides the fields to update
+2. OverBook edits the todo with the new details
+3. OverBooked updates the todo list to show the edited todo
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User enters an invalid format or parameter.
-    * 1a1. OverBooked informs the user of the error and displays the correct format.
+* 1a. User uses invalid format or parameters
+    * 1a1. OverBooked informs the user of the error and displays the correct format
 
 Use case ends.
 
-* 1b. User provides an invalid index.
-    * 1b1. OverBooked informs the user that the todo index is invalid.
+* 1b. User provides an invalid index
+    * 1b1. OverBooked informs the user that the todo index is invalid
 
 Use case ends.
 
-* 1c. User does not provide any fields to edit.
-    * 1c1. OverBooked informs the user that at least one field must be provided.
+* 1c. User does not provide any fields to edit
+    * 1c1. OverBooked informs the user that at least one field must be provided
 
 Use case ends.
 
-* 1d. User provides a contact name that does not exist.
-    * 1d1. OverBooked informs the user that the contact was not found.
+* 1d. User provides a contact name that does not exist
+    * 1d1. OverBooked informs the user that the contact was not found
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the updated todo list.
-    * 2a1. OverBooked informs the user of the error.
+* 2a. OverBooked is unable to save the updated todo list
+    * 2a1. OverBooked informs the user of the error
 
 Use case ends.
 
@@ -772,8 +783,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User provides an invalid index.
-    * 1a1. OverBooked informs the user of the error.
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
 
 Use case ends.
 
@@ -788,8 +799,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User provides an invalid index.
-    * 1a1. OverBooked informs the user of the error.
+* 1a. User provides an unacceptable value for the argument.
+    * 1a1. OverBooked informs the user of the acceptable values.
 
 Use case ends.
 
