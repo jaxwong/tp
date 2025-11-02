@@ -88,14 +88,14 @@ AddressBook *--> "1" UniqueEventList
 AddressBook *--> "1" UniqueTodoList
 
 ' === UNIQUE LISTS TO ENTITIES ===
-UniquePersonList --> "*" Person
-UniqueEventList --> "*" Event
-UniqueTodoList --> "*" Todo
+UniquePersonList --> "~* all" Person
+UniqueEventList --> "~* all" Event
+UniqueTodoList --> "~* all" Todo
 
 ' === MODELMANAGER FILTERED LISTS ===
-ModelManager --> "*" Person : filteredPersons
-ModelManager --> "*" Event : filteredEvents
-ModelManager --> "*" Todo : filteredTodos
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Event
+ModelManager --> "~* filtered" Todo
 
 ' === PERSON FIELD RELATIONSHIPS ===
 Person *--> "1" Name
