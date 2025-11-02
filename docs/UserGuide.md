@@ -154,7 +154,8 @@ The command will remove any filters currently in the contact list after executio
 Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0) and they should be case insensitive (meaning EMERGENCY and emergency will be the same)
+A person can have any number of tags (including 0)
+Tags are case-sensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
 </div>
 
 Examples:
