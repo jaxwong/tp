@@ -397,7 +397,7 @@ Use case ends.
 * 2a. OverBooked is unable to save the new contact list
     * 2a1. OverBooked informs the user of the error
 
-Use case resumes from step 3.
+Use case ends.
 
 
 **Use case: UC2 - List contacts**
@@ -505,7 +505,7 @@ Use case ends.
 * 2a. OverBooked is unable to save the new event.
     * 2a1. OverBooked informs the user of the error.
 
-Use case resumes from step 3.
+Use case ends.
 
 
 **Use case: UC7 - Link contacts to an event**
@@ -707,7 +707,7 @@ Use case ends.
 * 2a. OverBooked is unable to save the new todo.
     * 2a1. OverBooked informs the user of the error.
 
-Use case resumes from step 3.
+Use case ends.
 
 **Use case: UC15 - Edit a todo**
 
