@@ -376,43 +376,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to add a contact with the required details
-2. OverBooked adds the contact
-3. OverBooked updates the list
+1. User requests to add a contact with the required details.
+2. OverBooked adds the contact.
+3. OverBooked updates the list.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User uses the invalid format or parameters
-    * 1a1. OverBooked informs the user of the error and displays the correct format
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
-* 1b. User tries to add a contact with the same name
-    * 1b1. OverBooked informs the user that the contact already exists
+* 1b. User tries to add a contact with the same name.
+    * 1b1. OverBooked informs the user that the contact already exists.
 
 Use case ends.
-
-* 2a. OverBooked is unable to save the new contact list
-    * 2a1. OverBooked informs the user of the error
-
-Use case resumes from step 3.
 
 
 **Use case: UC2 - List contacts**
 
 **MSS**
 
-1. User requests to view the list of contacts
-2. OverBooked shows the list of contacts
+1. User requests to view the list of contacts.
+2. OverBooked shows the list of contacts.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. OverBooked is unable to get the list of contacts
-    * 1a1. OverBooked shows an error message
+* 1a. OverBooked is unable to get the list of contacts.
+    * 1a1. OverBooked shows an error message.
 
 Use case ends.
 
@@ -444,15 +439,15 @@ Use case ends.
 
 **MSS**
 
-1. User types in keywords to search for contacts
-2. OverBooked shows a list of contacts with matching keywords
+1. User types in keywords to search for contacts.
+2. OverBooked shows a list of contacts with matching keywords.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. OverBooked did not find any contacts with matching keywords
-    * 1a1. OverBooked shows user a message saying no matching keywords
+* 1a. OverBooked did not find any contacts with matching keywords.
+    * 1a1. OverBooked shows user a message saying no matching keywords.
 
 Use case ends.
 
@@ -461,21 +456,16 @@ Use case ends.
 
 **MSS**
 
-1. User deletes a contact
-2. OverBooked removes the contact from the database
-3. OverBooked updates the list
+1. User requests to delete a contact.
+2. OverBooked removes the contact from the database.
+3. OverBooked updates the list.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User tries to delete a contact that does not exist in the database
-    * 1a1. OverBooked shows an error message to the user
-
-Use case ends.
-
-* 2a. OverBooked is unable to save the new contacts list
-    * 2a1. OverBooked informs the user of the error
+* 1a. User tries to delete a contact that does not exist in the database.
+    * 1a1. OverBooked shows an error message to the user.
 
 Use case ends.
 
@@ -497,71 +487,52 @@ Use case ends.
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the new event.
-    * 2a1. OverBooked informs the user of the error.
-
-Use case resumes from step 3.
-
 
 **Use case: UC7 - Link contacts to an event**
 
 **MSS**
 
-1. User requests to link one or more contacts to an event using their displayed index and event alias
-2. OverBooked links the contact(s) to the specified event
-3. Overbooked updates the contact list to show the linked event
+1. User requests to link one or more contacts to an event using their displayed index and event alias.
+2. OverBooked links the contact(s) to the specified event.
+3. Overbooked updates the contact list to show the linked event.
 
 Use Case ends.
 
 **Extensions**
-* 1a. User inputs invalid format or parameters
-    * 1a1. OverBooked informs user of the error and displays the correct format
+* 1a. User inputs invalid format or parameters.
+    * 1a1. OverBooked informs user of the error and displays the correct format.
 
 Use case ends.
 
-* 1b. One or more index provided by user is invalid
-  1bOverBooked informs user that the contact index is invalid
+* 1b. One or more index provided by user is invalid.
+  1bOverBooked informs user that the contact index is invalid.
 
 Use case ends.
 
-* 1c. User inputs a non-existent event alias
-    * 1c1. OverBooked informs the user that the event was not found
+* 1c. User inputs a non-existent event alias.
+    * 1c1. OverBooked informs the user that the event was not found.
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the updated contact list
-    * 2a1. OverBooked informs the user fo the error
-
-Use case ends.
 
 **Use case: UC8 - Unlink contacts from events**
 
 **MSS**
 
-1. User requests to unlink one or more contacts from their linked events using their displayed indexes
-2. OverBooked unlinks the contact(s) from their events
-3. OverBooked updates the contact list to show the contacts are no longer linked
+1. User requests to unlink one or more contacts from their linked events using their displayed indexes.
+2. OverBooked unlinks the contact(s) from their events.
+3. OverBooked updates the contact list to show the contacts are no longer linked.
 
 Use case ends
 
 **Extensions**
-* 1a. User inputs invalid format or parameters
-    * 1a1. OverBooked informs user of the error and displays the correct format
+* 1a. User inputs invalid format or parameters.
+    * 1a1. OverBooked informs user of the error and displays the correct format.
 
 Use case ends.
 
-* 1b. One or more index provided by user is invalid
-    * 1b1. OverBooked informs user that the contact index is invalid
-
-Use case ends.
-
-* 1c. One or more contacts are not linked to any event
-    * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts)
-
-Use case continues from step 4.
-
-* 2a. OverBooked is unable to save the updated contact list
-    * 2a1. OverBooked informs the user of the error
+* 1b. One or more index provided by user is invalid.
+    * 1b1. OverBooked informs user that the contact index is invalid.
 
 Use case ends.
 
@@ -570,19 +541,19 @@ Use case ends.
 
 **MSS**
 
-1. User requests to view the list of events
-2. OverBooked shows the list of events
+1. User requests to view the list of events.
+2. OverBooked shows the list of events.
 
 Use case ends.
 
 **Extensions**
-* 1a. OverBooked is unable to get the list of events
-    * 1a1. OverBooked shows an error message
+* 1a. OverBooked is unable to get the list of events.
+    * 1a1. OverBooked shows an error message.
 
 Use case ends.
 
-* 1b. OverBooked has no events saved
-    * 1b1. OverBooked informs the user that there are no events
+* 1b. OverBooked has no events saved.
+    * 1b1. OverBooked informs the user that there are no events.
 
 Use case ends.
 
@@ -655,11 +626,6 @@ Use case ends.
 
 Use case ends.
 
-* 3a. Database update fails.
-    * 3a1. OverBooked informs the user of the error.
-
-Use case ends.
-
 
 **Use case: UC13 - Find contacts by event**
 
@@ -694,45 +660,36 @@ Use case ends.
 
 Use case ends.
 
-* 2a. OverBooked is unable to save the new todo.
-    * 2a1. OverBooked informs the user of the error.
-
-Use case resumes from step 3.
 
 **Use case: UC15 - Edit a todo**
 
 **MSS**
 
-1. User requests to edit a specific todo using its displayed index and provides the fields to update
-2. OverBook edits the todo with the new details
-3. OverBooked updates the todo list to show the edited todo
+1. User requests to edit a specific todo using its displayed index and provides the fields to update.
+2. OverBook edits the todo with the new details.
+3. OverBooked updates the todo list to show the edited todo.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User uses invalid format or parameters
-    * 1a1. OverBooked informs the user of the error and displays the correct format
+* 1a. User uses invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
-* 1b. User provides an invalid index
-    * 1b1. OverBooked informs the user that the todo index is invalid
+* 1b. User provides an invalid index.
+    * 1b1. OverBooked informs the user that the todo index is invalid.
 
 Use case ends.
 
-* 1c. User does not provide any fields to edit
-    * 1c1. OverBooked informs the user that at least one field must be provided
+* 1c. User does not provide any fields to edit.
+    * 1c1. OverBooked informs the user that at least one field must be provided.
 
 Use case ends.
 
-* 1d. User provides a contact name that does not exist
-    * 1d1. OverBooked informs the user that the contact was not found
-
-Use case ends.
-
-* 2a. OverBooked is unable to save the updated todo list
-    * 2a1. OverBooked informs the user of the error
+* 1d. User provides a contact name that does not exist.
+    * 1d1. OverBooked informs the user that the contact was not found.
 
 Use case ends.
 
@@ -752,10 +709,6 @@ Use case ends
 
 Use case ends.
 
-* 3a. Database update fails.
-    * 3a1. OverBooked informs the user of the error.
-
-Use case ends.
 
 **Use case: UC17 - List todos**
 
@@ -792,7 +745,7 @@ Use case ends.
 
 **MSS**
 1. User requests to mark a todo as incomplete.
-2. OverBooked marks the contact as incomplete.
+2. OverBooked marks the todo as incomplete.
 3. OverBooked updates the list to reflect the marking.
 
 Use case ends.
@@ -810,23 +763,45 @@ Use case ends.
 2. Should be able to hold up to 1000 persons, 1000 events and 1000 todos without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Commands should be case-insensitive.
-5. Error messages must be clear, specific and actionable, guiding the user to correct mistakes.
-6. The GUI should update in real-time when contacts/events/todos are added, listed or deleted.
-7. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
-8. The system must reject invalid command formats, duplicate entries and malformed data consistently.
-9. All saved data must survive application restarts.
+5. The GUI should update in real-time when contacts/events/todos are added, listed or deleted.
+6. Invalid inputs should never crash the system; instead, appropriate error messages should be shown.
+7. All saved data must survive application restarts.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI(Command Line Interface)**: A text-based interface where the user types commands to interact with the application.
 * **GUI(Graphical User Interface)**: The visual interface of the app (panels, windows) built using JavaFX.
 * **Contact**: Any person in `OverBooked`. This term is used interchangeably with the term "person".
 * **Todo**: A task that the event planner needs to do.
 
 
+--------------------------------------------------------------------------------------------------------------------
 
+## **Appendix: Planned Enhancements**
+
+Team size: 5
+
+1. **Support associating contacts with multiple events**  
+   Currently, each contact can only be linked to a single event. This enhancement will allow a contact to be associated with multiple events simultaneously, improving flexibility for users managing recurring or related events.
+
+2. **Introduce alternative short command aliases**  
+   Provide shorter command words (e.g., `lc` as an alias for `list-contacts`) to enhance efficiency and user experience, especially for experienced users who prefer quicker interactions.
+
+3. **Use both name and phone number as unique identifiers for contacts**  
+   Modify the contact model so that uniqueness is determined by a combination of name and phone number, instead of name alone. This ensures users can store multiple contacts sharing the same name but with different numbers.
+
+4. **Enable international phone number formats**  
+   Expand phone number validation to support international formats (e.g., including `+`, `/`, and `()` symbols). This will be implemented via enhanced regex patterns and improved parsing to handle a wider range of valid cases.
+
+5. **Allow prefixes within data field values using quotation marks**  
+   Commands currently fail when a data field (e.g., description) contains a prefix keyword. The parser will be enhanced to support quoted values (e.g., `d/"Discuss n/next steps"`), enabling users to include prefixes safely within input text.
+
+6. **Improve UI scaling for event list display**  
+   When the application window width is reduced, longer event names and descriptions are currently cut-off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
+
+7. **Enable vertical scaling for command output panel**  
+   The command output box currently requires horizontal scrolling for long messages. Enhancing it to support vertical scaling or text wrapping will improve readability and reduce user friction when there are long extended command outputs.
 
 
 
@@ -847,13 +822,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
    2. Open a terminal and navigate to that folder using the cd command
-   3. Run the application by typing java -jar OverBooked.jar
+   3. Run the application by typing `java -jar OverBooked.jar`
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the app by typing `java -jar OverBooked.jar` again.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -878,5 +853,5 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    * If the application cannot find the data file (addressbook.json), it automatically creates a new file upon startup.
-   * If the data file is corrupted or unreadable, the application creates a new empty file to replace it.
+   * If the data file becomes an invalid json or data field values no longer fall within the given restrictions after user edits, the application creates a new empty file to replace it.
 
