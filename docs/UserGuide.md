@@ -85,20 +85,20 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Introduction to Prefixes
 
-| Prefix                  | Constraint(s)                                                                                                                                                                                       |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with whitespace or a slash.                                                                                           |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
+| Prefix                  | Constraint(s)                                                                                                                                                                         |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                           |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                      |
 | `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                         |
-| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
-| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                            |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                                            |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
-| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                               |
-| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
+| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                           |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                               |
+| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                              |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                              |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                   |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                  |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                 |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                  |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                           |
 
 
 <div markdown="block" class="alert alert-info">
