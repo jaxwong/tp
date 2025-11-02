@@ -91,7 +91,7 @@ Refer to the [Features](#features) below for details of each command.
 
 **:information_source: Notes about the command format:**<br>
 
-- All fields will be automatically trimmed (no spacing before or after each paramters) when input inside the command
+- All fields will be automatically trimmed (no spacing before or after each parameter) when input inside the command
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add-contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -124,9 +124,13 @@ Format: `help`
 ---
 ## Contacts
 
+<div markdown="block" class="alert alert-info">
+❗Each person cannot have the same name (case-insensitive).
+</div>
+
 ### Adding a person: `add-contact`
 
-Adds a person to the address book.
+Adds a person to the address book. This removes any filters currently in the contact list.
 
 Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -147,7 +151,7 @@ Format: `list-contacts`
 
 ### Editing a person : `edit-contact`
 
-Edits an existing person in the address book.
+Edits an existing person in the address book. This removes any filters currently in the contact list.
 
 <div markdown="block" class="alert alert-info">
 ❗While editing a person, we would require at least one field!
@@ -156,7 +160,9 @@ Edits an existing person in the address book.
 
 Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-- Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+- Edits the person at the specified `INDEX`.
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -180,6 +186,10 @@ Format: `find-contacts n/KEYWORD [MORE_KEYWORDS]`
 - Only full words will be matched e.g. `Han` will not match `Hans`
 - Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-contacts can be used to remove the filter. add-contact and edit-contact will also remove the filter after its execution.
+</div>
 
 Examples:
 
@@ -207,10 +217,10 @@ Examples:
 
 ### Adding an event: `add-event`
 
-Adds an event to the address book.
+Adds an event to the address book. This removes any filters currently in the event list.
 
 <div markdown="block" class="alert alert-info">
-❗The event alias is enforced to be unique, meaning you can't repeat existing event alises
+❗The event alias is enforced to be unique, meaning you can't repeat existing event alises (case-insensitive)
 </div>
 
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
@@ -231,6 +241,9 @@ Links a given contact (by index based on displayed list) to an event (by alias)
 
 Format: `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`
 
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
+
 Examples:
 
 - `link-event 1 ea/TSC2025`
@@ -241,6 +254,9 @@ Examples:
 Unlink any given contact (by index based on displayed list) from an event
 
 Format: `unlink-event INDEX [MORE_INDEXES]`
+
+- The index refers to the index number shown in the displayed person list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -254,7 +270,7 @@ Format: `list-events`
 
 ### Editing an event: `edit-event`
 
-Edits an existing event in the address book.
+Edits an existing event in the address book. This removes any filters currently in the event list.
 
 <div markdown="block" class="alert alert-info">
 ❗While editing an event, we would require at least one field!
@@ -262,7 +278,7 @@ Edits an existing event in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 an EventAlias cannot be edited in order to enforce uniqueness
-The event alias field included in the field is to identify which specific event you want to ammend.
+The event alias field included in the field is to identify which specific event you want to amend.
 </div>
 
 Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`
@@ -285,6 +301,10 @@ The order of the keywords does not matter.
 Only the alias is searched.
 Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return `TSC2024`, `TSC2025`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-events can be used to remove the filter. add-event and edit-event will also remove the filter after its execution.
+</div>
+
 Examples:
 
 - `find-event ea/TSC` returns `TSC2024` and `TSC2025`
@@ -306,6 +326,10 @@ Finds and displays all contacts that are linked to a specific event.
 
 Format: `find-by-event ea/EVENT_ALIAS`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+list-contacts can be used to remove the filter. add-contact and edit-contact will also remove the filter after its execution.
+</div>
+
 Examples:
 
 - `find-by-event ea/TSC2025`
@@ -315,7 +339,7 @@ Examples:
 ## Todos
 
 <div markdown="block" class="alert alert-info">
-❗Each Todo cannot have the same todoname and description
+❗Each Todo cannot have the same todoname and description (both case-insensitive)
 </div>
 
 
@@ -324,6 +348,8 @@ Examples:
 Adds a todo to the address book.
 
 Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
+
+- Only existing contacts can be linked to a todo (i.e. an existing contact must have the specified contact name).
 
 Examples:
 
@@ -337,7 +363,12 @@ Edits an existing todo in the address book.
 ❗While editing a todo, we would require at least one field!
 </div>
 
-Format: edit-todo INDEX [tn/TODO_NAME][td/TODO_DESCRIPTION][n/NAME]
+Format: `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]`
+
+- Edits the todo at the specified `INDEX`.
+- The index refers to the index number shown in the displayed todo list.
+- The index **must be a positive integer** 1, 2, 3, …​
+- Only existing contacts can be linked to a todo (i.e. an existing contact must have the specified contact name).
 
 Examples:
 
@@ -349,6 +380,10 @@ Examples:
 Deletes a todo from the address book.
 
 Format: `delete-todo INDEX`
+
+- Deletes the todo at the specified `INDEX`.
+- The index refers to the index number shown in the displayed todo list.
+- The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 
@@ -413,7 +448,7 @@ OverBooked data are saved in the hard disk automatically after any command that 
 OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, OverBooked will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
+If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. Hence, it is recommended to take a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
