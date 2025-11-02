@@ -8,10 +8,10 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
@@ -38,9 +38,17 @@ public class AddTodoCommandTest {
         Todo validTodo = new TodoBuilder().build();
         CommandResult commandResult = new AddTodoCommand(validTodo).execute(modelStub);
 
-        assertEquals(String.format(AddTodoCommand.MESSAGE_SUCCESS, Messages.format(validTodo)),
+        // When a contact is found, a new Todo with the actual contact name is created
+        Todo expectedTodo = new Todo(
+                validTodo.getTodoName(),
+                validTodo.getTodoDescription(),
+                ALICE.getName(),
+                validTodo.getIsCompleted()
+        );
+        assertEquals(String.format(AddTodoCommand.MESSAGE_SUCCESS, Messages.format(expectedTodo)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTodo), modelStub.todosAdded);
+        assertEquals(1, modelStub.todosAdded.size());
+        assertEquals(expectedTodo, modelStub.todosAdded.get(0));
     }
 
     @Test
@@ -50,9 +58,17 @@ public class AddTodoCommandTest {
 
         CommandResult result = new AddTodoCommand(validTodoWithContact).execute(modelStub);
 
-        assertEquals(String.format(AddTodoCommand.MESSAGE_SUCCESS, Messages.format(validTodoWithContact)),
+        // When a contact is found, a new Todo with the actual contact name is created
+        Todo expectedTodo = new Todo(
+                validTodoWithContact.getTodoName(),
+                validTodoWithContact.getTodoDescription(),
+                ALICE.getName(),
+                validTodoWithContact.getIsCompleted()
+        );
+        assertEquals(String.format(AddTodoCommand.MESSAGE_SUCCESS, Messages.format(expectedTodo)),
                 result.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTodoWithContact), modelStub.todosAdded);
+        assertEquals(1, modelStub.todosAdded.size());
+        assertEquals(expectedTodo, modelStub.todosAdded.get(0));
     }
 
     @Test
@@ -113,16 +129,23 @@ public class AddTodoCommandTest {
      */
     private class ModelStubWithTodo extends ModelStub {
         private final Todo todo;
+        private final AddressBook backingBook;
 
         ModelStubWithTodo(Todo todo) {
             requireNonNull(todo);
             this.todo = todo;
+            this.backingBook = new AddressBook();
         }
 
         @Override
         public boolean hasTodo(Todo t) {
             requireNonNull(t);
             return this.todo.equals(t);
+        }
+
+        @Override
+        public ObservableList<Person> getPersonList() {
+            return backingBook.getPersonList();
         }
     }
 
@@ -156,6 +179,11 @@ public class AddTodoCommandTest {
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             return backingBook;
+        }
+
+        @Override
+        public ObservableList<Person> getPersonList() {
+            return backingBook.getPersonList();
         }
     }
 }

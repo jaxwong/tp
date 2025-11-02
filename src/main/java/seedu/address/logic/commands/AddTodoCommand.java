@@ -50,8 +50,20 @@ public class AddTodoCommand extends Command {
         }
 
         final Name contactName = toAdd.getContactName();
-        if (contactName != null && !hasContactName(model, contactName)) {
-            throw new CommandException("Contact not found: " + contactName.fullName);
+        if (contactName != null) {
+            Name actualContactName = findContactName(model, contactName);
+            if (actualContactName == null) {
+                throw new CommandException("Contact not found: " + contactName.fullName);
+            }
+            // Create a new Todo with the actual contact name from the database
+            Todo todoWithActualName = new Todo(
+                    toAdd.getTodoName(),
+                    toAdd.getTodoDescription(),
+                    actualContactName,
+                    toAdd.getIsCompleted()
+            );
+            model.addTodo(todoWithActualName);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(todoWithActualName)));
         }
 
         model.addTodo(toAdd);
@@ -59,12 +71,15 @@ public class AddTodoCommand extends Command {
     }
 
     /**
-     * Checks if the input contact name exists in the current PersonList
+     * Finds the actual contact name from the database that matches the input name (case-insensitive).
+     * Returns null if no matching contact is found.
      */
-    private boolean hasContactName(Model model, Name name) {
-        return model.getAddressBook().getPersonList().stream()
+    private Name findContactName(Model model, Name inputName) {
+        return model.getPersonList().stream()
                 .map(Person::getName)
-                .anyMatch(name::equals);
+                .filter(name -> name.equals(inputName))
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
