@@ -524,8 +524,8 @@ Use Case ends.
 
 Use case ends.
 
-* 1b. One or more index provided by user is invalid
-  1bOverBooked informs user that the contact index is invalid
+* 1b. One or more index provided by user is invalid.
+  * 1b1. OverBooked informs user that the contact index is invalid.
 
 Use case ends.
 
@@ -563,7 +563,7 @@ Use case ends.
 * 1c. One or more contacts are not linked to any event
     * 1c1. OverBooked still processes the unlinked operation (no operation is done on affected unlinked contacts)
 
-Use case continues from step 4.
+Use case ends.
 
 * 2a. OverBooked is unable to save the updated contact list
     * 2a1. OverBooked informs the user of the error
