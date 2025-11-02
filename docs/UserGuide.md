@@ -71,20 +71,20 @@ Refer to the [Features](#features) below for details of each command.
 
 ### Introduction to Prefixes
 
-| Prefix                  | Constraint(s)                                                                                                                                                                                     |
-|-------------------------| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `n/` (Name)             | Alphanumeric characters and spaces only. Cannot be blank or start with whitespace.                                                                           |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                            |
+| Prefix                  | Constraint(s)                                                                                                                                                                                       |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` (Name)             | Alphanumeric characters, slashes and spaces only. Cannot be blank or start with whitespace.                                                                                                         |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
 | `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
-| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                        |
-| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                  |
-| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                     |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                               |
-| `d/` (Event Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                 |
-| `td/` (Todo Desc)       | 1-50 chars; must be non-empty after trimming.                                                                                                                                                     |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                       |
+| `a/` (Address)          | Any value; cannot be blank or start with whitespace.                                                                                                                                                |
+| `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
+| `en/` (Event Name)      | 1-100 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                           |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric, hyphens (-), underscores (_); cannot be blank.                                                                                                                            |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                 |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                               |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                         |
 
 
 <div markdown="block" class="alert alert-info">
@@ -99,7 +99,7 @@ Refer to the [Features](#features) below for details of each command.
 - Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-- Items with <blank> means that an empty field (i.e. " ") can be used to define nothing for supported commands
+- Items with `<blank>` means that an empty field (i.e. " ") can be used to define nothing for supported commands
 
 - Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -107,7 +107,7 @@ Refer to the [Features](#features) below for details of each command.
 - Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-- Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+- Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
@@ -126,7 +126,10 @@ Format: `help`
 
 ### Adding a person: `add-contact`
 
-Adds a person to the address book.
+Adds a person to the address book. A person is uniquely identified only by their name in 
+OverBooked; that is, that 2 contacts are considered different people as long as their names are 
+different in a case-insensitive comparison. This also means that 2 different people can have the 
+same phone number, address and email address. 
 
 Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -283,7 +286,9 @@ Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 The search is case-insensitive. e.g `tsc` will match `TSC`
 The order of the keywords does not matter.
 Only the alias is searched.
-Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return `TSC2024`, `TSC2025`
+Events matching at least one keyword will be returned (i.e. `OR` search). e.g. `tsc` will return 
+`TSC2024`, `TSC2025`. In short, the search does not require the full alias to match the searched 
+prefix.
 
 Examples:
 
