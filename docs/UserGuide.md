@@ -53,33 +53,31 @@ Follow these steps to get started with OverBooked in under 10 minutes:
 
 4. **Run the app**
 
-    **For Windows users:**
-   - Open the folder containing `OverBooked.jar`.
-   - Double-click on `OverBooked.jar` to run the application. 
-   
-    **For macOS users:**
-   - In the **Terminal** window, type `cd` and press the **return** key.
-   - Go back to **Terminal** and type `cd` and press the **SpaceBar** key, do not press the **return** key yet. 
-   - Open your **Finder** and locate the **folder** that contains `OverBooked.jar`.
-   - Drag the **folder** that contains `OverBooked.jar` into the **Terminal**. This should paste some text into the **Terminal** window. Press the **return** key.
-   - In the **Terminal** window, paste `java -jar OverBooked.jar` and press the **return** key.
+   **For Windows users:**
+    - Open the folder containing `OverBooked.jar`.
+    - Double-click on `OverBooked.jar` to run the application.
 
-  You should see a window like this:
-  <br>
-  ![UI of the Main Window](images/Ui.png)
+   <div style="page-break-after: always;"></div>
 
+   **For macOS users:**
+    - In the **Terminal** window, type `cd` and press the **return** key.
+    - Go back to **Terminal** and type `cd` and press the **SpaceBar** key, do not press the **return** key yet.
+    - Open your **Finder** and locate the **folder** that contains `OverBooked.jar`.
+    - Drag the **folder** that contains `OverBooked.jar` into the **Terminal**. This should paste some text into the **Terminal** window. Press the **return** key.
+    - In the **Terminal** window, paste `java -jar OverBooked.jar` and press the **return** key.
+
+   You should see a window like this:
+
+   <p align="center">
+     <img src="images/Ui.png" alt="UI of the Main Window" width="600"/>
+   </p>
 
 5. **Try these Commands**
-
-   - `help` : Open the help window.
-
-   - `list-contacts` : Lists all contacts.
-
-   - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   - `clear` : clears all Entries in the book
-
-   - `exit` : Exits the app.
+    - `help` : Open the help window.
+    - `list-contacts` : Lists all contacts.
+    - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    - `clear` : Clears all entries in the book.
+    - `exit` : Exits the app.
 
 Refer to the [Features](#features) below for details of each command.
 
@@ -92,30 +90,39 @@ Refer to the [Features](#features) below for details of each command.
 Our modern graphical user interface displays all your information in an organised and distinguishable manner, making multitasking more efficient.
 
 <br>![Annotated Ui](images/AnnotatedUi.png)
-| **Component**     | **Description** |
-|--------------------|-----------------|
-| **Menu Bar**       | For navigation to **File** or **Help**. |
-| **Command Box**    | Where the command inputs are typed in. |
-| **Results Display**| Displays notifications for errors or successful commands. |
-| **Contact List**   | Shows the contact list based on requested filters. |
-| **Event List**     | Shows the event list based on requested filters. |
-| **Todo List**      | Shows the todo list based on requested filters. |
+
+| **Component**       | **Description**                                           |
+|---------------------|-----------------------------------------------------------|
+| **Menu Bar**        | For navigation to **File** or **Help**.                   |
+| **Command Box**     | Where the command inputs are typed in.                    |
+| **Results Display** | Displays notifications for errors or successful commands. |
+| **Contact List**    | Shows the contact list based on requested filters.        |
+| **Event List**      | Shows the event list based on requested filters.          |
+| **Todo List**       | Shows the todo list based on requested filters.           |
+
+<div style="page-break-after: always;"></div>
 
 ### Contact Card
 
-<br>![Annotated Contact Card](images/ContactCard.png)
+<p align="center">
+  <img src="images/ContactCard.png" alt="Annotated Contact Card" width="400"/>
+</p>
 
 Each contact card will reflect (from top to bottom), the contact's name, tags, phone number, address, email and linked event
 
 ### Event Card
 
-<br>![Annotated Event Card](images/EventCard.png)
+<p align="center">
+  <img src="images/EventCard.png" alt="Annotated Event Card" width="400"/>
+</p>
 
 Each event card will reflect (from top to bottom), the event's name with alias, event details, start and end time.
 
 ### Todo card
 
-<br>![Annotated Todo Card](images/TodoCard.png)
+<p align="center">
+  <img src="images/TodoCard.png" alt="Annotated Todo Card" width="400"/>
+</p>
 
 Each todo card will reflect (from top to bottom), the todo's name, description, linked contact and status.
 
@@ -126,27 +133,26 @@ Each todo card will reflect (from top to bottom), the todo's name, description, 
 
 ### Introduction to Prefixes
 
-| Prefix                  | Constraint(s)                                                                                                                                                                                                                                                |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                                                                                  |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                                                                             |
-| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric characters and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnumeric characters, last label at least 2 consecutive alphanumeric characters . |
-| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                                                                                  |
-| `t/` (Tag)              | Alphanumeric characters only, minimum 1 character.                                                                                                                                                                                                           |
-| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                                                                                     |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric characters, hyphens (-), underscores (_); cannot be blank.                                                                                                                                                                          |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                                                                          |
-| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                         |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                                                                                        |
-| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                         |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                                                                                  |
-
+| Prefix                  | Constraint(s)                                                                                                                                                                                                                                                   |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                                                                                     |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                                                                                |
+| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric characters and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alphanumeric characters, last label at least 2 consecutive alphanumeric characters . |
+| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                                                                                     |
+| `t/` (Tag)              | Alphanumeric characters only, minimum 1 character.                                                                                                                                                                                                              |
+| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                                                                                        |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric characters, hyphens (-), underscores (_); cannot be blank.                                                                                                                                                                             |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                                                                             |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                            |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                                                                                           |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                            |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                                                                                     |
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-- All fields will be automatically trimmed (no spacing before or after each parameter) when input inside the command
+- All fields will be automatically trimmed (no spacing before or after each parameter) when input inside the command.
 
 - Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add-contact n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -168,11 +174,15 @@ Each todo card will reflect (from top to bottom), the todo's name, description, 
 - If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<p align="center">
+  <img src="images/helpMessage.png" alt="Help message window" width="450"/>
+</p>
 
 Format: `help`
 
@@ -188,7 +198,7 @@ Format: `help`
 ### Adding a person: `add-contact`
 
 Adds a person to the address book. A person is uniquely identified only by their name in 
-OverBooked; that is, that 2 contacts are considered different people as long as their names are 
+OverBooked; that is, 2 contacts are considered different people as long as their names are 
 different in a case-insensitive comparison.
 
 The command will remove any filters currently in the contact list after execution.
@@ -197,7 +207,7 @@ Format: `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
-Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned
+Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return only the first tag mentioned.
 </div>
 
 Examples:
@@ -214,11 +224,6 @@ Format: `list-contacts`
 ### Editing a person : `edit-contact`
 
 Edits an existing person in the address book. This removes any filters currently in the contact list.
-
-<div markdown="block" class="alert alert-info">
-❗While editing a person, we would require at least one field!
-</div>
-
 
 Format: `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -279,13 +284,16 @@ Examples:
 
 ## Events
 
+<div markdown="block" class="alert alert-info">
+❗Each event cannot have the same event alias (case-insensitive)
+</div>
+
 ### Adding an event: `add-event`
 
-Adds an event to the address book. This removes any filters currently in the event list.
+Adds an event to the address book.  An event is uniquely identified only by its alias in OverBooked; that is, 2 events 
+are considered different as long as their aliases are different in a case-insensitive comparison.
 
-<div markdown="block" class="alert alert-info">
-❗The event alias is enforced to be unique, meaning you can't repeat existing event aliases (case-insensitive)
-</div>
+The command will remove any filters currently in the event list after execution.
 
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
 
@@ -295,12 +303,12 @@ Examples:
 
 ### Linking an event: `link-event`
 
-Links a given contact (by index based on displayed list) to an event (by alias)
+Links a given contact (by index based on displayed list) to an event (by alias).
 
 <div markdown="block" class="alert alert-info">
-❗Each contact can only link to **one** specific event  
+❗Each contact can only link to **one** specific event.
 
-❗Linking an event to a contact that already has an event linked, will just update and replace it
+❗Linking an event to a contact that already has an event linked, will just update and replace it.
 </div>
 
 Format: `link-event INDEX [MORE_INDEXES] ea/EVENT_ALIAS`
@@ -315,10 +323,10 @@ Examples:
 
 ### Unlinking an event: `unlink-event`
 
-Unlink any given contact (by index based on displayed list) from an event
+Unlink any given contact (by index based on displayed list) from an event.
 
 <div markdown="block" class="alert alert-info">
-❗Unlinking an event from an unlinked person, will show that he/she is unlinked again
+❗Unlinking an event from an unlinked person, will show that he/she is unlinked again.
 </div>
 
 Format: `unlink-event INDEX [MORE_INDEXES]`
@@ -340,9 +348,6 @@ Format: `list-events`
 
 Edits an existing event in the address book. This removes any filters currently in the event list.
 
-<div markdown="block" class="alert alert-info">
-❗While editing an event, we would require at least one field!
-</div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 an EventAlias cannot be edited in order to enforce uniqueness
@@ -351,8 +356,9 @@ The event alias field included in the field is to identify which specific event 
 
 Format: `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`
 
-At least one of the optional fields must be provided.
-Existing values will be updated to the input values.
+- Edits the event by the specified `EVENT_ALIAS`.
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
 
 Example:
 
@@ -360,7 +366,7 @@ Example:
 
 ### Finding events by alias: `find-event`
 
-Find events whose aliases start with any of the given keywords.
+Finds events whose aliases start with any of the given keywords.
 
 Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 
@@ -382,13 +388,13 @@ Examples:
 
 ### Deleting an event: `delete-event`
 
-Deletes an event from the address book.
+- Deletes an event from the address book by the event alias.
 
 Format: `delete-event ea/EVENT_ALIAS`
 
 Examples:
 
-- `delete-event ea/TSC2025`
+- `delete-event ea/TSC2025` deletes the event with alias `TSC2025`.
 
 ### Finding a contact by event: `find-by-event`
 
@@ -416,7 +422,9 @@ Examples:
 
 ### Adding a todo: `add-todo`
 
-Adds a todo to the address book.
+Adds a todo to the address book. A todo is uniquely identified only by its todo name and todo description in
+OverBooked; that is, 2 todos are considered different todos as long as the todo names or todo descriptions are
+different in a case-insensitive comparison.
 
 Format: `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`
 
@@ -430,15 +438,15 @@ Examples:
 
 Edits an existing todo in the address book.
 
-<div markdown="block" class="alert alert-info">
-❗While editing a todo, we would require at least one field!
-</div>
 
 Format: `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]`
 
 - Edits the todo at the specified `INDEX`.
 - The index refers to the index number shown in the displayed todo list.
 - The index **must be a positive integer** 1, 2, 3, …​
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- You can unlink the person from the todo by typing `n/` without specifying any name after it
 - Only existing contacts can be linked to a todo (i.e. an existing contact must have the specified contact name).
 
 Examples:
@@ -513,20 +521,18 @@ Format: `exit`
 
 ### Saving the data
 
-OverBooked data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+OverBooked data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+OverBooked data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. In some cases, database consistency may not be guaranteed. Hence, it is recommended to make a backup of the file before editing it.<br>
+If the data file becomes an invalid json file or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. In some cases, database consistency may not be guaranteed. Hence, it is recommended to make a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ---
-<div style="page-break-after: always;"></div>
-
 
 ## FAQ
 
@@ -557,7 +563,7 @@ home folder.
 | **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                    |
 | 🎫 **Events**      |                                                                                                                                                                                                      |
 | **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/World Tour` |
-| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START] [et/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30`                                        |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30`                      |
 | **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                      |
 | **list-events**    | `list-events`                                                                                                                                                                                        |
 | **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                  |

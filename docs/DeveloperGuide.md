@@ -851,5 +851,5 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    * If the application cannot find the data file (addressbook.json), it automatically creates a new file upon startup.
-   * If the data file becomes an invalid json or data field values no longer fall within the given restrictions after user edits, the application creates a new empty file to replace it. In some cases, database consistency may not be guaranteed.
+   * If the data file becomes an invalid json file or data field values no longer fall within the given restrictions after user edits, the application creates a new empty file to replace it. In some cases, database consistency may not be guaranteed.
 
