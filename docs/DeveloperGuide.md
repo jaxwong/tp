@@ -493,9 +493,9 @@ Use case ends.
 
 1. User requests to link one or more contacts to an event using their displayed index and event alias.
 2. OverBooked links the contact(s) to the specified event.
-3. Overbooked updates the list to show the linked event.
+3. OverBooked updates the list to show the linked event.
 
-Use Case ends.
+Use case ends.
 
 **Extensions**
 * 1a. User inputs invalid format or parameters.
@@ -522,7 +522,7 @@ Use case ends.
 2. OverBooked unlinks the contact(s) from their events.
 3. OverBooked updates the list to show the contacts are no longer linked.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 * 1a. User inputs invalid format or parameters.
@@ -630,6 +630,8 @@ Use case ends.
 * 1a. User uses the invalid format or parameters.
     * 1a1. OverBooked informs the user of the error and displays the correct format.
 
+Use case ends.
+
 * 1b. The event could not be found. 
    * 1b1. OverBooked shows an error message.
 
@@ -703,7 +705,7 @@ Use case ends.
 2. OverBooked deletes the specified todo.
 3. OverBooked updates the todo list.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 * 1a. User provides an invalid index.
@@ -840,7 +842,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-contact 0`<br>
       Expected: No person is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete-contact x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-contact`, `delete-contact x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 
