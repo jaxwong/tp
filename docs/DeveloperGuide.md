@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -51,7 +51,7 @@ The bulk of the app's work is done by the following four components:
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-contact 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -80,7 +80,7 @@ The image below shows the `MainWindow` and its labelled parts in the UI:
 
 The `MainWindow` also holds a reference to a `HelpWindow`, which inherits from `UiPart` as well. `MainWindow` controls when the `HelpWindow` is shown depending on the user's input.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-T10-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -97,9 +97,9 @@ Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete 1")` API call as an example.
+The sequence diagram below illustrates the interactions within the `Logic` component, taking `execute("delete-contact 1")` API call as an example.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-contact 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
@@ -288,7 +288,7 @@ Step 5. The user then decides to execute the command `list-contacts`. Commands t
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add-contact n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `OverBooked` and the **Actor** is the `event planner`, unless specified otherwise)
+(For all use cases below, the **System** is `OverBooked` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC1 - Add a contact**
 
@@ -401,13 +401,6 @@ Use case ends.
 
 1. User requests to view the list of contacts.
 2. OverBooked shows the list of contacts.
-
-Use case ends.
-
-**Extensions**
-
-* 1a. OverBooked is unable to get the list of contacts.
-    * 1a1. OverBooked shows an error message.
 
 Use case ends.
 
@@ -446,8 +439,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. OverBooked did not find any contacts with matching keywords.
-    * 1a1. OverBooked shows user a message saying no matching keywords.
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
@@ -457,15 +450,15 @@ Use case ends.
 **MSS**
 
 1. User requests to delete a contact.
-2. OverBooked removes the contact from the database.
+2. OverBooked removes the contact.
 3. OverBooked updates the list.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. User tries to delete a contact that does not exist in the database.
-    * 1a1. OverBooked shows an error message to the user.
+* 1a. Index provided by user is invalid.
+    * 1a1. OverBooked informs user that the contact index is invalid.
 
 Use case ends.
 
@@ -482,8 +475,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User provides an unacceptable value for the argument.
-    * 1a1. OverBooked informs the user of the acceptable values.
+* 1a. User uses the invalid format or parameters.
+    * 1a1. OverBooked informs the user of the error and displays the correct format.
 
 Use case ends.
 
@@ -500,9 +493,9 @@ Use case ends.
 
 1. User requests to link one or more contacts to an event using their displayed index and event alias.
 2. OverBooked links the contact(s) to the specified event.
-3. Overbooked updates the contact list to show the linked event.
+3. OverBooked updates the list to show the linked event.
 
-Use Case ends.
+Use case ends.
 
 **Extensions**
 * 1a. User inputs invalid format or parameters.
@@ -527,9 +520,9 @@ Use case ends.
 
 1. User requests to unlink one or more contacts from their linked events using their displayed indexes.
 2. OverBooked unlinks the contact(s) from their events.
-3. OverBooked updates the contact list to show the contacts are no longer linked.
+3. OverBooked updates the list to show the contacts are no longer linked.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 * 1a. User inputs invalid format or parameters.
@@ -550,17 +543,6 @@ Use case ends.
 
 1. User requests to view the list of events.
 2. OverBooked shows the list of events.
-
-Use case ends.
-
-**Extensions**
-* 1a. OverBooked is unable to get the list of events.
-    * 1a1. OverBooked shows an error message.
-
-Use case ends.
-
-* 1b. OverBooked has no events saved.
-    * 1b1. OverBooked informs the user that there are no events.
 
 Use case ends.
 
@@ -650,6 +632,11 @@ Use case ends.
 
 Use case ends.
 
+* 1b. The event could not be found. 
+   * 1b1. OverBooked shows an error message.
+
+Use case ends.
+
 
 **Use case: UC14 - Add a todo**
 
@@ -678,7 +665,7 @@ Use case ends.
 **MSS**
 
 1. User requests to edit a specific todo using its displayed index and provides the fields to update.
-2. OverBook edits the todo with the new details.
+2. OverBooked edits the todo with the new details.
 3. OverBooked updates the todo list to show the edited todo.
 
 Use case ends.
@@ -718,7 +705,7 @@ Use case ends.
 2. OverBooked deletes the specified todo.
 3. OverBooked updates the todo list.
 
-Use case ends
+Use case ends.
 
 **Extensions**
 * 1a. User provides an invalid index.
@@ -735,12 +722,6 @@ Use case ends.
 
 Use case ends.
 
-**Extensions**
-
-* 1a. OverBooked is unable to get the list of todos.
-    * 1a1. OverBooked shows an error message.
-
-Use case ends.
 
 **Use case: UC18 - Mark a todo as complete**
 
@@ -753,8 +734,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User provides an unacceptable value for the argument.
-    * 1a1. OverBooked informs the user of the acceptable values.
+* 1a. Index provided by user is invalid.
+    * 1a1. OverBooked informs user that the todo index is invalid.
 
 Use case ends.
 
@@ -769,8 +750,8 @@ Use case ends.
 
 **Extensions**
 
-* 1a. User provides an unacceptable value for the argument.
-    * 1a1. OverBooked informs the user of the acceptable values.
+* 1a. Index provided by user is invalid.
+    * 1a1. OverBooked informs user that the todo index is invalid.
 
 Use case ends.
 
@@ -815,7 +796,7 @@ Team size: 5
    Commands currently fail when a data field (e.g., description) contains a prefix keyword. The parser will be enhanced to support quoted values (e.g., `d/"Discuss n/next steps"`), enabling users to include prefixes safely within input text.
 
 6. **Improve UI scaling for displaying of lists**  
-   When the application window width is reduced, longer details are currently cut-off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
+   When the application window width is reduced, longer details are currently cut off. Responsive resizing will be implemented so text automatically wraps or dynamically adjusts, ensuring all content remains visible.
 
 7. **Enable vertical scaling for command output panel**  
    The command output box currently requires horizontal scrolling for long messages. Enhancing it to support vertical scaling or text wrapping will improve readability and reduce user friction when there are long extended command outputs.
@@ -856,12 +837,12 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list-contacts` command. Multiple persons in the list.
 
    1. Test case: `delete-contact 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. 
 
    1. Test case: `delete-contact 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete-contact x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-contact`, `delete-contact x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 
@@ -870,5 +851,5 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    * If the application cannot find the data file (addressbook.json), it automatically creates a new file upon startup.
-   * If the data file becomes an invalid json file or data field values no longer fall within the given restrictions after user edits, the application creates a new empty file to replace it.
+   * If the data file becomes an invalid json file or data field values no longer fall within the given restrictions after user edits, the application creates a new empty file to replace it. In some cases, database consistency may not be guaranteed.
 

@@ -49,5 +49,7 @@
     "address" : "4th street",
     "tags" : [ ],
     "eventAlias": "LA2026"
-  } ]
+  } ],
+  "events": [],
+  "todos": []
 }
