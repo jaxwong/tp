@@ -182,15 +182,14 @@ Format: `help`
 ## Contacts
 
 <div markdown="block" class="alert alert-info">
-❗Each person cannot have the same name (case-insensitive).
+❗Contact names must be unique (case-insensitive). Adding a contact whose name matches an existing one—ignoring letter case—will result in an error.
 </div>
 
 ### Adding a person: `add-contact`
 
 Adds a person to the address book. A person is uniquely identified only by their name in 
 OverBooked; that is, that 2 contacts are considered different people as long as their names are 
-different in a case-insensitive comparison. This also means that 2 different people can have the 
-same phone number, address and email address.
+different in a case-insensitive comparison.
 
 The command will remove any filters currently in the contact list after execution.
 
