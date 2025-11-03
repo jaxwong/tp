@@ -410,7 +410,7 @@ Examples:
 ## Todos
 
 <div markdown="block" class="alert alert-info">
-❗Each Todo cannot have the same todoname and description (both case-insensitive)
+❗Each Todo cannot have the same todo name and description (both case-insensitive)
 </div>
 
 
