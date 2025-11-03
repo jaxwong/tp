@@ -58,6 +58,9 @@ public class JsonAdaptedTodo {
         if (todoName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "todoName"));
         }
+        if (description == null || description.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
         if (!TodoName.isValidTodoName(todoName)) {
             throw new IllegalValueException(TodoName.MESSAGE_CONSTRAINTS);
         }
