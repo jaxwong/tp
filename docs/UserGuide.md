@@ -285,7 +285,7 @@ Examples:
 ## Events
 
 <div markdown="block" class="alert alert-info">
-❗Each event cannot have the same event alias (case-sensitive)
+❗Each event cannot have the same event alias (case-insensitive)
 </div>
 
 ### Adding an event: `add-event`
