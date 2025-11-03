@@ -17,7 +17,7 @@ import seedu.address.ui.DisplayList;
 public class FindContactByEventCommand extends Command {
     public static final String COMMAND_WORD = "find-by-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose linkedEventAlias "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose linked EventAlias "
             + "matches the given EventAlias and displays them as a list with index numbers.\n"
             + "Parameters: ea/EVENT_ALIAS\n"
             + "Example: " + COMMAND_WORD + " ea/TaylorSwift";
