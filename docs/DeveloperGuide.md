@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* Generative AI tools were used for creating detailed Javadoc and test suite creation throughout the development of EventBook.
-* Canvas was used to edit some of the images in the documentation. 
+* Generative AI tools were used for creating detailed Javadoc and test suite creation throughout the development of OverBooked.
+* Canva was used to edit some of the images in the documentation. 
 
 --------------------------------------------------------------------------------------------------------------------
 
