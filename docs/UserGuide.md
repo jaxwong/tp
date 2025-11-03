@@ -133,20 +133,20 @@ Each todo card will reflect (from top to bottom), the todo's name, description, 
 
 ### Introduction to Prefixes
 
-| Prefix                  | Constraint(s)                                                                                                                                                                                                                                                |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                                                                                  |
-| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                                                                             |
-| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric characters and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnumeric characters, last label at least 2 consecutive alphanumeric characters . |
-| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                                                                                  |
-| `t/` (Tag)              | Alphanumeric characters only, minimum 1 character.                                                                                                                                                                                                           |
-| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                                                                                     |
-| `ea/` (Event Alias)     | 1-20 chars; alphanumeric characters, hyphens (-), underscores (_); cannot be blank.                                                                                                                                                                          |
-| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                                                                          |
-| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                         |
-| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                                                                                        |
-| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                         |
-| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                                                                                  |
+| Prefix                  | Constraint(s)                                                                                                                                                                                                                                                   |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                                                                                     |
+| `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                                                                                |
+| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric characters and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alphanumeric characters, last label at least 2 consecutive alphanumeric characters . |
+| `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                                                                                     |
+| `t/` (Tag)              | Alphanumeric characters only, minimum 1 character.                                                                                                                                                                                                              |
+| `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                                                                                        |
+| `ea/` (Event Alias)     | 1-20 chars; alphanumeric characters, hyphens (-), underscores (_); cannot be blank.                                                                                                                                                                             |
+| `st/`, `et/` (DateTime) | Format: `yyyy-MM-dd HH:mm` (e.g., `2025-09-19 19:30`). Must be valid date and time.                                                                                                                                                                             |
+| `d/` (Event Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                            |
+| `tn/` (Todo Name)       | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,), slashes (/); trimmed.                                                                                                                                           |
+| `td/` (Todo Desc)       | 1-50 chars (including special characters like slashes); must be non-empty after trimming whitespace.                                                                                                                                                            |
+| `INDEX`                 | Positive integer, non-zero (used for selecting list items).                                                                                                                                                                                                     |
 
 <div markdown="block" class="alert alert-info">
 
@@ -290,8 +290,8 @@ Examples:
 
 ### Adding an event: `add-event`
 
-Adds an event to the address book.  An event is uniquely identified only by their alias in OverBooked; that is, 2 events a
-re considered different as long as their alias are different in a case-insensitive comparison.
+Adds an event to the address book.  An event is uniquely identified only by its alias in OverBooked; that is, 2 events 
+are considered different as long as their aliases are different in a case-insensitive comparison.
 
 The command will remove any filters currently in the event list after execution.
 
@@ -366,7 +366,7 @@ Example:
 
 ### Finding events by alias: `find-event`
 
-Find events whose aliases start with any of the given keywords.
+Finds events whose aliases start with any of the given keywords.
 
 Format: `find-event ea/KEYWORD [MORE_KEYWORDS]`
 
@@ -422,7 +422,7 @@ Examples:
 
 ### Adding a todo: `add-todo`
 
-Adds a todo to the address book. A todo is uniquely identified only by their todo name and todo description in
+Adds a todo to the address book. A todo is uniquely identified only by its todo name and todo description in
 OverBooked; that is, 2 todos are considered different todos as long as the todo names or todo descriptions are
 different in a case-insensitive comparison.
 
@@ -521,14 +521,14 @@ Format: `exit`
 
 ### Saving the data
 
-OverBooked data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+OverBooked data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-OverBooked data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+OverBooked data is saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the data file becomes an invalid json or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. In some cases, database consistency may not be guaranteed. Hence, it is recommended to make a backup of the file before editing it.<br>
+If the data file becomes an invalid json file or fields no longer fall within given restrictions after user edits, OverBooked will create a new empty file to replace it. In some cases, database consistency may not be guaranteed. Hence, it is recommended to make a backup of the file before editing it.<br>
 Furthermore, certain edits can cause the OverBooked to behave in unexpected ways (e.g., if a value entered is outside of the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
@@ -563,7 +563,7 @@ home folder.
 | **find-by-event**  | `find-by-event ea/EVENT_ALIAS`<br>e.g. `find-by-event ea/TSC2025`                                                                                                                                    |
 | 🎫 **Events**      |                                                                                                                                                                                                      |
 | **add-event**      | `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`<br>e.g. `add-event en/Taylor Swift Concert ea/TSC2025 st/2025-09-19 19:30 et/2025-09-19 23:30 d/World Tour` |
-| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START] [et/END] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30`                                        |
+| **edit-event**     | `edit-event ea/EVENT_ALIAS [en/EVENT_NAME] [st/START_DATETIME] [et/END_DATETIME] [d/DESCRIPTION]`<br>e.g. `edit-event ea/TSC2025 en/Taylor Swift’s Concert st/2025-09-19 18:30`                      |
 | **delete-event**   | `delete-event ea/EVENT_ALIAS`<br>e.g. `delete-event ea/TSC2025`                                                                                                                                      |
 | **list-events**    | `list-events`                                                                                                                                                                                        |
 | **find-event**     | `find-event ea/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-event ea/TSC`                                                                                                                                  |
@@ -571,7 +571,7 @@ home folder.
 | **unlink-event**   | `unlink-event INDEX [MORE_INDEXES]`<br>e.g. `unlink-event 1 2`                                                                                                                                       |
 | 📝 **Todos**       |                                                                                                                                                                                                      |
 | **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                    |
-| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                        |
+| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo 1 tn/Call John td/Confirm appointment with John n/John Doe`                                                      |
 | **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                         |
 | **list-todos**     | `list-todos`                                                                                                                                                                                         |
 | **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                              |
