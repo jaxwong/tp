@@ -22,7 +22,7 @@ public class Event {
      * @param end The end date and time of the event. Must not be null.
      * @param description The description of the event. Must not be null.
      * @throws NullPointerException if any parameter is null.
-     * @throws IllegalArgumentException if start time is after end time.
+     * @throws IllegalArgumentException if start time is not before end time.
      */
     public Event(EventName name, EventAlias alias,
                  LocalDateTime start, LocalDateTime end, String description) {
