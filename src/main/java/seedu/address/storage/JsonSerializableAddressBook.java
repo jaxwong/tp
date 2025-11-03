@@ -37,9 +37,6 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
                                        @JsonProperty("events") List<JsonAdaptedEvent> events,
                                        @JsonProperty("todos") List<JsonAdaptedTodo> todos) {
-        if (persons == null || events == null || todos == null) {
-            throw new NullPointerException(MESSAGE_INVALID_DATA);
-        }
         if (persons != null) {
             this.persons.addAll(persons);
         }
