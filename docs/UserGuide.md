@@ -92,18 +92,14 @@ Refer to the [Features](#features) below for details of each command.
 Our modern graphical user interface displays all your information in an organised and distinguishable manner, making multitasking more efficient.
 
 <br>![Annotated Ui](images/AnnotatedUi.png)
-
-**Menu Bar**: For Navigation to 'File' or 'help'
-
-**Command Box**: Where the command inputs will be typed in
-
-**Results Display**: Where the application will notify for any errors / successful commands
-
-**Contact List**: Shows the Displayed Contact Lists based on requested filters.
-
-**Event List**: Shows the Contact List based on requested filters.
-
-**Todo List**: Shows the Todo List based on requested filters.
+| **Component**     | **Description** |
+|--------------------|-----------------|
+| **Menu Bar**       | For navigation to **File** or **Help**. |
+| **Command Box**    | Where the command inputs are typed in. |
+| **Results Display**| Displays notifications for errors or successful commands. |
+| **Contact List**   | Shows the displayed contact list based on requested filters. |
+| **Event List**     | Shows the event list based on requested filters. |
+| **Todo List**      | Shows the to-do list based on requested filters. |
 
 ### Contact Card
 
