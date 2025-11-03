@@ -97,9 +97,9 @@ Our modern graphical user interface displays all your information in an organise
 | **Menu Bar**       | For navigation to **File** or **Help**. |
 | **Command Box**    | Where the command inputs are typed in. |
 | **Results Display**| Displays notifications for errors or successful commands. |
-| **Contact List**   | Shows the displayed contact list based on requested filters. |
+| **Contact List**   | Shows the contact list based on requested filters. |
 | **Event List**     | Shows the event list based on requested filters. |
-| **Todo List**      | Shows the to-do list based on requested filters. |
+| **Todo List**      | Shows the todo list based on requested filters. |
 
 ### Contact Card
 
@@ -115,7 +115,7 @@ Each event card will reflect (from top to bottom), the event's name with alias, 
 
 ### Todo card
 
-<br>![Annotated Todo Card](images/todoCard.png)
+<br>![Annotated Todo Card](images/TodoCard.png)
 
 Each todo card will reflect (from top to bottom), the todo's name, description, linked contact and status.
 
@@ -130,7 +130,7 @@ Each todo card will reflect (from top to bottom), the todo's name, description, 
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `n/` (Name)             | Alphanumeric characters, spaces and slashes(/) only. Cannot be blank or start with a slash.                                                                                                         |
 | `p/` (Phone)            | Numbers only, at least 3 digits.                                                                                                                                                                    |
-| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 chars. |
+| `e/` (Email)            | Must follow format: local-part@domain. Local-part: Alphanumeric and `+`, `_`, `.`, `-` (not at start/end). Domain: period-separated labels starting/ending with alnum, last label at least 2 consecutive alphanumeric. |
 | `a/` (Address)          | Any value; cannot be blank.                                                                                                                                                                         |
 | `t/` (Tag)              | Alphanumeric only, minimum 1 character.                                                                                                                                                             |
 | `en/` (Event Name)      | 1-50 chars; letters, numbers, spaces, apostrophes ('), hyphens (-), ampersands (&), commas (,); trimmed.                                                                                            |
@@ -284,7 +284,7 @@ Examples:
 Adds an event to the address book. This removes any filters currently in the event list.
 
 <div markdown="block" class="alert alert-info">
-❗The event alias is enforced to be unique, meaning you can't repeat existing event alises (case-insensitive)
+❗The event alias is enforced to be unique, meaning you can't repeat existing event aliases (case-insensitive)
 </div>
 
 Format: `add-event en/EVENT_NAME ea/EVENT_ALIAS st/START_DATETIME et/END_DATETIME d/DESCRIPTION`
