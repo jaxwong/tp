@@ -410,7 +410,7 @@ Examples:
 ## Todos
 
 <div markdown="block" class="alert alert-info">
-❗Each Todo cannot have the same todoname and description (both case-insensitive)
+❗Each Todo cannot have the same todo name and description (both case-insensitive)
 </div>
 
 
@@ -565,7 +565,7 @@ home folder.
 | **unlink-event**   | `unlink-event INDEX [MORE_INDEXES]`<br>e.g. `unlink-event 1 2`                                                                                                                                       |
 | 📝 **Todos**       |                                                                                                                                                                                                      |
 | **add-todo**       | `add-todo tn/TODO_NAME td/TODO_DESCRIPTION [n/NAME]`<br>e.g. `add-todo tn/Call Alex td/Confirm event n/Alex Yeoh`                                                                                    |
-| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo tn/Call John td/Confirm appointment with John n/John Doe`                                                        |
+| **edit-todo**      | `edit-todo INDEX [tn/TODO_NAME] [td/TODO_DESCRIPTION] [n/NAME]` <br>e.g. `edit-todo 1 tn/Call John td/Confirm appointment with John n/John Doe`                                                      |
 | **delete-todo**    | `delete-todo INDEX` <br> e.g.`delete-todo 1`                                                                                                                                                         |
 | **list-todos**     | `list-todos`                                                                                                                                                                                         |
 | **mark-todo**      | `mark-todo INDEX`<br> e.g.`mark-todo 1`                                                                                                                                                              |
