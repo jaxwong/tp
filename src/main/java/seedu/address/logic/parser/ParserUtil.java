@@ -175,7 +175,7 @@ public class ParserUtil {
      */
     public static LocalDateTime parseDate(String datetime) throws ParseException {
         requireNonNull(datetime);
-        String trimmed = datetime.trim().replaceAll(",$", "");
+        String trimmed = datetime.trim();
         try {
             return LocalDateTime.parse(trimmed, FORMATTER);
         } catch (DateTimeParseException e) {

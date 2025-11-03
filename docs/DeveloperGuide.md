@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Generative AI tools were used for creating detailed Javadoc and test suite creation throughout the development of EventBook.
+* Canvas was used to edit some of the images in the documentation. 
 
 --------------------------------------------------------------------------------------------------------------------
 
