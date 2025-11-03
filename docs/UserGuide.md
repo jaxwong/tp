@@ -12,6 +12,7 @@ It solves slow, click-heavy planning by letting you type to act - add/find/updat
 ### 📖 Table of Contents
 
 - [Quick Start](#quick-start)
+- [User Interface Tutorial](#user-interface-tutorial)
 - [Features](#features)
   - [Contacts](#contacts)
   - [Events](#events)
@@ -22,6 +23,8 @@ It solves slow, click-heavy planning by letting you type to act - add/find/updat
 - [Command Summary](#command-summary)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -63,7 +66,8 @@ Follow these steps to get started with OverBooked in under 10 minutes:
 
   You should see a window like this:
   <br>
-![UserInterface](images/Ui.png)
+  ![UI of the Main Window](images/Ui.png)
+
 
 5. **Try these Commands**
 
@@ -79,7 +83,48 @@ Follow these steps to get started with OverBooked in under 10 minutes:
 
 Refer to the [Features](#features) below for details of each command.
 
+<div style="page-break-after: always;"></div>
 ---
+## User Interface Tutorial
+
+### General User Interface
+
+Our modern graphical user interface displays all your information in an organised and distinguishable manner, making multitasking more efficient.
+
+<br>![Annotated Ui](images/AnnotatedUi.png)
+
+**Menu Bar**: For Navigation to 'File' or 'help'
+
+**Command Box**: Where the command inputs will be typed in
+
+**Results Display**: Where the application will notify for any errors / successful commands
+
+**Contact List**: Shows the Displayed Contact Lists based on requested filters.
+
+**Event List**: Shows the Contact List based on requested filters.
+
+**Todo List**: Shows the Todo List based on requested filters.
+
+### Contact Card
+
+<br>![Annotated Contact Card](images/ContactCard.png)
+
+Each contact card will reflect (from top to bottom), the contact's name, tags, phone number, address, email and linked event
+
+### Event Card
+
+<br>![Annotated Event Card](images/EventCard.png)
+
+Each event card will reflect (from top to bottom), the event's name with alias, event details, start and end time.
+
+### Todo card
+
+<br>![Annotated Todo Card](images/todoCard.png)
+
+Each todo card will reflect (from top to bottom), the todo's name, description, linked contact and status.
+
+---
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -136,6 +181,8 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 ---
+<div style="page-break-after: always;"></div>
+
 ## Contacts
 
 <div markdown="block" class="alert alert-info">
@@ -233,6 +280,7 @@ Examples:
 - `find-contacts n/Betsy` followed by `delete-contact 1` deletes the 1st person in the results of the `find-contact` command.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Events
 
@@ -358,6 +406,7 @@ Examples:
 - `find-by-event ea/TSC2025`
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Todos
 
@@ -447,6 +496,7 @@ Examples:
 - `list-todos` followed by `unmark-todo 2` marks the 2nd todo in the address book as incomplete.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Miscellaneous
 
@@ -476,6 +526,8 @@ Furthermore, certain edits can cause the OverBooked to behave in unexpected ways
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
+
 
 ## FAQ
 
@@ -491,6 +543,7 @@ home folder.
 2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard shortcut `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
