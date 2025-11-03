@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Generative AI tools were used for creating detailed Javadoc and test suite creation throughout the development of OverBooked.
+* Canva was used to edit some of the images in the documentation. 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -167,7 +168,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Add-Event Feature
+### Add-Event Feature
 
 The Add-Event mechanism is facilitated by the `AddEventCommand` class. It allows users to create and store new events in 
 the address book with complete details including name, alias, start time, end time, and description. 
@@ -296,7 +297,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -717,7 +718,7 @@ Use case ends.
 **Use case: UC17 - List todos**
 
 **MSS**
-1. User requests to view the lists of todos.
+1. User requests to view the list of todos.
 2. OverBooked shows the list of todos.
 
 Use case ends.
@@ -819,7 +820,7 @@ testers are expected to do more *exploratory* testing.
 1. Initial launch
 
    1. Download the jar file and copy into an empty folder
-   2. Open a terminal and navigate to that folder using the cd command
+   2. Open a terminal and navigate to that folder using the `cd` command
    3. Run the application by typing `java -jar OverBooked.jar`
 
 1. Saving window preferences
