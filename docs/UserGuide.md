@@ -203,7 +203,7 @@ Tags are case-insensitive, meaning `t/EMERGENCY` and `t/emergency` will return o
 Examples:
 
 - `add-contact n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-- `add-contact n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+- `add-contact n/Betsy Crowe t/friend e/betsycrowe@example.com a/Yishun block 53 p/1234567 t/manager`
 
 ### Listing all persons : `list-contacts`
 
@@ -549,7 +549,7 @@ home folder.
 | Action             | Format, Examples                                                                                                                                                                                     |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 👤 **Contacts**    |                                                                                                                                                                                                      |
-| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`                |
+| **add-contact**    | `add-contact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add-contact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/logistics t/colleague`             |
 | **edit-contact**   | `edit-contact INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br>e.g. `edit-contact 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **delete-contact** | `delete-contact INDEX`<br>e.g. `delete-contact 3`                                                                                                                                                    |
 | **find-contacts**  | `find-contacts n/KEYWORD [MORE_KEYWORDS]`<br>e.g. `find-contacts n/James Jake`                                                                                                                       |     |
