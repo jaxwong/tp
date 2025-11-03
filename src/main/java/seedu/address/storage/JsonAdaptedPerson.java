@@ -74,6 +74,9 @@ class JsonAdaptedPerson {
     public Person toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
+            if (tag == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+            }
             personTags.add(tag.toModelType());
         }
 
@@ -113,7 +116,11 @@ class JsonAdaptedPerson {
 
         EventAlias modelEventAlias = null;
         if (eventAlias != null) {
-            modelEventAlias = new EventAlias(eventAlias);
+            try {
+                modelEventAlias = new EventAlias(eventAlias);
+            } catch (IllegalArgumentException e) {
+                throw new IllegalValueException(EventAlias.MESSAGE_CONSTRAINTS);
+            }
         }
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelEventAlias);

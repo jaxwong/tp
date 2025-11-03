@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -59,6 +60,9 @@ public class JsonAdaptedEvent {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "name"));
         }
+        if (description == null || description.isEmpty()) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
         if (!EventName.isValidEventName(name)) {
             throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
         }
@@ -74,8 +78,15 @@ public class JsonAdaptedEvent {
 
         EventAlias modelAlias = new EventAlias(alias);
 
-        LocalDateTime modelStart = LocalDateTime.parse(start);
-        LocalDateTime modelEnd = LocalDateTime.parse(end);
+        LocalDateTime modelStart;
+        LocalDateTime modelEnd;
+        try {
+            modelStart = LocalDateTime.parse(start);
+            modelEnd = LocalDateTime.parse(end);
+
+        } catch (NullPointerException | DateTimeException e) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "wrong format"));
+        }
 
         try {
             return new Event(modelName, modelAlias, modelStart, modelEnd, description);

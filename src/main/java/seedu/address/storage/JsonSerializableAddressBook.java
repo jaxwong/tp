@@ -24,6 +24,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
     public static final String MESSAGE_DUPLICATE_EVENT = "Events list contains duplicate event(s).";
     public static final String MESSAGE_DUPLICATE_TODO = "Todos list contains duplicate todo(s).";
+    public static final String MESSAGE_INVALID_DATA = "Data provided is invalid.";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
     private final List<JsonAdaptedEvent> events = new ArrayList<>();
@@ -66,6 +67,9 @@ class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            if (jsonAdaptedPerson == null) {
+                throw new IllegalValueException(MESSAGE_INVALID_DATA);
+            }
             Person person = jsonAdaptedPerson.toModelType();
             if (addressBook.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
@@ -74,6 +78,9 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            if (jsonAdaptedEvent == null) {
+                throw new IllegalValueException(MESSAGE_INVALID_DATA);
+            }
             Event event = jsonAdaptedEvent.toModelType();
             if (addressBook.hasEvent(event)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_EVENT);
@@ -82,6 +89,9 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
+            if (jsonAdaptedTodo == null) {
+                throw new IllegalValueException(MESSAGE_INVALID_DATA);
+            }
             Todo todo = jsonAdaptedTodo.toModelType();
             if (addressBook.hasTodo(todo)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TODO);
