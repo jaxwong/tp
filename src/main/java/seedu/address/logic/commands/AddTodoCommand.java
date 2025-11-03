@@ -21,8 +21,8 @@ public class AddTodoCommand extends Command {
     public static final String COMMAND_WORD = "add-todo";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a todo to the address book. "
             + "Parameters: "
-            + PREFIX_TODO_NAME + "TODO NAME "
-            + PREFIX_TODO_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_TODO_NAME + "TODO_NAME "
+            + PREFIX_TODO_DESCRIPTION + "TODO_DESCRIPTION "
             + "[" + PREFIX_NAME + "NAME (of contact)] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TODO_NAME + "Call for TSC2025 "

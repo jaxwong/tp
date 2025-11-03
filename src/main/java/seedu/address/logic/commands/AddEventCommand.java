@@ -18,15 +18,15 @@ import seedu.address.model.event.Event;
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "add-event";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Event to the address book. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event to the address book. \n"
             + "Parameters: "
-            + PREFIX_EVENT_NAME + "EVENT NAME "
-            + PREFIX_EVENT_ALIAS + "EVENT ALIAS "
-            + PREFIX_START + "START DATETIME "
-            + PREFIX_END + "END DATETIME "
+            + PREFIX_EVENT_NAME + "EVENT_NAME "
+            + PREFIX_EVENT_ALIAS + "EVENT_ALIAS "
+            + PREFIX_START + "START_DATETIME "
+            + PREFIX_END + "END_DATETIME "
             + PREFIX_DESC + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_EVENT_NAME + "Taylor swift concert "
+            + PREFIX_EVENT_NAME + "Taylor Swift Concert "
             + PREFIX_EVENT_ALIAS + "TS2025 "
             + PREFIX_START + "2025-09-19 19:30 "
             + PREFIX_END + "2025-09-19 23:30 "

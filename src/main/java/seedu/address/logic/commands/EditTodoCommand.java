@@ -33,8 +33,8 @@ public class EditTodoCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TODO_NAME + "TODO_NAME] "
-            + "[" + PREFIX_TODO_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_NAME + "PERSON_NAME]\n"
+            + "[" + PREFIX_TODO_DESCRIPTION + "TODO_DESCRIPTION] "
+            + "[" + PREFIX_NAME + "NAME]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TODO_DESCRIPTION + "Meet John regarding events plan";
 
     public static final String MESSAGE_EDIT_TODO_SUCCESS = "Edited Todo: %1$s";
